@@ -1,7 +1,7 @@
 <template>
   <main class="home-page">
     <div class="full-height-div full-height-div--top">
-      <UserArea msg="" />
+      <UserArea />
       <h1 class="home-logo">IRE<span>N</span>OTION</h1>
     </div>
     <section class="text-section text-section--light">
