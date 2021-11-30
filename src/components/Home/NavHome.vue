@@ -1,19 +1,31 @@
 <template>
   <nav class="nav__user-area">
-    <button class="nav__button nav__button--login">LOG <span>IN</span></button>
-    <button class="nav__button nav__button--signup">
-      SIGN <span>UP</span>
-    </button>
+    <router-link :to="paths.login">
+      <button class="nav__button nav__button--login">
+        LOG <span>IN</span>
+      </button>
+    </router-link>
+    <router-link :to="paths.login">
+      <button class="nav__button nav__button--signup">
+        SIGN <span>UP</span>
+      </button>
+    </router-link>
   </nav>
 </template>
 
 <script lang="ts">
 import { defineComponent } from "vue";
+import paths from "../../utils/paths";
 
 export default defineComponent({
   name: "UserArea",
   props: {
     msg: String,
+  },
+  data() {
+    return {
+      paths,
+    };
   },
 });
 </script>
