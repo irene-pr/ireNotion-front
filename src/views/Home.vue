@@ -127,7 +127,7 @@ export default defineComponent({
   }
   h2 {
     margin: 15px;
-    font-family: $h;
+    font-family: $heading-home;
     font-weight: bold;
     font-size: 24px;
     letter-spacing: 0.17em;
