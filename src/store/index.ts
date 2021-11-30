@@ -4,7 +4,10 @@ import actions from "./actions";
 export default createStore({
   state: {
     isLoggedIn: false,
-    userContent: {},
+    userContent: {
+      name: "",
+      boards: [],
+    },
     userId: "",
     token: "",
   },

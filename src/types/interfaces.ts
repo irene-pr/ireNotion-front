@@ -25,13 +25,19 @@ export interface Board {
   notes: Array<Note>;
 }
 
-export interface userContent {
+export interface UserContent {
+  name: string;
   boards: Array<Board>;
 }
 
 export interface State {
   isLoggedIn: boolean;
   userId: string;
-  userContent: userContent;
+  userContent: UserContent;
   token: string;
+}
+
+export interface UserLoginData {
+  username: string;
+  password: string;
 }
