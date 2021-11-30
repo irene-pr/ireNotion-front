@@ -71,7 +71,7 @@ export default defineComponent({
     width: fit-content;
     position: relative;
     bottom: calc(-50vh + 70px);
-    left: calc(50vw - 222px);
+    left: calc(50vw - 230px);
     background-color: $dark-color-home-opacity;
     color: $light-color-home;
     padding: 20px;
@@ -84,6 +84,12 @@ export default defineComponent({
     span {
       color: $theme-pink;
       font-weight: 300;
+    }
+
+    @media only screen and (max-width: 480px) {
+      width: 100%;
+      left: 0%;
+      font-size: 24px;
     }
   }
 }
@@ -134,6 +140,14 @@ export default defineComponent({
     font-size: 16px;
     line-height: 33px;
     letter-spacing: 0.1em;
+  }
+
+  @media only screen and (max-width: 480px) {
+    padding: 20px 20px;
+  }
+
+  @media only screen and (max-width: 720px) {
+    padding: 20px 35px;
   }
 }
 </style>
