@@ -27,7 +27,7 @@
     </section>
     <div class="medium-height-div medium-height-div--second"></div>
     <section class="text-section text-section--light">
-      <h2>Thanks</h2>
+      <h2>Message of Thanks</h2>
       <p>
         I thank all of my teachers and classmates for everything I've learned
         and experienced during the bootcamp. I've had the time of my life while
@@ -35,7 +35,7 @@
         I couldn't have done it woithout her.
       </p>
     </section>
-    <div class="full-height-div full-height-div--top">
+    <div class="full-height-div full-height-div--bottom">
       <h1 class="home-logo">IRE<span>N</span>OTION</h1>
     </div>
   </main>
