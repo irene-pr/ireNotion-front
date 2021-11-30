@@ -36,6 +36,7 @@ export default defineComponent({
 .nav__user-area {
   display: flex;
   position: fixed;
+  z-index: 2;
 }
 .nav__button {
   width: 100px;
