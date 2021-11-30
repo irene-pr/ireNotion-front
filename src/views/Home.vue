@@ -102,7 +102,7 @@ export default defineComponent({
     background-attachment: fixed;
   }
   &--second {
-    background: url("../assets/background-4.png");
+    background: url("../assets/background-3.jpg");
     background-size: cover;
     background-attachment: fixed;
   }
