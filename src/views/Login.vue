@@ -1,14 +1,18 @@
 <template>
   <main class="login-page">
-    <h1>This is the login!!! Woooooooo!!!</h1>
+    <LoginForm />
   </main>
 </template>
 
 <script lang="ts">
 import { defineComponent } from "vue";
+import LoginForm from "@/components/Login/LoginForm.vue";
 
 export default defineComponent({
   name: "Login",
+  components: {
+    LoginForm,
+  },
 });
 </script>
 
