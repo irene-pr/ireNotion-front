@@ -1,6 +1,6 @@
 import { mount, shallowMount } from "@vue/test-utils";
-import Home from "../../src/views/Home.vue";
-import NavHome from "../../src/components/Home/NavHome.vue";
+import Home from "../../../src/views/Home.vue";
+import NavHome from "../../../src/components/Home/NavHome.vue";
 
 describe("Given a Home view", () => {
   describe("When it is rendered", () => {
