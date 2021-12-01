@@ -1,6 +1,6 @@
 <template>
   <main class="login-page">
-    <LoginForm />
+    <LoginForm class="login-page__form-component" />
   </main>
 </template>
 
@@ -16,6 +16,15 @@ export default defineComponent({
 });
 </script>
 
-<style lang="scss">
+<style scoped lang="scss">
 @import "@/styles/_variables";
+
+.login-page {
+  height: 100vh;
+  background-image: url("../assets/background-2.webp");
+  background-size: cover;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 </style>
