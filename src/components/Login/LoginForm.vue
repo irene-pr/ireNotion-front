@@ -50,7 +50,7 @@
 <script lang="ts">
 import { defineComponent } from "vue";
 import { mapActions } from "vuex";
-import { UserLoginData } from "@/types/interfaces";
+import { IUserLoginData } from "@/types/interfaces";
 import paths from "../../router/paths";
 import router from "@/router";
 
@@ -69,7 +69,7 @@ export default defineComponent({
     ...mapActions(["loginUser"]),
     async onSubmit() {
       if (this.username !== "" && this.password !== "") {
-        const userLoginData: UserLoginData = {
+        const userLoginData: IUserLoginData = {
           username: this.username,
           password: this.password,
         };

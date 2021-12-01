@@ -1,7 +1,7 @@
-import { State } from "@/types/interfaces";
+import { IState } from "@/types/interfaces";
 
 const mutations = {
-  setToken(state: State, payload: string): void {
+  setToken(state: IState, payload: string): void {
     state.token = payload;
   },
 };

@@ -1,9 +1,9 @@
-export interface Checklist {
+export interface IChecklist {
   isChecked: boolean;
   paragraph: string;
 }
 
-export interface Position {
+export interface IPosition {
   x?: number;
   y?: number;
   w?: number;
@@ -13,31 +13,31 @@ export interface Position {
 export interface Note {
   type: string;
   color: string;
-  position?: Position;
+  position?: IPosition;
   title?: string;
   paragraph?: string;
-  list?: Array<string | Checklist>;
+  list?: Array<string | IChecklist>;
 }
 
-export interface Board {
+export interface IBoard {
   type: string;
   name: string;
   notes: Array<Note>;
 }
 
-export interface UserContent {
+export interface IUserContent {
   name: string;
-  boards: Array<Board>;
+  boards: Array<IBoard>;
 }
 
-export interface State {
+export interface IState {
   isLoggedIn: boolean;
   userId: string;
-  userContent: UserContent;
+  userContent: IUserContent;
   token: string;
 }
 
-export interface UserLoginData {
+export interface IUserLoginData {
   username: string;
   password: string;
 }
