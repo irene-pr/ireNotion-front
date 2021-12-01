@@ -1,11 +1,11 @@
 import { ActionContext } from "vuex";
 import axios from "axios";
-import { State, UserLoginData } from "@/types/interfaces";
+import { IState, IUserLoginData } from "@/types/interfaces";
 
 const actions = {
   async loginUser(
-    { commit }: ActionContext<State, State>,
-    user: UserLoginData
+    { commit }: ActionContext<IState, IState>,
+    user: IUserLoginData
   ): Promise<void> {
     const { data: token } = await axios.post(
       `${process.env.VUE_APP_API}/user/login/`,

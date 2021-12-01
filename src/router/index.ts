@@ -1,8 +1,8 @@
 import { createRouter, createWebHistory, RouteRecordRaw } from "vue-router";
-import paths from "@/utils/paths";
+import paths from "@/router/paths";
 import Home from "../views/Home.vue";
 import Login from "../views/Login.vue";
-import Board from "../views/Board.vue";
+import BoardPage from "../views/BoardPage.vue";
 
 const routes: Array<RouteRecordRaw> = [
   {
@@ -17,8 +17,8 @@ const routes: Array<RouteRecordRaw> = [
   },
   {
     path: paths.userBoard,
-    name: "Board",
-    component: Board,
+    name: "BoardPage",
+    component: BoardPage,
   },
 ];
 
