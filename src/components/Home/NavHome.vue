@@ -32,6 +32,7 @@ export default defineComponent({
 
 <style lang="scss">
 @import "@/styles/_variables";
+@import "@/styles/_extends";
 
 .nav__user-area {
   display: flex;
@@ -39,36 +40,21 @@ export default defineComponent({
   z-index: 2;
 }
 .nav__button {
-  width: 100px;
-  height: 46px;
   position: absolute;
   top: 14px;
-  opacity: 0.75;
-  border: 1px solid #595959;
-  box-sizing: border-box;
-  border-radius: 15px;
-  font-family: $Lato;
-  font-weight: 300;
-  font-size: 18px;
-  line-height: 22px;
-  text-align: center;
-  letter-spacing: 0.1em;
-  transform: scale(0.8);
+  @extend %button;
 
   &--login {
-    background-color: $light-color-home;
-    color: $dark-color-home;
+    @extend %button--login;
     left: 14px;
   }
   &--signup {
-    background-color: $dark-color-home;
-    color: $light-color-home;
+    @extend %button--signup;
     left: 116px;
   }
   span {
+    @extend %button--span;
     color: $theme-pink;
-    font-style: italic;
-    font-weight: 500;
   }
 }
 </style>
