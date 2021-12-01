@@ -15,13 +15,10 @@
 
 <script lang="ts">
 import { defineComponent } from "vue";
-import paths from "../../utils/paths";
+import paths from "../../router/paths";
 
 export default defineComponent({
   name: "UserArea",
-  props: {
-    msg: String,
-  },
   data() {
     return {
       paths,
