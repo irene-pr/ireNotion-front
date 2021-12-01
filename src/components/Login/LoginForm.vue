@@ -154,7 +154,7 @@ export default defineComponent({
       letter-spacing: 0;
     }
     &[type="password"] {
-      font-family: Verdana;
+      font-family: Verdana, serif;
       letter-spacing: 0.125em;
     }
     &:focus {
