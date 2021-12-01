@@ -72,8 +72,8 @@ export default defineComponent({
     position: relative;
     bottom: calc(-50vh + 70px);
     left: calc(50vw - 230px);
-    background-color: $dark-color-home-opacity;
-    color: $light-color-home;
+    background-color: $theme-dark-color-opacity;
+    color: $theme-light-color;
     padding: 20px;
     padding-left: 35px;
     font-size: 36px;
@@ -97,7 +97,7 @@ export default defineComponent({
   height: 60vh;
 
   &--first {
-    background: url("../assets/background-2.webp");
+    background: url("../assets/background-4.png");
     background-size: cover;
     background-attachment: fixed;
   }
@@ -114,13 +114,13 @@ export default defineComponent({
   align-content: center;
   justify-content: center;
   &--light {
-    background-color: $light-color-home;
-    color: $dark-color-home;
+    background-color: $theme-light-color;
+    color: $theme-dark-color;
   }
 
   &--dark {
-    background-color: $dark-color-home;
-    color: $light-color-home;
+    background-color: $theme-dark-color;
+    color: $theme-light-color;
     p {
       font-weight: 300;
     }
