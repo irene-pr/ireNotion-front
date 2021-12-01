@@ -1,0 +1,35 @@
+%label-text {
+  color: $theme-label;
+  font-weight: 400;
+  font-size: 10px;
+  letter-spacing: 0.05em;
+}
+
+%button {
+  width: 100px;
+  height: 46px;
+  border-radius: 15px;
+  font-family: $Lato;
+  font-weight: 300;
+  font-size: 18px;
+  line-height: 22px;
+  text-align: center;
+  letter-spacing: 0.1em;
+  transform: scale(0.8);
+  cursor: pointer;
+  border: 1px solid #595959;
+}
+
+%button--login {
+  background-color: $theme-light-color;
+  color: $theme-dark-color;
+}
+%button--signup {
+  background-color: $theme-dark-color;
+  color: $theme-light-color;
+}
+
+%button--span {
+  font-style: italic;
+  font-weight: 500;
+}
