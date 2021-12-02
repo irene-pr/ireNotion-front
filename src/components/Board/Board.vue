@@ -1,7 +1,8 @@
 <template>
-  <section class="flex m-10">
-    <draggable class="dragArea list-group w-full" :board="board" @change="log">
-      <Note v-for="note in board" :note="note" v-bind:key="note.id" />
+  <section class="">
+    <draggable class="" :board="board" @change="log">
+      <h2>This is board{{ board.name }}</h2>
+      <Note v-for="note in board.notes" :note="note" v-bind:key="note.id" />
     </draggable>
   </section>
 </template>
@@ -10,6 +11,7 @@
 import { defineComponent } from "vue";
 import { VueDraggableNext } from "vue-draggable-next";
 import Note from "@/components/Board/Note.vue";
+import { IBoard } from "@/types/interfaces";
 
 export default defineComponent({
   name: "Board",
@@ -17,15 +19,10 @@ export default defineComponent({
     draggable: VueDraggableNext,
     Note,
   },
+  props: { board: IBoard },
   data() {
     return {
       enabled: true,
-      board: [
-        { type: "paragraph", id: 1 },
-        { type: "paragraph", id: 2 },
-        { type: "paragraph", id: 3 },
-        { type: "paragraph", id: 4 },
-      ],
       dragging: false,
     };
   },
