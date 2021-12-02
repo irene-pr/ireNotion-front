@@ -5,11 +5,11 @@
 </template>
 <script>
 import { defineComponent } from "vue";
-import { Note } from "@/types/interfaces";
+import { INote } from "@/types/interfaces";
 
 export default defineComponent({
   name: "Note",
-  props: { note: Note },
+  props: { note: INote },
   methods: {
     log(event) {
       console.log(event);
