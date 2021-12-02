@@ -1,5 +1,5 @@
 <template>
-  <article class="note">
+  <article class="note" :note="note">
     {{ note.id }}
   </article>
 </template>
