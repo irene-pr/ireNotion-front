@@ -1,26 +1,55 @@
 import { mount, shallowMount } from "@vue/test-utils";
+import { createStore } from "vuex";
 import Home from "../../../src/views/Home.vue";
 import NavHome from "../../../src/components/Home/NavHome.vue";
+import state from "@/store/state";
+import router from "@/router";
 
 describe("Given a Home view", () => {
+  const store = createStore({
+    state() {
+      return state;
+    },
+  });
+
   describe("When it is rendered", () => {
     test("it renders", () => {
-      mount(Home);
+      mount(Home, {
+        global: {
+          plugins: [router, store],
+        },
+        stubs: ["router-view"],
+      });
     });
     test("it renders the component NavHome", () => {
-      const wrapper = mount(Home);
+      const wrapper = mount(Home, {
+        global: {
+          plugins: [router, store],
+        },
+        stubs: ["router-view"],
+      });
 
       wrapper.getComponent(NavHome);
     });
     test("it contains 4 div nodes", () => {
-      const wrapper = mount(Home);
+      const wrapper = mount(Home, {
+        global: {
+          plugins: [router, store],
+        },
+        stubs: ["router-view"],
+      });
 
       const divs = wrapper.findAll("div");
 
       expect(divs).toHaveLength(4);
     });
     test("it contains 2 div nodes with classes 'medium-height-div' and modifiers", () => {
-      const wrapper = mount(Home);
+      const wrapper = mount(Home, {
+        global: {
+          plugins: [router, store],
+        },
+        stubs: ["router-view"],
+      });
 
       const divs = wrapper.findAll("div");
 
@@ -30,7 +59,12 @@ describe("Given a Home view", () => {
       expect(divs[2].classes()).toContain("medium-height-div--second");
     });
     test("it contains 2 div nodes with classes 'full-height-div' and modifiers", () => {
-      const wrapper = mount(Home);
+      const wrapper = mount(Home, {
+        global: {
+          plugins: [router, store],
+        },
+        stubs: ["router-view"],
+      });
 
       const divs = wrapper.findAll("div");
 
@@ -40,7 +74,12 @@ describe("Given a Home view", () => {
       expect(divs[3].classes()).toContain("full-height-div--bottom");
     });
     test("it contains 2 div nodes with a h1 node that has a span node", () => {
-      const wrapper = mount(Home);
+      const wrapper = mount(Home, {
+        global: {
+          plugins: [router, store],
+        },
+        stubs: ["router-view"],
+      });
 
       const divs = wrapper.findAll("div");
 
@@ -48,14 +87,24 @@ describe("Given a Home view", () => {
       expect(divs[3].find("h1").find("span").text()).toContain("N");
     });
     test("it contains 3 section nodes", () => {
-      const wrapper = mount(Home);
+      const wrapper = mount(Home, {
+        global: {
+          plugins: [router, store],
+        },
+        stubs: ["router-view"],
+      });
 
       const sections = wrapper.findAll("section");
 
       expect(sections).toHaveLength(3);
     });
     test("it contains 3 section nodes with classes 'text-section' and modifiers", () => {
-      const wrapper = mount(Home);
+      const wrapper = mount(Home, {
+        global: {
+          plugins: [router, store],
+        },
+        stubs: ["router-view"],
+      });
 
       const sections = wrapper.findAll("section");
 
@@ -67,7 +116,12 @@ describe("Given a Home view", () => {
       expect(sections[2].classes()).toContain("text-section--light");
     });
     test("it contains 3 section nodes that contain a paragraph and a header", () => {
-      const wrapper = shallowMount(Home);
+      const wrapper = shallowMount(Home, {
+        global: {
+          plugins: [router, store],
+        },
+        stubs: ["router-view"],
+      });
 
       const sections = wrapper.findAll("section");
 
@@ -79,7 +133,12 @@ describe("Given a Home view", () => {
       expect(sections[2].find("h2")).toBeTruthy();
     });
     test("it contains 3 section nodes that contain a paragraph and a header with the text content they shouls have", () => {
-      const wrapper = shallowMount(Home);
+      const wrapper = shallowMount(Home, {
+        global: {
+          plugins: [router, store],
+        },
+        stubs: ["router-view"],
+      });
 
       const sections = wrapper.findAll("section");
 
