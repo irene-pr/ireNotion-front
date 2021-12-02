@@ -10,7 +10,7 @@ export interface IPosition {
   h?: number;
 }
 
-export interface Note {
+export interface INote {
   type: string;
   color: string;
   position?: IPosition;
@@ -22,7 +22,7 @@ export interface Note {
 export interface IBoard {
   type: string;
   name: string;
-  notes: Array<Note>;
+  notes: Array<INote>;
 }
 
 export interface IUserContent {
