@@ -12,7 +12,7 @@ describe("Given a NavHome component", () => {
   });
 
   describe("When it is rendered", () => {
-    test("it renders", () => {
+    test("Then it renders", () => {
       mount(NavHome, {
         global: {
           plugins: [router, store],
@@ -20,7 +20,7 @@ describe("Given a NavHome component", () => {
         stubs: ["router-view"],
       });
     });
-    test("it renders two buttons", () => {
+    test("Then it renders two buttons", () => {
       const wrapper = mount(NavHome, {
         global: {
           plugins: [router, store],
@@ -32,7 +32,7 @@ describe("Given a NavHome component", () => {
 
       expect(buttons).toHaveLength(2);
     });
-    test("it renders the login button", () => {
+    test("Then it renders the login button", () => {
       const wrapper = mount(NavHome, {
         global: {
           plugins: [router, store],
@@ -44,7 +44,7 @@ describe("Given a NavHome component", () => {
 
       expect(button.text()).toContain("LOG IN");
     });
-    test("it renders the signup button", () => {
+    test("Then it renders the signup button", () => {
       const wrapper = mount(NavHome, {
         global: {
           plugins: [router, store],

@@ -1,7 +1,7 @@
 <template>
   <nav class="nav__user-area">
     <router-link :to="paths.login">
-      <button class="nav__button nav__button--login" disabled>
+      <button class="nav__button nav__button--login">
         LOG <span>IN</span>
       </button>
     </router-link>
