@@ -3,17 +3,10 @@ export interface IChecklist {
   paragraph: string;
 }
 
-export interface IPosition {
-  x?: number;
-  y?: number;
-  w?: number;
-  h?: number;
-}
-
 export interface INote {
   type: string;
   color: string;
-  position?: IPosition;
+  position?: number;
   title?: string;
   paragraph?: string;
   list?: Array<string | IChecklist>;
@@ -23,6 +16,7 @@ export interface IBoard {
   type: string;
   name: string;
   notes: Array<INote>;
+  id: string;
 }
 
 export interface IUserContent {
