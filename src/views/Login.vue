@@ -6,19 +6,26 @@
 
 <script lang="ts">
 import { defineComponent } from "vue";
-import { mapActions } from "vuex";
+import { mapActions, mapState } from "vuex";
 import LoginForm from "@/components/Login/LoginForm.vue";
+import paths from "../router/paths";
 
 export default defineComponent({
   name: "Login",
   components: {
     LoginForm,
   },
+  computed: {
+    ...mapState(["isLoggedIn"]),
+  },
   methods: {
     ...mapActions(["checkToken"]),
   },
   mounted() {
     this.checkToken();
+    if (this.isLoggedIn) {
+      this.$router.push(paths.userBoard);
+    }
   },
 });
 </script>

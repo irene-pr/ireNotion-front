@@ -9,6 +9,7 @@
 import { defineComponent } from "vue";
 import { mapActions, mapState } from "vuex";
 import Board from "@/components/Board/Board.vue";
+import paths from "@/router/paths";
 
 export default defineComponent({
   name: "BoardPage",
@@ -21,13 +22,16 @@ export default defineComponent({
     };
   },
   computed: {
-    ...mapState(["userContent"]),
+    ...mapState(["userContent", "isLoggedIn"]),
   },
   methods: {
     ...mapActions(["getUserContent", "checkToken"]),
   },
   mounted() {
     this.checkToken();
+    if (!this.isLoggedIn) {
+      this.$router.push(paths.home);
+    }
     this.getUserContent();
     this.boards = this.userContent.boards;
   },
