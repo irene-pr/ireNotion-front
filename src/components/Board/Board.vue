@@ -1,8 +1,8 @@
 <template>
   <section class="board">
-    <h2>This is board{{ board.name }}</h2>
+    <h3>This is board{{ board.name }}</h3>
     <draggable class="board__draggable-area" :board="board" @change="log">
-      <Note v-for="note in board.notes" :note="note" v-bind:key="note.id" />
+      <Note v-for="note in board.notes" :note="note" :key="note.id" />
     </draggable>
   </section>
 </template>
@@ -35,6 +35,7 @@ export default defineComponent({
 </script>
 <style lang="scss" scoped>
 .board {
+  max-width: 480px;
   padding: 15px;
   border: 2px red dotted;
   &__draggable-area {
