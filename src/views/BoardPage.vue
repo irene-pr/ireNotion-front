@@ -1,10 +1,9 @@
 <template>
+  <nav class="nav-bar">
+    <h1 class="nav-bar__header">Welcome to your boards!</h1>
+    <button class="nav-bar__button">LOG <span>OUT</span></button>
+  </nav>
   <main class="board-page">
-    <nav>
-      <h1>This is the Board Page!</h1>
-      <button>LOG OUT</button>
-    </nav>
-
     <div class="board-array">
       <Board
         v-for="board in userContent.boards"
@@ -48,14 +47,40 @@ export default defineComponent({
 
 <style scoped lang="scss">
 @import "@/styles/_variables";
+@import "@/styles/_extends";
+
 * {
   margin: 0;
 }
 
 .board-page {
   background-color: $theme-light-color;
+  padding-top: 50px;
+}
+.nav-bar {
+  width: 100%;
+  position: fixed;
+  display: flex;
+  justify-content: space-between;
+  background-color: $theme-light-color;
+  align-items: center;
+  &__header {
+    font-family: "Fredericka the Great", cursive;
+    font-weight: 100;
+    font-size: 36px;
+    padding-left: 20px;
+  }
+  &__button {
+    @extend %button;
+    width: 120px;
+    span {
+      @extend %button--span;
+      color: $theme-pink;
+    }
+  }
 }
 .board-array {
+  width: 100%;
   background: pink;
 }
 </style>
