@@ -65,8 +65,6 @@ export default defineComponent({
       display: flex;
       align-content: center;
     }
-    &__button {
-    }
   }
 }
 </style>

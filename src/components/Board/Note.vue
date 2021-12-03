@@ -32,6 +32,7 @@ export default defineComponent({
 @import "@/styles/_variables";
 
 .note {
+  width: 360px;
   margin: 10px;
   padding: 25px;
   display: flex;
@@ -45,8 +46,8 @@ export default defineComponent({
     word-wrap: break-word;
     h4 {
       padding: 0 0 10px 10px;
-      font-family: "Fredericka the Great", cursive;
-      font-weight: 100;
+      font-family: $hand-writing;
+      font-weight: bold;
       font-size: 26px;
     }
     p {
