@@ -40,6 +40,34 @@ const actions = {
       return "User not logged in";
     }
   },
+
+  async createParagraphNote(
+    { dispatch }: ActionContext<IState, IState>,
+    idBoard: string
+  ): Promise<string | void> {
+    const randomNumber = Math.floor(Math.random() * 4);
+    const colors = ["yellow", "pink", "blue", "orange"];
+    const initialParagraphCard = {
+      type: "paragraph",
+      title: "Title",
+      paragraph: "This is a note. You can write whatever you want",
+      color: colors[randomNumber],
+    };
+    const body = {
+      note: initialParagraphCard,
+      idBoard,
+    };
+
+    try {
+      const { token } = JSON.parse(localStorage.getItem("token") || "");
+      await axios.post(`${process.env.VUE_APP_API}/note/create/`, body, {
+        headers: { Authorization: `Bearer ${token}` },
+      });
+      return dispatch("getUserContent");
+    } catch {
+      return "Paragraph note could not be created";
+    }
+  },
 };
 
 export default actions;
