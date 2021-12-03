@@ -13,14 +13,13 @@ const actions = {
       user
     );
     localStorage.setItem("token", JSON.stringify(token));
-    commit("setToken", token);
+    commit("setUserData", jwtDecode(token.token));
   },
 
   async getUserContent({
     commit,
   }: ActionContext<IState, IState>): Promise<void> {
     const { token } = JSON.parse(localStorage.getItem("token") || "");
-
     const { data: userContent } = await axios.get(
       `${process.env.VUE_APP_API}/user/content/`,
       {
