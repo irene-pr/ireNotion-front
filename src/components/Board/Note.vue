@@ -28,6 +28,7 @@ export default defineComponent({
   props: { note: INote },
 });
 </script>
+
 <style lang="scss" scoped>
 @import "@/styles/_variables";
 

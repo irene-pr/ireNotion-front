@@ -3,8 +3,16 @@
     <div class="board-header">
       <h3 class="board-header__header">{{ board.name }}</h3>
       <div class="board-header__buttons">
-        <button class="board-header__button--note">Add Note</button>
-        <button class="board-header__button--image">Add Image</button>
+        <button
+          type="button"
+          class="board-header__button--note"
+          @click="onclickAddNote"
+        >
+          Add Note
+        </button>
+        <button type="button" class="board-header__button--image">
+          Add Image
+        </button>
       </div>
     </div>
 
@@ -17,6 +25,7 @@
 <script>
 import { defineComponent } from "vue";
 import { VueDraggableNext } from "vue-draggable-next";
+import { mapActions } from "vuex";
 import Note from "@/components/Board/Note.vue";
 import { IBoard } from "@/types/interfaces";
 
@@ -34,8 +43,12 @@ export default defineComponent({
     };
   },
   methods: {
+    ...mapActions(["createParagraphNote"]),
     log(event) {
       console.log(event);
+    },
+    onclickAddNote() {
+      this.createParagraphNote(this.board.id);
     },
   },
 });
