@@ -24,9 +24,10 @@ export default defineComponent({
     ...mapState(["userContent"]),
   },
   methods: {
-    ...mapActions(["getUserContent"]),
+    ...mapActions(["getUserContent", "checkToken"]),
   },
   mounted() {
+    this.checkToken();
     this.getUserContent();
     this.boards = this.userContent.boards;
   },
