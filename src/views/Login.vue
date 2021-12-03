@@ -6,12 +6,19 @@
 
 <script lang="ts">
 import { defineComponent } from "vue";
+import { mapActions } from "vuex";
 import LoginForm from "@/components/Login/LoginForm.vue";
 
 export default defineComponent({
   name: "Login",
   components: {
     LoginForm,
+  },
+  methods: {
+    ...mapActions(["checkToken"]),
+  },
+  mounted() {
+    this.checkToken();
   },
 });
 </script>

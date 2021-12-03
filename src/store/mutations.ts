@@ -1,12 +1,12 @@
-import { IState, IUserContent } from "@/types/interfaces";
+import { IState, IUserContent, IUserData } from "@/types/interfaces";
 
 const mutations = {
-  setToken(state: IState, payload: string): void {
-    state.token = payload;
-  },
-
   setUserContent(state: IState, payload: IUserContent): void {
     state.userContent = payload;
+  },
+
+  setUserData(state: IState, payload: IUserData): void {
+    state.userData = payload;
   },
 };
 

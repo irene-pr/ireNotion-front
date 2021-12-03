@@ -1,5 +1,6 @@
 import { ActionContext } from "vuex";
 import axios from "axios";
+import jwtDecode from "jwt-decode";
 import { IState, IUserLoginData } from "@/types/interfaces";
 
 const actions = {
@@ -27,6 +28,17 @@ const actions = {
       }
     );
     commit("setUserContent", userContent);
+  },
+
+  async checkToken({
+    commit,
+  }: ActionContext<IState, IState>): Promise<string | void> {
+    try {
+      const token = JSON.parse(localStorage.getItem("token") || "");
+      return commit("setUserData", jwtDecode(token.token));
+    } catch {
+      return "User not logged in";
+    }
   },
 };
 
