@@ -1,5 +1,6 @@
 // @import url("https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&family=Libre+Baskerville:ital@0;1&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Carattere&family=Dancing+Script:wght@400;500;600;700&family=Fredericka+the+Great&family=Great+Vibes&family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&family=Libre+Baskerville:ital@0;1&family=Niconne&family=Norican&family=Pacifico&family=Parisienne&family=Satisfy&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Indie+Flower&display=swap");
 
 // colors
 $theme-dark-color: #595959;
@@ -10,8 +11,15 @@ $theme-form-line: #9191915e;
 $theme-pink: #e87aa7;
 $theme-orange: #fd7e37;
 
+// note colors
+$note-pink: #fd4db0;
+$note-blue: #1dace6;
+$note-yellow: #e7f150;
+$note-orange: #fbae3c;
+
 // fonts
 $Lato: "Lato", sans-serif;
+$hand-writing: "Indie Flower", cursive;
 $heading-home: "Libre Baskerville", serif;
 $h1: "Pacifico", cursive;
 $h2: $Lato;

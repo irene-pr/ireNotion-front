@@ -1,11 +1,17 @@
 <template>
   <main class="board-page">
-    <h1>This is the Board Page!</h1>
-    <Board
-      v-for="board in userContent.boards"
-      :board="board"
-      v-bind:key="board.id"
-    />
+    <nav>
+      <h1>This is the Board Page!</h1>
+      <button>LOG OUT</button>
+    </nav>
+
+    <div class="board-array">
+      <Board
+        v-for="board in userContent.boards"
+        :board="board"
+        v-bind:key="board.id"
+      />
+    </div>
   </main>
 </template>
 
@@ -40,6 +46,16 @@ export default defineComponent({
 });
 </script>
 
-<style lang="scss">
+<style scoped lang="scss">
 @import "@/styles/_variables";
+* {
+  margin: 0;
+}
+
+.board-page {
+  background-color: $theme-light-color;
+}
+.board-array {
+  background: pink;
+}
 </style>
