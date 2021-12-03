@@ -4,8 +4,10 @@ const state = {
     name: "",
     boards: [],
   },
-  userId: "",
-  token: "",
+  userData: {
+    userId: "",
+    username: "",
+  },
 };
 
 export default state;

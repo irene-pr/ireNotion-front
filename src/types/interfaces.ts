@@ -30,11 +30,15 @@ export interface IUserContent {
   boards: Array<IBoard>;
 }
 
+export interface IUserData {
+  userId: string;
+  username: string;
+}
+
 export interface IState {
   isLoggedIn: boolean;
-  userId: string;
+  userData: IUserData;
   userContent: IUserContent;
-  token: string;
 }
 
 export interface IUserLoginData {
