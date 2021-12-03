@@ -8,6 +8,10 @@ const mutations = {
   setUserData(state: IState, payload: IUserData): void {
     state.userData = payload;
   },
+
+  setIsLoggedIn(state: IState, payload: boolean): void {
+    state.isLoggedIn = payload;
+  },
 };
 
 export default mutations;

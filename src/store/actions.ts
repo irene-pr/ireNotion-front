@@ -35,7 +35,8 @@ const actions = {
   }: ActionContext<IState, IState>): Promise<string | void> {
     try {
       const token = JSON.parse(localStorage.getItem("token") || "");
-      return commit("setUserData", jwtDecode(token.token));
+      commit("setUserData", jwtDecode(token.token));
+      return commit("setIsLoggedIn", true);
     } catch {
       return "User not logged in";
     }
