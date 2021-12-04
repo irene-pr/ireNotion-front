@@ -24,12 +24,12 @@ const actions = {
   },
 
   async registerUser(
-    { commit }: ActionContext<IState, IState>,
+    { dispatch }: ActionContext<IState, IState>,
     user: IUserRegisterData
   ): Promise<void> {
     await axios.post(`${process.env.VUE_APP_API}/user/register/`, user);
     router.push(paths.login);
-    commit("setLogoutState");
+    dispatch("logoutUser");
   },
 
   async getUserContent({
