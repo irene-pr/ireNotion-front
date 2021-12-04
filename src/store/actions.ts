@@ -2,6 +2,8 @@ import { ActionContext } from "vuex";
 import axios from "axios";
 import jwtDecode from "jwt-decode";
 import { IState, IUserLoginData } from "@/types/interfaces";
+import router from "@/router";
+import paths from "@/router/paths";
 
 const actions = {
   async loginUser(
@@ -19,13 +21,16 @@ const actions = {
   async getUserContent({
     commit,
   }: ActionContext<IState, IState>): Promise<void> {
-    const { token } = JSON.parse(localStorage.getItem("token") || "");
+    const response = JSON.parse(localStorage.getItem("token") || "");
     const { data: userContent } = await axios.get(
       `${process.env.VUE_APP_API}/user/content/`,
       {
-        headers: { Authorization: `Bearer ${token}` },
+        headers: { Authorization: `Bearer ${response.token}` },
       }
     );
+    if (response.status === 401) {
+      router.push(paths.login);
+    }
     commit("setUserContent", userContent);
   },
 
