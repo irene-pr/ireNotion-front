@@ -134,6 +134,21 @@ const actions = {
       return "Board could not be created";
     }
   },
+
+  async deleteBoard(
+    { dispatch }: ActionContext<IState, IState>,
+    params: string
+  ): Promise<string | void> {
+    try {
+      const { token } = JSON.parse(localStorage.getItem("token") || "");
+      await axios.delete(`${process.env.VUE_APP_API}/boards/delete/${params}`, {
+        headers: { Authorization: `Bearer ${token}` },
+      });
+      return dispatch("getUserContent");
+    } catch {
+      return "Board could not be deleted";
+    }
+  },
 };
 
 export default actions;
