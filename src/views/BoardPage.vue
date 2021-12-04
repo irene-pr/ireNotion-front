@@ -60,6 +60,7 @@ export default defineComponent({
 .nav-bar {
   width: 100%;
   position: fixed;
+  z-index: 100;
   display: flex;
   justify-content: space-between;
   background-color: $theme-light-color;

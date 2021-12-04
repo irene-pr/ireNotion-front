@@ -5,6 +5,11 @@
     v-if="note.type === 'paragraph'"
     :class="note.color"
   >
+    <font-awesome-icon
+      icon="times"
+      class="form__icon-close"
+      @click="onClickDelete"
+    ></font-awesome-icon>
     <h4 v-if="note.title">{{ note.title }}</h4>
     <p>{{ note.paragraph }}</p>
   </article>
@@ -14,6 +19,10 @@
     v-if="note.type === 'image'"
     :class="note.color"
   >
+    <font-awesome-icon
+      icon="times"
+      class="form__icon-close"
+    ></font-awesome-icon>
     <img :src="note.file" alt="" />
   </article>
 </template>
@@ -26,6 +35,11 @@ import { INote } from "@/types/interfaces";
 export default defineComponent({
   name: "Note",
   props: { note: INote },
+  methods: {
+    onClickDelete() {
+      console.log("hola");
+    },
+  },
 });
 </script>
 
@@ -33,6 +47,7 @@ export default defineComponent({
 @import "@/styles/_variables";
 
 .note {
+  position: relative;
   width: 360px;
   margin: 10px;
   padding: 25px;
@@ -63,6 +78,17 @@ export default defineComponent({
       object-fit: contain;
     }
   }
+  &:hover {
+    .form__icon-close {
+      display: block;
+    }
+  }
+}
+.form__icon-close {
+  display: none;
+  position: absolute;
+  right: 20px;
+  top: 20px;
 }
 .orange {
   background-color: $note-orange;
