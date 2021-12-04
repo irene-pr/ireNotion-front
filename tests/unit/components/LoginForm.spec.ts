@@ -40,7 +40,7 @@ describe("Given a LoginForm component", () => {
       });
 
       const mainHeader = wrapper.find("h2");
-      expect(mainHeader.text()).toContain("Welcome to ireNotion");
+      expect(mainHeader.text()).toContain("Welcome back to ireNotion");
     });
     test("Then it renders the signup button", () => {
       const wrapper = mount(LoginForm, {
