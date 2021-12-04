@@ -9,14 +9,18 @@ const actions = {
   async loginUser(
     { commit }: ActionContext<IState, IState>,
     user: IUserLoginData
-  ): Promise<void | string> {
+  ): Promise<void | string | number> {
     try {
-      const { data: token } = await axios.post(
+      const response = await axios.post(
         `${process.env.VUE_APP_API}/user/login/`,
         user
       );
-      localStorage.setItem("token", JSON.stringify(token));
-      return commit("setUserData", jwtDecode(token.token));
+      if (response.status === 200) {
+        localStorage.setItem("token", JSON.stringify(response.data));
+        commit("setUserData", jwtDecode(response.data.token));
+        return 200;
+      }
+      return response.status;
     } catch {
       return "Could not log in user";
     }
@@ -113,6 +117,21 @@ const actions = {
       return dispatch("getUserContent");
     } catch {
       return "Note could not be deleted";
+    }
+  },
+
+  async createBoard({
+    dispatch,
+  }: ActionContext<IState, IState>): Promise<string | void> {
+    const body = { name: "New board" };
+    try {
+      const { token } = JSON.parse(localStorage.getItem("token") || "");
+      await axios.post(`${process.env.VUE_APP_API}/boards/create`, body, {
+        headers: { Authorization: `Bearer ${token}` },
+      });
+      return dispatch("getUserContent");
+    } catch {
+      return "Board could not be created";
     }
   },
 };
