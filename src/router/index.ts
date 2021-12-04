@@ -4,6 +4,7 @@ import Home from "../views/Home.vue";
 import Login from "../views/Login.vue";
 import Register from "../views/Register.vue";
 import BoardPage from "../views/BoardPage.vue";
+import NotFound from "../views/NotFound.vue";
 
 const routes: Array<RouteRecordRaw> = [
   {
@@ -25,6 +26,15 @@ const routes: Array<RouteRecordRaw> = [
     path: paths.userBoard,
     name: "BoardPage",
     component: BoardPage,
+  },
+  {
+    path: paths.notFound,
+    name: "NotFound",
+    component: NotFound,
+  },
+  {
+    path: "/:catchAll(.*)",
+    redirect: paths.notFound,
   },
 ];
 
