@@ -5,7 +5,7 @@
         LOG <span>IN</span>
       </button>
     </router-link>
-    <router-link :to="paths.login">
+    <router-link :to="paths.register">
       <button class="nav__button nav__button--signup">
         SIGN <span>UP</span>
       </button>

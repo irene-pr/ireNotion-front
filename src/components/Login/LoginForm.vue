@@ -3,7 +3,9 @@
     <router-link :to="paths.home">
       <h1 class="login-container__main-heading">ire<span>N</span>otion</h1>
     </router-link>
-    <h2 class="login-container__secondary-heading">Welcome to ireNotion</h2>
+    <h2 class="login-container__secondary-heading">
+      Welcome back to ireNotion
+    </h2>
 
     <form class="login-form" @submit.prevent="onSubmit" autocomplete="off">
       <div class="login-form__input-container">
@@ -41,9 +43,11 @@
       <p class="divider__or">or</p>
       <div class="divider__line divider__line--second"></div>
     </div>
-    <button class="login-form__button login-form__button--signup">
-      SIGN <span>UP</span>
-    </button>
+    <router-link :to="paths.register">
+      <button class="login-form__button login-form__button--signup">
+        SIGN <span>UP</span>
+      </button>
+    </router-link>
   </div>
 </template>
 
