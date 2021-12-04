@@ -1,7 +1,9 @@
 <template>
   <nav class="nav-bar">
     <h1 class="nav-bar__header">Welcome to your boards!</h1>
-    <button class="nav-bar__button">LOG <span>OUT</span></button>
+    <button class="nav-bar__button" @click="onClickLogout">
+      LOG <span>OUT</span>
+    </button>
   </nav>
   <main class="board-page">
     <div class="board-array">
@@ -33,7 +35,11 @@ export default defineComponent({
     ...mapState(["userContent", "isLoggedIn"]),
   },
   methods: {
-    ...mapActions(["getUserContent", "checkToken"]),
+    ...mapActions(["getUserContent", "checkToken", "logoutUser"]),
+    onClickLogout() {
+      this.$router.push(paths.home);
+      this.logoutUser();
+    },
   },
   mounted() {
     this.checkToken();
