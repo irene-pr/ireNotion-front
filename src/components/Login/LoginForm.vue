@@ -77,10 +77,11 @@ export default defineComponent({
           username: this.username,
           password: this.password,
         };
-        try {
-          await this.loginUser(userLoginData);
+
+        const status = await this.loginUser(userLoginData);
+        if (status === 200) {
           router.push(paths.userBoard);
-        } catch {
+        } else {
           this.isMessageShown = true;
         }
       }
@@ -89,7 +90,7 @@ export default defineComponent({
 });
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 @import "@/styles/_variables";
 @import "@/styles/_extends";
 
