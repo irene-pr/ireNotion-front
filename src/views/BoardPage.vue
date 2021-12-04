@@ -1,11 +1,17 @@
 <template>
   <nav class="nav-bar">
     <h1 class="nav-bar__header">Welcome, {{ userContent.name }}!</h1>
-    <div>
-      <button class="nav-bar__button" @click="onClickLogout">
-        LOG <span>OUT</span>
+    <div class="nav-bar__buttons">
+      <button
+        class="nav-bar__button nav-bar__button--new-board"
+        @click="onClickLogout"
+      >
+        New <span>Board</span>
       </button>
-      <button class="nav-bar__button" @click="onClickLogout">
+      <button
+        class="nav-bar__button nav-bar__button--logout"
+        @click="onClickLogout"
+      >
         LOG <span>OUT</span>
       </button>
     </div>
@@ -89,10 +95,25 @@ export default defineComponent({
       @extend %button--span;
       color: $theme-pink;
     }
+    &--logout {
+      @extend %button--signup;
+    }
+  }
+  @media only screen and (max-width: 480px) {
+    padding: 20px 0;
+
+    &__buttons {
+      display: flex;
+      flex-direction: column-reverse;
+    }
   }
 }
 .board-array {
   width: 100%;
+  padding-top: 70px;
   background: pink;
+  @media only screen and (max-width: 480px) {
+    padding-top: 110px;
+  }
 }
 </style>
