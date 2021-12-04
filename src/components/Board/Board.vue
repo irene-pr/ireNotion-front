@@ -17,7 +17,12 @@
     </div>
 
     <draggable class="board__draggable-area" :board="board" @change="log">
-      <Note v-for="note in board.notes" :note="note" :key="note.id" />
+      <Note
+        v-for="note in board.notes"
+        :note="note"
+        :idBoard="board.id"
+        :key="note.id"
+      />
     </draggable>
   </section>
 </template>
