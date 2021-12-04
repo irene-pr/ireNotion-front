@@ -23,9 +23,13 @@ const actions = {
     commit("setLogoutState");
   },
 
-  async registerUser(user: IUserRegisterData): Promise<void> {
+  async registerUser(
+    { commit }: ActionContext<IState, IState>,
+    user: IUserRegisterData
+  ): Promise<void> {
     await axios.post(`${process.env.VUE_APP_API}/user/register/`, user);
     router.push(paths.login);
+    commit("setLogoutState");
   },
 
   async getUserContent({
