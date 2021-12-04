@@ -12,6 +12,18 @@ const mutations = {
   setIsLoggedIn(state: IState, payload: boolean): void {
     state.isLoggedIn = payload;
   },
+
+  setLogoutState(state: IState): void {
+    state.isLoggedIn = false;
+    state.userContent = {
+      name: "",
+      boards: [],
+    };
+    state.userData = {
+      userId: "",
+      username: "",
+    };
+  },
 };
 
 export default mutations;

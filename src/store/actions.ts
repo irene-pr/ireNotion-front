@@ -18,20 +18,26 @@ const actions = {
     commit("setUserData", jwtDecode(token.token));
   },
 
+  logoutUser({ commit }: ActionContext<IState, IState>): void {
+    localStorage.removeItem("token");
+    commit("setLogoutState");
+  },
+
   async getUserContent({
     commit,
   }: ActionContext<IState, IState>): Promise<void> {
-    const response = JSON.parse(localStorage.getItem("token") || "");
-    const { data: userContent } = await axios.get(
+    const { token } = JSON.parse(localStorage.getItem("token") || "");
+    const response = await axios.get(
       `${process.env.VUE_APP_API}/user/content/`,
       {
-        headers: { Authorization: `Bearer ${response.token}` },
+        headers: { Authorization: `Bearer ${token}` },
       }
     );
     if (response.status === 401) {
+      commit("setLogoutState");
       router.push(paths.login);
     }
-    commit("setUserContent", userContent);
+    commit("setUserContent", response.data);
   },
 
   async checkToken({
