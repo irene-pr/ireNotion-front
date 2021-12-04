@@ -1,9 +1,14 @@
 <template>
   <nav class="nav-bar">
-    <h1 class="nav-bar__header">Welcome to your boards!</h1>
-    <button class="nav-bar__button" @click="onClickLogout">
-      LOG <span>OUT</span>
-    </button>
+    <h1 class="nav-bar__header">Welcome, {{ userContent.name }}!</h1>
+    <div>
+      <button class="nav-bar__button" @click="onClickLogout">
+        LOG <span>OUT</span>
+      </button>
+      <button class="nav-bar__button" @click="onClickLogout">
+        LOG <span>OUT</span>
+      </button>
+    </div>
   </nav>
   <main class="board-page">
     <div class="board-array">
