@@ -1,7 +1,7 @@
 import { ActionContext } from "vuex";
 import axios from "axios";
 import jwtDecode from "jwt-decode";
-import { IState, IUserLoginData } from "@/types/interfaces";
+import { IState, IUserLoginData, IUserRegisterData } from "@/types/interfaces";
 import router from "@/router";
 import paths from "@/router/paths";
 
@@ -20,6 +20,15 @@ const actions = {
 
   logoutUser({ commit }: ActionContext<IState, IState>): void {
     localStorage.removeItem("token");
+    commit("setLogoutState");
+  },
+
+  async registerUser(
+    { commit }: ActionContext<IState, IState>,
+    user: IUserRegisterData
+  ): Promise<void> {
+    await axios.post(`${process.env.VUE_APP_API}/user/register/`, user);
+    router.push(paths.login);
     commit("setLogoutState");
   },
 

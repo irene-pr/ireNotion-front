@@ -39,3 +39,9 @@ export interface IUserLoginData {
   username: string;
   password: string;
 }
+
+export interface IUserRegisterData {
+  name: string;
+  username: string;
+  password: string;
+}
