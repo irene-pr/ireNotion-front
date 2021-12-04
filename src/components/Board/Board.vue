@@ -6,6 +6,7 @@
         <font-awesome-icon
           icon="times"
           class="form__icon-close"
+          @click="onClickDeleteBoard"
         ></font-awesome-icon>
       </div>
       <div class="board-header__buttons">
@@ -57,12 +58,15 @@ export default defineComponent({
     };
   },
   methods: {
-    ...mapActions(["createParagraphNote"]),
+    ...mapActions(["createParagraphNote", "deleteBoard"]),
     log(event) {
       console.log(event);
     },
     onclickAddNote() {
       this.createParagraphNote(this.board.id);
+    },
+    onClickDeleteBoard() {
+      this.deleteBoard(this.board.id);
     },
   },
 });
