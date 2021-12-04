@@ -41,9 +41,11 @@
       <p class="divider__or">or</p>
       <div class="divider__line divider__line--second"></div>
     </div>
-    <button class="login-form__button login-form__button--signup">
-      SIGN <span>UP</span>
-    </button>
+    <router-link :to="paths.register">
+      <button class="login-form__button login-form__button--signup">
+        SIGN <span>UP</span>
+      </button>
+    </router-link>
   </div>
 </template>
 
