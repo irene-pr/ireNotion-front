@@ -85,6 +85,7 @@ export default defineComponent({
 .nav-bar {
   width: 100%;
   position: fixed;
+  padding: 10px 20px;
   z-index: 100;
   display: flex;
   justify-content: space-between;
@@ -108,7 +109,7 @@ export default defineComponent({
     }
   }
   @media only screen and (max-width: 480px) {
-    padding: 20px 0;
+    padding: 15px 7px;
 
     &__buttons {
       display: flex;
