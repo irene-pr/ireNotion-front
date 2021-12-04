@@ -31,7 +31,6 @@
 import { defineComponent } from "vue";
 import { mapActions } from "vuex";
 
-// <pre>{{ JSON.stringify(note, null, 2) }}</pre>
 export default defineComponent({
   name: "Note",
   props: ["note", "idBoard"],
