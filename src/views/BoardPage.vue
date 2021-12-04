@@ -4,7 +4,7 @@
     <div class="nav-bar__buttons">
       <button
         class="nav-bar__button nav-bar__button--new-board"
-        @click="onClickLogout"
+        @click="onClickCreateBoard"
       >
         New <span>Board</span>
       </button>
@@ -46,10 +46,18 @@ export default defineComponent({
     ...mapState(["userContent", "isLoggedIn"]),
   },
   methods: {
-    ...mapActions(["getUserContent", "checkToken", "logoutUser"]),
+    ...mapActions([
+      "getUserContent",
+      "checkToken",
+      "logoutUser",
+      "createBoard",
+    ]),
     onClickLogout() {
       this.$router.push(paths.home);
       this.logoutUser();
+    },
+    onClickCreateBoard() {
+      this.createBoard();
     },
   },
   mounted() {
