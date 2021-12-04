@@ -29,15 +29,17 @@
 
 <script>
 import { defineComponent } from "vue";
-import { INote } from "@/types/interfaces";
+import { mapActions } from "vuex";
 
 // <pre>{{ JSON.stringify(note, null, 2) }}</pre>
 export default defineComponent({
   name: "Note",
-  props: { note: INote },
+  props: ["note", "idBoard"],
   methods: {
+    ...mapActions(["deleteNote"]),
     onClickDelete() {
-      console.log("hola");
+      const params = `${this.idBoard}/${this.note.id}`;
+      this.deleteNote(params);
     },
   },
 });

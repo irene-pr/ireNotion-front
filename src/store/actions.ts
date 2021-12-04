@@ -9,13 +9,17 @@ const actions = {
   async loginUser(
     { commit }: ActionContext<IState, IState>,
     user: IUserLoginData
-  ): Promise<void> {
-    const { data: token } = await axios.post(
-      `${process.env.VUE_APP_API}/user/login/`,
-      user
-    );
-    localStorage.setItem("token", JSON.stringify(token));
-    commit("setUserData", jwtDecode(token.token));
+  ): Promise<void | string> {
+    try {
+      const { data: token } = await axios.post(
+        `${process.env.VUE_APP_API}/user/login/`,
+        user
+      );
+      localStorage.setItem("token", JSON.stringify(token));
+      return commit("setUserData", jwtDecode(token.token));
+    } catch {
+      return "Could not log in user";
+    }
   },
 
   logoutUser({ commit }: ActionContext<IState, IState>): void {
@@ -26,27 +30,35 @@ const actions = {
   async registerUser(
     { dispatch }: ActionContext<IState, IState>,
     user: IUserRegisterData
-  ): Promise<void> {
-    await axios.post(`${process.env.VUE_APP_API}/user/register/`, user);
-    router.push(paths.login);
-    dispatch("logoutUser");
+  ): Promise<void | string> {
+    try {
+      await axios.post(`${process.env.VUE_APP_API}/user/register/`, user);
+      router.push(paths.login);
+      return dispatch("logoutUser");
+    } catch {
+      return "Could not register user";
+    }
   },
 
   async getUserContent({
     commit,
-  }: ActionContext<IState, IState>): Promise<void> {
-    const { token } = JSON.parse(localStorage.getItem("token") || "");
-    const response = await axios.get(
-      `${process.env.VUE_APP_API}/user/content/`,
-      {
-        headers: { Authorization: `Bearer ${token}` },
+  }: ActionContext<IState, IState>): Promise<void | string> {
+    try {
+      const { token } = JSON.parse(localStorage.getItem("token") || "");
+      const response = await axios.get(
+        `${process.env.VUE_APP_API}/user/content/`,
+        {
+          headers: { Authorization: `Bearer ${token}` },
+        }
+      );
+      if (response.status === 401) {
+        commit("setLogoutState");
+        router.push(paths.login);
       }
-    );
-    if (response.status === 401) {
-      commit("setLogoutState");
-      router.push(paths.login);
+      return commit("setUserContent", response.data);
+    } catch {
+      return "Could not get user content";
     }
-    commit("setUserContent", response.data);
   },
 
   async checkToken({
@@ -86,6 +98,21 @@ const actions = {
       return dispatch("getUserContent");
     } catch {
       return "Paragraph note could not be created";
+    }
+  },
+
+  async deleteNote(
+    { dispatch }: ActionContext<IState, IState>,
+    params: string
+  ): Promise<string | void> {
+    try {
+      const { token } = JSON.parse(localStorage.getItem("token") || "");
+      await axios.delete(`${process.env.VUE_APP_API}/note/delete/${params}`, {
+        headers: { Authorization: `Bearer ${token}` },
+      });
+      return dispatch("getUserContent");
+    } catch {
+      return "Note could not be deleted";
     }
   },
 };
