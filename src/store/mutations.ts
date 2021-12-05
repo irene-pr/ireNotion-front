@@ -24,6 +24,13 @@ const mutations = {
       username: "",
     };
   },
+
+  toggleTheme(state: IState): void {
+    state.themeHeaders =
+      state.themeHeaders === "day-mode" ? "night-mode" : "day-mode";
+    state.themeSurfaces =
+      state.themeSurfaces === "day-mode" ? "night-mode" : "day-mode";
+  },
 };
 
 export default mutations;

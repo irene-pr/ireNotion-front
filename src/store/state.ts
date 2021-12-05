@@ -8,6 +8,8 @@ const state = {
     userId: "",
     username: "",
   },
+  themeHeaders: "night-mode",
+  themeSurfaces: "day-mode",
 };
 
 export default state;
