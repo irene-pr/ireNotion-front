@@ -3,7 +3,27 @@ describe("Given a Login view", () => {
     it("Then there are 2 headers", () => {
       cy.visit("https://irene-front-final-project-202109.vercel.app/login");
       cy.get("h1").should("have.text", "ireNotion");
-      cy.get("h2").should("have.text", "Welcome to ireNotion");
+      cy.get("h2").should("have.text", " Welcome back to ireNotion ");
+    });
+  });
+  describe("When we click on the main header", () => {
+    it("Then it should send us to the home page", () => {
+      cy.visit("https://irene-front-final-project-202109.vercel.app/login");
+      cy.get("h1").click();
+
+      cy.location("pathname").should("equal", "/");
+    });
+  });
+  describe("When we click on the sign up button", () => {
+    it("Then it should not be disabled", () => {
+      cy.visit("https://irene-front-final-project-202109.vercel.app/login");
+      cy.get("button").last().should("not.be.disabled");
+    });
+    it("Then it should send us to the register page", () => {
+      cy.visit("https://irene-front-final-project-202109.vercel.app/login");
+      cy.get("button").last().click();
+
+      cy.location("pathname").should("equal", "/register");
     });
   });
   describe("When we type on the first input", () => {

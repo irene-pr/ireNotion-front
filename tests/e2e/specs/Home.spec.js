@@ -13,11 +13,22 @@ describe("Given a Home view", () => {
       cy.visit("https://irene-front-final-project-202109.vercel.app/");
       cy.get("button").should("have.length", 2);
     });
-    it("Then if you click the login button it goes to the login page", () => {
+  });
+
+  describe("When you click on the login button", () => {
+    it("Then it goes to the login page", () => {
       cy.visit("https://irene-front-final-project-202109.vercel.app/");
       cy.get("button").first().click();
 
-      cy.location("pathname").should("include", "login");
+      cy.location("pathname").should("equal", "/login");
+    });
+  });
+  describe("When you click on the sign up button", () => {
+    it("Then it goes to the register page", () => {
+      cy.visit("https://irene-front-final-project-202109.vercel.app/");
+      cy.get("button").last().click();
+
+      cy.location("pathname").should("equal", "/register");
     });
   });
 });
