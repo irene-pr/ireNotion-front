@@ -40,11 +40,17 @@ const actions = {
     user: IUserRegisterData
   ): Promise<void | string> {
     try {
-      await axios.post(`${process.env.VUE_APP_API}/user/register/`, user);
-      router.push(paths.login);
+      const response = await axios.post(
+        `${process.env.VUE_APP_API}/user/register/`,
+        user
+      );
+      console.log(response);
+      if (response.status === 200) {
+        router.push(paths.login);
+      }
       return dispatch("logoutUser");
     } catch {
-      return "Could not register user";
+      return "Username already exists";
     }
   },
 

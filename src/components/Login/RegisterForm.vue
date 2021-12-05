@@ -109,8 +109,12 @@ export default defineComponent({
           password: this.password,
         };
 
-        await this.registerUser(userRegisterData);
-        router.push(paths.login);
+        const response = await this.registerUser(userRegisterData);
+        if (response === "Username already exists") {
+          this.messageShown = response;
+        } else {
+          router.push(paths.login);
+        }
       } else if (this.password !== this.repeatPassword) {
         this.messageShown = "The passwords don't match. Try again";
       } else if (this.password.length < 7 || this.password.length > 20) {
