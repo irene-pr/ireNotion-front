@@ -86,10 +86,7 @@ export default defineComponent({
   @media only screen and (max-width: 480px) {
     margin: 0;
   }
-  &__draggable-area {
-    width: 100%;
-    padding: 15px;
-  }
+
   .board-header {
     width: 360px;
     margin: 0 10px;
@@ -156,6 +153,7 @@ export default defineComponent({
   }
 
   &__draggable-area {
+    width: 100%;
     padding: 10px 0;
     display: flex;
     flex-direction: column;
