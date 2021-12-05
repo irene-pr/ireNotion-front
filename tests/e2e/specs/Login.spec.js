@@ -26,6 +26,12 @@ describe("Given a Login view", () => {
       cy.location("pathname").should("equal", "/register");
     });
   });
+  describe("When we click on the login button", () => {
+    it("Then it should be disabled", () => {
+      cy.visit("https://irene-front-final-project-202109.vercel.app/login");
+      cy.get("button").first().should("be.disabled");
+    });
+  });
   describe("When we type on the first input", () => {
     it("Then it remains written", () => {
       cy.visit("https://irene-front-final-project-202109.vercel.app/login");
