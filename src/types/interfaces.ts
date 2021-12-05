@@ -32,8 +32,10 @@ export interface IUserData {
 
 export interface IState {
   isLoggedIn: boolean;
-  userData: IUserData;
   userContent: IUserContent;
+  userData: IUserData;
+  themeHeaders: string;
+  themeSurfaces: string;
 }
 
 export interface IUserLoginData {

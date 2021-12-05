@@ -6,6 +6,10 @@ import router from "@/router";
 import paths from "@/router/paths";
 
 const actions = {
+  toggleTheme({ commit }: ActionContext<IState, IState>): void {
+    commit("toggleTheme");
+  },
+
   async loginUser(
     { commit }: ActionContext<IState, IState>,
     user: IUserLoginData

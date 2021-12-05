@@ -4,7 +4,6 @@
 
 <style lang="scss">
 * {
-  max-width: 100vw;
   box-sizing: border-box;
 }
 body {

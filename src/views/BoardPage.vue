@@ -1,6 +1,8 @@
 <template>
-  <nav class="nav-bar">
-    <h1 class="nav-bar__header">Welcome, {{ userContent.name }}!</h1>
+  <nav class="nav-bar" :class="themeHeaders">
+    <h1 class="nav-bar__header" @click="onClickToggleTheme">
+      Welcome, {{ userContent.name }}!
+    </h1>
     <div class="nav-bar__buttons">
       <button
         class="nav-bar__button nav-bar__button--new-board"
@@ -17,7 +19,7 @@
     </div>
   </nav>
   <main class="board-page">
-    <div class="board-array">
+    <div class="board-array" :class="themeSurfaces">
       <Board
         v-for="board in userContent.boards"
         :board="board"
@@ -43,7 +45,7 @@ export default defineComponent({
     };
   },
   computed: {
-    ...mapState(["userContent", "isLoggedIn"]),
+    ...mapState(["userContent", "isLoggedIn", "themeHeaders", "themeSurfaces"]),
   },
   methods: {
     ...mapActions([
@@ -51,6 +53,7 @@ export default defineComponent({
       "checkToken",
       "logoutUser",
       "createBoard",
+      "toggleTheme",
     ]),
     onClickLogout() {
       this.$router.push(paths.home);
@@ -58,6 +61,9 @@ export default defineComponent({
     },
     onClickCreateBoard() {
       this.createBoard();
+    },
+    onClickToggleTheme() {
+      this.toggleTheme();
     },
   },
   mounted() {
@@ -79,9 +85,12 @@ export default defineComponent({
 }
 
 .board-page {
-  background-color: $theme-light-color;
-  padding-top: 50px;
+  padding-top: 40px;
+  @media only screen and (max-width: 480px) {
+    padding: 0;
+  }
 }
+
 .nav-bar {
   width: 100%;
   position: fixed;
@@ -89,13 +98,17 @@ export default defineComponent({
   z-index: 100;
   display: flex;
   justify-content: space-between;
-  background-color: $theme-light-color;
+
   align-items: center;
+
   &__header {
     font-family: "Fredericka the Great", cursive;
     font-weight: 100;
     font-size: 36px;
     padding-left: 20px;
+    &:hover {
+      color: $theme-pink;
+    }
   }
   &__button {
     @extend %button;
@@ -106,6 +119,7 @@ export default defineComponent({
     }
     &--logout {
       @extend %button--signup;
+      border: 1px solid $theme-light-color;
     }
   }
   @media only screen and (max-width: 480px) {
@@ -118,11 +132,22 @@ export default defineComponent({
   }
 }
 .board-array {
+  overflow-x: scroll;
   width: 100%;
-  padding-top: 70px;
-  background: pink;
+  padding: 25px 0;
+  display: flex;
   @media only screen and (max-width: 480px) {
     padding-top: 110px;
+    flex-direction: column;
+    align-items: center;
   }
+}
+.day-mode {
+  background-color: $theme-light-color;
+  color: $theme-dark-color;
+}
+.night-mode {
+  background-color: $theme-dark-color;
+  color: $theme-light-color;
 }
 </style>

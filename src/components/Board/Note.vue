@@ -48,15 +48,20 @@ export default defineComponent({
 @import "@/styles/_variables";
 
 .note {
+  * {
+    margin: 0;
+  }
+
   position: relative;
   width: 360px;
-  margin: 10px;
   padding: 25px;
+  margin: 10px 0;
   display: flex;
   flex-direction: column;
   font-family: $Lato;
-  * {
-    margin: 0;
+
+  @media only screen and (max-width: 480px) {
+    width: 90%;
   }
 
   &-paragraph {
@@ -90,6 +95,9 @@ export default defineComponent({
   position: absolute;
   right: 20px;
   top: 20px;
+  @media only screen and (max-width: 720px) {
+    display: block;
+  }
 }
 .orange {
   background-color: $note-orange;
