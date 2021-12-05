@@ -33,7 +33,7 @@ export default defineComponent({
     .span-1 {
       color: #f5bc76;
       letter-spacing: 0.1em;
-      text-shadow: 9px 5px black;
+      text-shadow: 6px 3px rgb(93, 1, 116);
     }
     .span-2 {
       font-style: italic;
