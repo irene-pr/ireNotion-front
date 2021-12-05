@@ -1,6 +1,6 @@
 <template>
   <section class="board">
-    <div class="board-header">
+    <div class="board-header" :class="themeHeaders">
       <div class="board-header__top">
         <h3 class="board-header__header">{{ board.name }}</h3>
         <font-awesome-icon
@@ -40,9 +40,8 @@
 <script>
 import { defineComponent } from "vue";
 import { VueDraggableNext } from "vue-draggable-next";
-import { mapActions } from "vuex";
+import { mapActions, mapState } from "vuex";
 import Note from "@/components/Board/Note.vue";
-import { IBoard } from "@/types/interfaces";
 
 export default defineComponent({
   name: "Board",
@@ -50,12 +49,15 @@ export default defineComponent({
     draggable: VueDraggableNext,
     Note,
   },
-  props: { board: IBoard },
+  props: ["board"],
   data() {
     return {
       enabled: true,
       dragging: false,
     };
+  },
+  computed: {
+    ...mapState(["themeHeaders", "themeSurfaces"]),
   },
   methods: {
     ...mapActions(["createParagraphNote", "deleteBoard"]),
@@ -76,26 +78,38 @@ export default defineComponent({
 @import "@/styles/_extends";
 
 .board {
-  max-width: 100%;
-  width: min-content;
-  padding: 15px;
-  border: 2px red dotted;
+  width: 360px;
+  margin: 0 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  @media only screen and (max-width: 480px) {
+    margin: 0;
+  }
   &__draggable-area {
-    width: min-content;
+    width: 100%;
     padding: 15px;
-    border: 2px magenta dotted;
   }
   .board-header {
-    width: 100%;
+    width: 360px;
+    margin: 0 10px;
+    margin-top: 30px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+    align-items: center;
+
+    @media only screen and (max-width: 480px) {
+      width: 90%;
+    }
+
     &__header {
       margin: 0;
+      padding: 10px 0;
+      text-align: center;
       font-family: "Fredericka the Great", cursive;
       font-weight: 100;
       font-size: 24px;
-      padding-left: 20px;
     }
     &__top {
       width: 100%;
@@ -103,16 +117,31 @@ export default defineComponent({
       .form__icon-close {
         display: none;
         position: absolute;
-        right: 5px;
-        top: 0;
-        font-size: 30px;
+        right: 15px;
+        top: 11px;
+        font-size: 25px;
+        @media only screen and (max-width: 720px) {
+          display: block;
+        }
       }
     }
 
     &__buttons {
-      display: flex;
+      display: none;
       justify-content: center;
-      padding: 15px 0;
+      padding-bottom: 5px;
+      @media only screen and (max-width: 720px) {
+        display: block;
+      }
+    }
+
+    &:hover {
+      .board-header__buttons {
+        display: block;
+      }
+      .form__icon-close {
+        display: block;
+      }
     }
 
     &__button {
@@ -125,10 +154,21 @@ export default defineComponent({
       letter-spacing: 0.05em;
     }
   }
-  &:hover {
-    .form__icon-close {
-      display: block;
-    }
+
+  &__draggable-area {
+    padding: 10px 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
   }
+}
+
+.day-mode {
+  background-color: $theme-light-color;
+  color: $theme-dark-color;
+}
+.night-mode {
+  background-color: $theme-dark-color;
+  color: $theme-light-color;
 }
 </style>
