@@ -44,7 +44,6 @@ const actions = {
         `${process.env.VUE_APP_API}/user/register/`,
         user
       );
-      console.log(response);
       if (response.status === 200) {
         router.push(paths.login);
       }

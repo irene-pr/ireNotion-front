@@ -129,7 +129,7 @@ describe("Given a Register view", () => {
       );
     });
   });
-  describe("When we type on all inputs with equal password inputs with more than 7 characters and we click the sign up button", () => {
+  describe("When we type on all inputs with equal password inputs with more than 20 characters and we click the sign up button", () => {
     it("Then a message 'The password must have between 7 and 20 characters' should appear", () => {
       cy.visit("https://irene-front-final-project-202109.vercel.app/register");
 
@@ -144,6 +144,42 @@ describe("Given a Register view", () => {
         "have.text",
         "The password must have between 7 and 20 characters"
       );
+    });
+  });
+  describe("When we type on all inputs with the username of an existing user and we click the sign up button", () => {
+    it("Then it should receive a response status 400", () => {
+      const username = Cypress.env("USERNAME");
+      cy.server();
+      cy.route("POST", "/user/register").as("register");
+
+      cy.visit("https://irene-front-final-project-202109.vercel.app/register");
+
+      cy.get("input").eq(0).type("Mario");
+      cy.get("input").eq(1).type(username);
+      cy.get("input").eq(2).type("mariomario");
+      cy.get("input").eq(3).type("mariomario");
+
+      cy.get("button").first().click();
+
+      cy.wait("@register").its("status").should("equal", 400);
+    });
+    it("Then it should put a message 'Username already exists'", () => {
+      const username = Cypress.env("USERNAME");
+      cy.server();
+      cy.route("POST", "/user/register").as("register");
+
+      cy.visit("https://irene-front-final-project-202109.vercel.app/register");
+
+      cy.get("input").eq(0).type("Mario");
+      cy.get("input").eq(1).type(username);
+      cy.get("input").eq(2).type("mariomario");
+      cy.get("input").eq(3).type("mariomario");
+
+      cy.get("button").first().click();
+
+      cy.wait("@register");
+
+      cy.get("p.message").should("have.text", "Username already exists");
     });
   });
 });
