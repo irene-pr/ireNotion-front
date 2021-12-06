@@ -31,6 +31,14 @@ const mutations = {
     state.themeSurfaces =
       state.themeSurfaces === "day-mode" ? "night-mode" : "day-mode";
   },
+
+  setIsBoardEditModal(state: IState, payload: boolean): void {
+    state.isBoardEditModal = payload;
+  },
+
+  setIsUpdateNoteModal(state: IState, payload: boolean): void {
+    state.isUpdateNoteModal = payload;
+  },
 };
 
 export default mutations;

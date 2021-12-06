@@ -10,6 +10,8 @@ const state = {
   },
   themeHeaders: "night-mode",
   themeSurfaces: "day-mode",
+  isBoardEditModal: false,
+  isUpdateNoteModal: false,
 };
 
 export default state;
