@@ -6,6 +6,11 @@
     :class="note.color"
   >
     <font-awesome-icon
+      icon="pencil-alt"
+      class="form__icon-update"
+      @click="onClickUpdateNote"
+    ></font-awesome-icon>
+    <font-awesome-icon
       icon="times"
       class="form__icon-close"
       @click="onClickDelete"
@@ -35,10 +40,20 @@ export default defineComponent({
   name: "Note",
   props: ["note", "idBoard"],
   methods: {
-    ...mapActions(["deleteNote"]),
+    ...mapActions(["deleteNote", "updateNote"]),
     onClickDelete() {
       const params = `${this.idBoard}/${this.note.id}`;
       this.deleteNote(params);
+    },
+    onClickUpdateNote() {
+      this.updateNote({
+        idNote: this.note.id,
+        updatedNote: {
+          color: "pink",
+          title: "Updated",
+          paragraph: "updateeeeeeeeeeed",
+        },
+      });
     },
   },
 });
@@ -89,13 +104,26 @@ export default defineComponent({
     .form__icon-close {
       display: block;
     }
+    .form__icon-update {
+      display: block;
+    }
   }
 }
 .form__icon-close {
   display: none;
   position: absolute;
-  right: 20px;
-  top: 20px;
+  right: 10px;
+  top: 10px;
+  @media only screen and (max-width: 720px) {
+    display: block;
+  }
+}
+.form__icon-update {
+  display: none;
+  position: absolute;
+  left: 10px;
+  top: 10px;
+  font-size: 12px;
   @media only screen and (max-width: 720px) {
     display: block;
   }
