@@ -70,6 +70,7 @@ export default defineComponent({
       "deleteBoard",
       "editNameBoard",
       "setBoardEditModal",
+      "setIdForModal",
     ]),
     log(event) {
       console.log(event);
@@ -79,7 +80,7 @@ export default defineComponent({
     },
     onClickEditNameBoard() {
       this.setBoardEditModal(true);
-      // this.editNameBoard({ idBoard: this.board.id, newName: "Edited" });
+      this.setIdForModal(this.board.id);
     },
     onClickDeleteBoard() {
       this.deleteBoard(this.board.id);
@@ -171,13 +172,7 @@ export default defineComponent({
     }
 
     &__button {
-      @extend %button;
-      width: 100px;
-      height: 33px;
-      margin: 0 10px;
-      border-radius: 10px;
-      font-size: 16px;
-      letter-spacing: 0.05em;
+      @extend %button--little;
     }
   }
 
