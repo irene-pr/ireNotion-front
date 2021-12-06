@@ -4,6 +4,7 @@
     :note="note"
     v-if="note.type === 'paragraph'"
     :class="note.color"
+    @dblclick="onClickUpdateNote"
   >
     <font-awesome-icon
       icon="pencil-alt"

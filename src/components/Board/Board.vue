@@ -1,7 +1,7 @@
 <template>
   <section class="board">
     <div class="board-header" :class="themeHeaders">
-      <div class="board-header__top">
+      <div class="board-header__top" @dblclick="onClickEditNameBoard">
         <h3 class="board-header__header">{{ board.name }}</h3>
         <font-awesome-icon
           icon="pencil-alt"
