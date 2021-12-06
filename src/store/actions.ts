@@ -19,7 +19,7 @@ const actions = {
         `${process.env.VUE_APP_API}/user/login/`,
         user
       );
-      if (response.status === 200) {
+      if (response.status === 201) {
         localStorage.setItem("token", JSON.stringify(response.data));
         commit("setUserData", jwtDecode(response.data.token));
         return 200;
@@ -44,7 +44,7 @@ const actions = {
         `${process.env.VUE_APP_API}/user/register/`,
         user
       );
-      if (response.status === 200) {
+      if (response.status === 201) {
         router.push(paths.login);
       }
       return dispatch("logoutUser");
