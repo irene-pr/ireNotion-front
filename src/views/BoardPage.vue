@@ -150,7 +150,7 @@ export default defineComponent({
     }
   }
   @media only screen and (max-width: 480px) {
-    padding: 15px 7px;
+    padding: 5px 3px;
 
     &__buttons {
       display: flex;

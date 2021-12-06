@@ -38,6 +38,7 @@ export interface IState {
   themeSurfaces: string;
   isBoardEditModal: boolean;
   isUpdateNoteModal: boolean;
+  idForModal: string;
 }
 
 export interface IUserLoginData {

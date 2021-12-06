@@ -208,6 +208,10 @@ const actions = {
   ): void {
     commit("setIsUpdateNoteModal", bool);
   },
+
+  setIdForModal({ commit }: ActionContext<IState, IState>, id: string): void {
+    commit("setIdForModal", id);
+  },
 };
 
 export default actions;

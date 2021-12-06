@@ -2,7 +2,14 @@ const state = {
   isLoggedIn: false,
   userContent: {
     name: "",
-    boards: [],
+    boards: [
+      {
+        type: "string",
+        name: "string",
+        notes: [{}],
+        id: "string",
+      },
+    ],
   },
   userData: {
     userId: "",
@@ -12,6 +19,7 @@ const state = {
   themeSurfaces: "day-mode",
   isBoardEditModal: false,
   isUpdateNoteModal: false,
+  idForModal: "",
 };
 
 export default state;
