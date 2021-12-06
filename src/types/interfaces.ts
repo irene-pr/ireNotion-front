@@ -4,13 +4,13 @@ export interface IChecklist {
 }
 
 export interface INote {
-  type: string;
-  color: string;
+  type?: string;
+  color?: string;
   position?: number;
   title?: string;
   paragraph?: string;
   list?: Array<string | IChecklist>;
-  id: string;
+  id?: string;
 }
 
 export interface IBoard {
