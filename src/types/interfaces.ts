@@ -49,7 +49,7 @@ export interface IUserRegisterData {
   password: string;
 }
 
-export interface IBodyUpdateNameBoard {
+export interface IBodyEditNameBoard {
   idBoard: string;
   newName: string;
 }
