@@ -1,7 +1,12 @@
 import { ActionContext } from "vuex";
 import axios from "axios";
 import jwtDecode from "jwt-decode";
-import { IState, IUserLoginData, IUserRegisterData } from "@/types/interfaces";
+import {
+  IBodyUpdateNameBoard,
+  IState,
+  IUserLoginData,
+  IUserRegisterData,
+} from "@/types/interfaces";
 import router from "@/router";
 import paths from "@/router/paths";
 
@@ -156,6 +161,21 @@ const actions = {
       return dispatch("getUserContent");
     } catch {
       return "Board could not be deleted";
+    }
+  },
+
+  async updateNameBoard(
+    { dispatch }: ActionContext<IState, IState>,
+    body: IBodyUpdateNameBoard
+  ): Promise<string | void> {
+    try {
+      const { token } = JSON.parse(localStorage.getItem("token") || "");
+      await axios.put(`${process.env.VUE_APP_API}/boards/update`, body, {
+        headers: { Authorization: `Bearer ${token}` },
+      });
+      return dispatch("getUserContent");
+    } catch {
+      return "Board could not be updated";
     }
   },
 };

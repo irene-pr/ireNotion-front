@@ -48,3 +48,8 @@ export interface IUserRegisterData {
   username: string;
   password: string;
 }
+
+export interface IBodyUpdateNameBoard {
+  idBoard: string;
+  newName: string;
+}
