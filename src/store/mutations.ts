@@ -39,6 +39,10 @@ const mutations = {
   setIsUpdateNoteModal(state: IState, payload: boolean): void {
     state.isUpdateNoteModal = payload;
   },
+
+  setIdForModal(state: IState, payload: string): void {
+    state.idForModal = payload;
+  },
 };
 
 export default mutations;
