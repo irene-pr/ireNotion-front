@@ -2,6 +2,7 @@
   "pluginsFile": "tests/e2e/plugins/index.js",
   "env": {
     "USERNAME": "piapiapia",
-    "PASSWORD": "piapiapia"
+    "PASSWORD": "piapiapia",
+    "PRODUCTION_URL": "https://irene-front-final-project-202109.vercel.app/"
   }
 }
