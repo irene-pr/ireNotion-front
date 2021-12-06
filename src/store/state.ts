@@ -2,14 +2,7 @@ const state = {
   isLoggedIn: false,
   userContent: {
     name: "",
-    boards: [
-      {
-        type: "string",
-        name: "string",
-        notes: [{}],
-        id: "string",
-      },
-    ],
+    boards: [],
   },
   userData: {
     userId: "",

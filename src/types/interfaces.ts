@@ -11,6 +11,7 @@ export interface INote {
   paragraph?: string;
   list?: Array<string | IChecklist>;
   id?: string;
+  userId?: string;
 }
 
 export interface IBoard {
