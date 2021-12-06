@@ -4,20 +4,20 @@
     :note="note"
     v-if="note.type === 'paragraph'"
     :class="note.color"
-    @dblclick="onClickUpdateNote"
+    @dblclick="onClickOpenModal"
   >
     <font-awesome-icon
       icon="pencil-alt"
       class="form__icon-update"
-      @click="onClickUpdateNote"
+      @click="onClickOpenModal"
     ></font-awesome-icon>
     <font-awesome-icon
       icon="times"
       class="form__icon-close"
       @click="onClickDelete"
     ></font-awesome-icon>
-    <h4 v-if="note.title">{{ note.title }}</h4>
-    <p>{{ note.paragraph }}</p>
+    <h4 v-if="note.title !== ''">{{ note.title }}</h4>
+    <p v-if="note.paragraph !== ''">{{ note.paragraph }}</p>
   </article>
   <article
     class="note note-image"
@@ -41,20 +41,19 @@ export default defineComponent({
   name: "Note",
   props: ["note", "idBoard"],
   methods: {
-    ...mapActions(["deleteNote", "updateNote"]),
+    ...mapActions([
+      "deleteNote",
+      "updateNote",
+      "setUpdateNoteModal",
+      "setIdForModal",
+    ]),
     onClickDelete() {
       const params = `${this.idBoard}/${this.note.id}`;
       this.deleteNote(params);
     },
-    onClickUpdateNote() {
-      this.updateNote({
-        idNote: this.note.id,
-        updatedNote: {
-          color: "pink",
-          title: "Updated",
-          paragraph: "updateeeeeeeeeeed",
-        },
-      });
+    onClickOpenModal() {
+      this.setUpdateNoteModal(true);
+      this.setIdForModal(this.note.id);
     },
   },
 });
