@@ -65,7 +65,12 @@ export default defineComponent({
     ...mapState(["themeHeaders", "themeSurfaces"]),
   },
   methods: {
-    ...mapActions(["createParagraphNote", "deleteBoard", "editNameBoard"]),
+    ...mapActions([
+      "createParagraphNote",
+      "deleteBoard",
+      "editNameBoard",
+      "setBoardEditModal",
+    ]),
     log(event) {
       console.log(event);
     },
@@ -73,7 +78,8 @@ export default defineComponent({
       this.createParagraphNote(this.board.id);
     },
     onClickEditNameBoard() {
-      this.editNameBoard({ idBoard: this.board.id, newName: "Edited" });
+      this.setBoardEditModal(true);
+      // this.editNameBoard({ idBoard: this.board.id, newName: "Edited" });
     },
     onClickDeleteBoard() {
       this.deleteBoard(this.board.id);
