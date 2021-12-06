@@ -53,3 +53,7 @@ export interface IBodyUpdateNameBoard {
   idBoard: string;
   newName: string;
 }
+export interface IBodyUpdateNote {
+  idNote: string;
+  updatedNote: INote;
+}

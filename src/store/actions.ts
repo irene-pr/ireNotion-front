@@ -3,6 +3,7 @@ import axios from "axios";
 import jwtDecode from "jwt-decode";
 import {
   IBodyUpdateNameBoard,
+  IBodyUpdateNote,
   IState,
   IUserLoginData,
   IUserRegisterData,
@@ -176,6 +177,21 @@ const actions = {
       return dispatch("getUserContent");
     } catch {
       return "Board could not be updated";
+    }
+  },
+
+  async updateNote(
+    { dispatch }: ActionContext<IState, IState>,
+    body: IBodyUpdateNote
+  ): Promise<string | void> {
+    try {
+      const { token } = JSON.parse(localStorage.getItem("token") || "");
+      await axios.put(`${process.env.VUE_APP_API}/note/update`, body, {
+        headers: { Authorization: `Bearer ${token}` },
+      });
+      return dispatch("getUserContent");
+    } catch {
+      return "Note could not be updated";
     }
   },
 };
