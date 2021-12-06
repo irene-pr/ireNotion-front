@@ -4,6 +4,11 @@
       <div class="board-header__top">
         <h3 class="board-header__header">{{ board.name }}</h3>
         <font-awesome-icon
+          icon="pencil-alt"
+          class="form__icon-edit"
+          @click="onClickEditNameBoard"
+        ></font-awesome-icon>
+        <font-awesome-icon
           icon="times"
           class="form__icon-close"
           @click="onClickDeleteBoard"
@@ -60,12 +65,15 @@ export default defineComponent({
     ...mapState(["themeHeaders", "themeSurfaces"]),
   },
   methods: {
-    ...mapActions(["createParagraphNote", "deleteBoard"]),
+    ...mapActions(["createParagraphNote", "deleteBoard", "editNameBoard"]),
     log(event) {
       console.log(event);
     },
     onclickAddNote() {
       this.createParagraphNote(this.board.id);
+    },
+    onClickEditNameBoard() {
+      this.editNameBoard({ idBoard: this.board.id, newName: "Edited" });
     },
     onClickDeleteBoard() {
       this.deleteBoard(this.board.id);
@@ -117,6 +125,18 @@ export default defineComponent({
         right: 15px;
         top: 11px;
         font-size: 25px;
+        cursor: pointer;
+        @media only screen and (max-width: 720px) {
+          display: block;
+        }
+      }
+      .form__icon-edit {
+        display: none;
+        position: absolute;
+        left: 15px;
+        top: 14px;
+        font-size: 17.18px;
+        cursor: pointer;
         @media only screen and (max-width: 720px) {
           display: block;
         }
@@ -137,6 +157,9 @@ export default defineComponent({
         display: block;
       }
       .form__icon-close {
+        display: block;
+      }
+      .form__icon-edit {
         display: block;
       }
     }

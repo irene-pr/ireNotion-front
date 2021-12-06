@@ -2,7 +2,7 @@ import { ActionContext } from "vuex";
 import axios from "axios";
 import jwtDecode from "jwt-decode";
 import {
-  IBodyUpdateNameBoard,
+  IBodyEditNameBoard,
   IBodyUpdateNote,
   IState,
   IUserLoginData,
@@ -165,9 +165,9 @@ const actions = {
     }
   },
 
-  async updateNameBoard(
+  async editNameBoard(
     { dispatch }: ActionContext<IState, IState>,
-    body: IBodyUpdateNameBoard
+    body: IBodyEditNameBoard
   ): Promise<string | void> {
     try {
       const { token } = JSON.parse(localStorage.getItem("token") || "");
