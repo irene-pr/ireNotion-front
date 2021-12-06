@@ -194,6 +194,20 @@ const actions = {
       return "Note could not be updated";
     }
   },
+
+  setBoardEditModal(
+    { commit }: ActionContext<IState, IState>,
+    bool: boolean
+  ): void {
+    commit("setIsBoardEditModal", bool);
+  },
+
+  setUpdateNoteModal(
+    { commit }: ActionContext<IState, IState>,
+    bool: boolean
+  ): void {
+    commit("setIsUpdateNoteModal", bool);
+  },
 };
 
 export default actions;

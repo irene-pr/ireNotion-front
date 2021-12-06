@@ -1,4 +1,6 @@
 <template>
+  <BoardEdit v-if="isBoardEditModal" />
+
   <nav class="nav-bar" :class="themeHeaders">
     <h1 class="nav-bar__header" @click="onClickToggleTheme">
       Welcome, {{ userContent.name }}!
@@ -18,14 +20,21 @@
       </button>
     </div>
   </nav>
-  <main class="board-page">
-    <div class="board-array" :class="themeSurfaces">
+  <main class="board-page" :class="themeSurfaces">
+    <div
+      class="board-array"
+      :class="themeSurfaces"
+      v-if="userContent.boards.length > 0"
+    >
       <Board
         v-for="board in userContent.boards"
         :board="board"
         v-bind:key="board.id"
       />
     </div>
+    <p class="board-page__welcome-message" v-else>
+      You can start by adding a new board, click the button on top!
+    </p>
   </main>
 </template>
 
@@ -34,10 +43,11 @@ import { defineComponent } from "vue";
 import { mapActions, mapState } from "vuex";
 import Board from "@/components/Board/Board.vue";
 import paths from "@/router/paths";
+import BoardEdit from "@/components/Modals/BoardEdit.vue";
 
 export default defineComponent({
   name: "BoardPage",
-  components: { Board },
+  components: { Board, BoardEdit },
   data() {
     return {
       enabled: true,
@@ -45,7 +55,13 @@ export default defineComponent({
     };
   },
   computed: {
-    ...mapState(["userContent", "isLoggedIn", "themeHeaders", "themeSurfaces"]),
+    ...mapState([
+      "userContent",
+      "isLoggedIn",
+      "themeHeaders",
+      "themeSurfaces",
+      "isBoardEditModal",
+    ]),
   },
   methods: {
     ...mapActions([
@@ -86,8 +102,19 @@ export default defineComponent({
 
 .board-page {
   padding-top: 40px;
+  overflow-y: hidden;
+  display: flex;
+  justify-content: center;
+  background-color: $theme-light-color;
+  min-height: 100vh;
   @media only screen and (max-width: 480px) {
     padding: 0;
+  }
+
+  &__welcome-message {
+    align-self: center;
+    font-size: 20px;
+    font-family: $Lato;
   }
 }
 
@@ -95,7 +122,7 @@ export default defineComponent({
   width: 100%;
   position: fixed;
   padding: 10px 20px;
-  z-index: 100;
+  z-index: 15;
   display: flex;
   justify-content: space-between;
 
@@ -132,7 +159,8 @@ export default defineComponent({
   }
 }
 .board-array {
-  overflow-x: scroll;
+  overflow-x: auto;
+  overflow-y: auto;
   width: 100%;
   padding: 25px 0;
   display: flex;

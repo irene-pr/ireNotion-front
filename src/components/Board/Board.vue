@@ -1,7 +1,7 @@
 <template>
   <section class="board">
     <div class="board-header" :class="themeHeaders">
-      <div class="board-header__top">
+      <div class="board-header__top" @dblclick="onClickEditNameBoard">
         <h3 class="board-header__header">{{ board.name }}</h3>
         <font-awesome-icon
           icon="pencil-alt"
@@ -65,7 +65,12 @@ export default defineComponent({
     ...mapState(["themeHeaders", "themeSurfaces"]),
   },
   methods: {
-    ...mapActions(["createParagraphNote", "deleteBoard", "editNameBoard"]),
+    ...mapActions([
+      "createParagraphNote",
+      "deleteBoard",
+      "editNameBoard",
+      "setBoardEditModal",
+    ]),
     log(event) {
       console.log(event);
     },
@@ -73,7 +78,8 @@ export default defineComponent({
       this.createParagraphNote(this.board.id);
     },
     onClickEditNameBoard() {
-      this.editNameBoard({ idBoard: this.board.id, newName: "Edited" });
+      this.setBoardEditModal(true);
+      // this.editNameBoard({ idBoard: this.board.id, newName: "Edited" });
     },
     onClickDeleteBoard() {
       this.deleteBoard(this.board.id);
