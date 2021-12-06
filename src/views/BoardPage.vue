@@ -86,6 +86,7 @@ export default defineComponent({
 
 .board-page {
   padding-top: 40px;
+  overflow-y: hidden;
   @media only screen and (max-width: 480px) {
     padding: 0;
   }
@@ -132,7 +133,8 @@ export default defineComponent({
   }
 }
 .board-array {
-  overflow-x: scroll;
+  overflow-x: auto;
+  overflow-y: auto;
   width: 100%;
   padding: 25px 0;
   display: flex;
