@@ -20,6 +20,15 @@ describe("Given an App component", () => {
         stubs: ["router-view"],
       });
     });
+    test("Then the it matches the snapshot", () => {
+      const wrapper = mount(App, {
+        global: {
+          plugins: [router, store],
+        },
+        stubs: ["router-view"],
+      });
+      expect(wrapper.element).toMatchSnapshot();
+    });
   });
   describe("When with the initial state", () => {
     test("Then it doesn't render the Loading component", () => {

@@ -1,0 +1,28 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Given a Home view When it is rendered Then the it matches the snapshot 1`] = `
+<main
+  class="not-found-page"
+>
+  <h1
+    class="not-found-page__header"
+  >
+    <span
+      class="span-1"
+    >
+      404
+    </span>
+     
+    <span
+      class="span-2"
+    >
+      Not 
+    </span>
+    <span
+      class="span-3"
+    >
+      found
+    </span>
+  </h1>
+</main>
+`;
