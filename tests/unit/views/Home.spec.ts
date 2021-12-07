@@ -13,6 +13,18 @@ describe("Given a Home view", () => {
   });
 
   describe("When it is rendered", () => {
+    test("Then the snapshot matches", () => {
+      const wrapper = mount(Home, {
+        global: {
+          plugins: [router, store],
+        },
+        stubs: ["router-view"],
+      });
+      expect(wrapper.element).toMatchSnapshot();
+    });
+  });
+
+  describe("When it is rendered", () => {
     test("it renders", () => {
       mount(Home, {
         global: {
