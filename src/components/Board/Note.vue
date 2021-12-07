@@ -68,7 +68,7 @@ export default defineComponent({
   }
 
   position: relative;
-  width: 360px;
+  width: 100%;
   padding: 25px;
   margin: 10px 0;
   display: flex;
