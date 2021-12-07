@@ -96,6 +96,18 @@
               v-model="note.color"
             />
           </div>
+          <div class="radio-container">
+            <label class="note-update-form-paragraph__label" for="green"
+              >Green</label
+            >
+            <input
+              class="note-update-form-paragraph__input"
+              type="radio"
+              id="green"
+              value="green"
+              v-model="note.color"
+            />
+          </div>
         </div>
 
         <button
@@ -207,7 +219,7 @@ export default defineComponent({
 .note-update-modal {
   position: relative;
   width: 300px;
-  height: 500px;
+  height: 520px;
   display: flex;
   flex-direction: column;
   justify-content: space-around;
@@ -269,7 +281,7 @@ export default defineComponent({
       color: $theme-pink;
     }
     &__color {
-      margin: 0 0 25px 0;
+      margin-bottom: 10px;
       display: flex;
       flex-direction: column;
 
@@ -298,6 +310,7 @@ export default defineComponent({
     }
 
     &__button {
+      margin-bottom: 10px;
       @extend %button--little;
       &--day-mode {
         background-color: rgba(255, 255, 255, 0.5);

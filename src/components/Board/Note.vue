@@ -144,4 +144,8 @@ export default defineComponent({
   background-color: $note-yellow;
   color: black;
 }
+.green {
+  background-color: $note-green;
+  color: black;
+}
 </style>
