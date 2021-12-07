@@ -1,6 +1,6 @@
 <template>
   <BoardEdit v-if="isBoardEditModal" />
-
+  <UpdateNote v-if="isUpdateNoteModal" />
   <nav class="nav-bar" :class="themeHeaders">
     <h1 class="nav-bar__header" @click="onClickToggleTheme">
       Welcome, {{ userContent.name }}!
@@ -44,10 +44,11 @@ import { mapActions, mapState } from "vuex";
 import Board from "@/components/Board/Board.vue";
 import paths from "@/router/paths";
 import BoardEdit from "@/components/Modals/BoardEdit.vue";
+import UpdateNote from "@/components/Modals/UpdateNote.vue";
 
 export default defineComponent({
   name: "BoardPage",
-  components: { Board, BoardEdit },
+  components: { Board, BoardEdit, UpdateNote },
   data() {
     return {
       enabled: true,
@@ -61,6 +62,7 @@ export default defineComponent({
       "themeHeaders",
       "themeSurfaces",
       "isBoardEditModal",
+      "isUpdateNoteModal",
     ]),
   },
   methods: {

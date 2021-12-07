@@ -1,12 +1,12 @@
 <template>
   <section class="board">
     <div class="board-header" :class="themeHeaders">
-      <div class="board-header__top" @dblclick="onClickEditNameBoard">
+      <div class="board-header__top" @dblclick="onClickOpenModal">
         <h3 class="board-header__header">{{ board.name }}</h3>
         <font-awesome-icon
           icon="pencil-alt"
           class="form__icon-edit"
-          @click="onClickEditNameBoard"
+          @click="onClickOpenModal"
         ></font-awesome-icon>
         <font-awesome-icon
           icon="times"
@@ -78,7 +78,7 @@ export default defineComponent({
     onclickAddNote() {
       this.createParagraphNote(this.board.id);
     },
-    onClickEditNameBoard() {
+    onClickOpenModal() {
       this.setBoardEditModal(true);
       this.setIdForModal(this.board.id);
     },

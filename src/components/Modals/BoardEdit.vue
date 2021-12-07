@@ -1,6 +1,15 @@
 <template>
-  <div class="modal" :class="'modal--' + themeSurfaces" @dblclick="closeModal">
+  <div
+    class="modal-edit-board"
+    :class="'modal-edit-board--' + themeSurfaces"
+    @dblclick="closeModal"
+  >
     <div class="board-edit-modal" :class="themeSurfaces">
+      <font-awesome-icon
+        icon="times"
+        class="form__icon-close"
+        @click="closeModal"
+      ></font-awesome-icon>
       <h2 class="board-edit-modal__title">Edit the board name</h2>
       <form
         class="board-edit-form"
@@ -39,7 +48,7 @@ export default defineComponent({
   name: "BoardEdit",
   data() {
     return {
-      name: "holi",
+      name: "",
     };
   },
   computed: {
@@ -77,7 +86,7 @@ export default defineComponent({
   color: $theme-light-color;
 }
 
-.modal {
+.modal-edit-board {
   position: fixed;
   width: 100%;
   height: 100%;
@@ -104,6 +113,7 @@ export default defineComponent({
 }
 
 .board-edit-modal {
+  position: relative;
   width: 300px;
   height: 200px;
   display: flex;
@@ -155,6 +165,11 @@ export default defineComponent({
         border: 1px solid $theme-light-color;
       }
     }
+  }
+  .form__icon-close {
+    position: absolute;
+    top: 10px;
+    right: 10px;
   }
 }
 </style>
