@@ -1,4 +1,5 @@
 const state = {
+  isLoading: false,
   isLoggedIn: false,
   userContent: {
     name: "",
