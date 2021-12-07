@@ -112,7 +112,6 @@ export default defineComponent({
   name: "UpdateNote",
   data() {
     return {
-      board: {},
       note: {
         type: "",
         order: "",
@@ -128,7 +127,12 @@ export default defineComponent({
     ...mapState(["userContent", "themeSurfaces", "idForModal"]),
   },
   methods: {
-    ...mapActions(["updateNote", "setUpdateNoteModal", "setIdForModal"]),
+    ...mapActions([
+      "updateNote",
+      "setUpdateNoteModal",
+      "setIdForModal",
+      "getUserContent",
+    ]),
     onSubmitParagraph() {
       const note = {
         color: this.note.color,
@@ -144,12 +148,14 @@ export default defineComponent({
     },
   },
   mounted() {
-    [this.note] = this.userContent.boards
-      .filter(
-        ({ notes }: IBoard) =>
-          notes.filter(({ id }: INote) => id === this.idForModal).length !== 0
-      )[0]
-      .notes.filter(({ id }: INote) => id === this.idForModal);
+    this.note = {
+      ...this.userContent.boards
+        .filter(
+          ({ notes }: IBoard) =>
+            notes.filter(({ id }: INote) => id === this.idForModal).length !== 0
+        )[0]
+        .notes.filter(({ id }: INote) => id === this.idForModal)[0],
+    };
   },
 });
 </script>
