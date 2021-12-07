@@ -1,28 +1,23 @@
 <template>
   <nav class="nav__user-area">
-    <router-link :to="paths.login">
-      <button class="nav__button nav__button--login">
-        LOG <span>IN</span>
-      </button>
-    </router-link>
-    <router-link :to="paths.register">
-      <button class="nav__button nav__button--signup">
-        SIGN <span>UP</span>
-      </button>
-    </router-link>
+    <button class="nav__button nav__button--login" @click="redirectToLogin">
+      LOG <span>IN</span>
+    </button>
+
+    <button class="nav__button nav__button--signup" @click="redirectToRegister">
+      SIGN <span>UP</span>
+    </button>
   </nav>
 </template>
 
 <script lang="ts">
 import { defineComponent } from "vue";
-import paths from "../../router/paths";
+import { mapGetters } from "vuex";
 
 export default defineComponent({
   name: "UserArea",
-  data() {
-    return {
-      paths,
-    };
+  methods: {
+    ...mapGetters(["redirectToLogin", "redirectToRegister"]),
   },
 });
 </script>

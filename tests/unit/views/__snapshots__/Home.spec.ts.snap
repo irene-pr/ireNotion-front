@@ -10,32 +10,22 @@ exports[`Given a Home view When it is rendered Then the it matches the snapshot 
     <nav
       class="nav__user-area"
     >
-      <a
-        class=""
-        href="/login"
+      <button
+        class="nav__button nav__button--login"
       >
-        <button
-          class="nav__button nav__button--login"
-        >
-           LOG 
-          <span>
-            IN
-          </span>
-        </button>
-      </a>
-      <a
-        class=""
-        href="/register"
+         LOG 
+        <span>
+          IN
+        </span>
+      </button>
+      <button
+        class="nav__button nav__button--signup"
       >
-        <button
-          class="nav__button nav__button--signup"
-        >
-           SIGN 
-          <span>
-            UP
-          </span>
-        </button>
-      </a>
+         SIGN 
+        <span>
+          UP
+        </span>
+      </button>
     </nav>
     <h1
       class="home-logo"

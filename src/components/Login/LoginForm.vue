@@ -53,10 +53,9 @@
 
 <script lang="ts">
 import { defineComponent } from "vue";
-import { mapActions } from "vuex";
+import { mapActions, mapGetters } from "vuex";
 import { IUserLoginData } from "@/types/interfaces";
 import paths from "../../router/paths";
-import router from "@/router";
 
 export default defineComponent({
   name: "LoginForm",
@@ -71,6 +70,7 @@ export default defineComponent({
   },
   methods: {
     ...mapActions(["loginUser"]),
+    ...mapGetters(["redirectToUserBoard"]),
     async onSubmit() {
       if (this.username !== "" && this.password !== "") {
         const userLoginData: IUserLoginData = {
@@ -80,7 +80,7 @@ export default defineComponent({
 
         const status = await this.loginUser(userLoginData);
         if (status === 200) {
-          router.push(paths.userBoard);
+          this.redirectToUserBoard();
         } else {
           this.isMessageShown = true;
         }

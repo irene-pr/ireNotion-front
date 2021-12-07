@@ -5,7 +5,7 @@ import LoginForm from "@/components/Login/LoginForm.vue";
 import router from "@/router";
 
 describe("Given a LoginForm component", () => {
-  const store = createStore({
+  let store = createStore({
     state() {
       return state;
     },
@@ -19,6 +19,15 @@ describe("Given a LoginForm component", () => {
         },
         stubs: ["router-view"],
       });
+    });
+    test("Then the it matches the snapshot", () => {
+      const wrapper = mount(LoginForm, {
+        global: {
+          plugins: [router, store],
+        },
+        stubs: ["router-view"],
+      });
+      expect(wrapper.element).toMatchSnapshot();
     });
     test("Then it renders a main header", () => {
       const wrapper = mount(LoginForm, {
@@ -66,8 +75,6 @@ describe("Given a LoginForm component", () => {
 
       expect(divider.html()).toContain('<p class="divider__or">or</p>');
     });
-  });
-  describe("When it renders the form", () => {
     test("Then it renders a form", () => {
       const wrapper = mount(LoginForm, {
         global: {
@@ -80,6 +87,8 @@ describe("Given a LoginForm component", () => {
 
       expect(form).toHaveLength(1);
     });
+  });
+  describe("When it renders the form", () => {
     test("Then the form contains an input and a label for the username", () => {
       const wrapper = mount(LoginForm, {
         global: {
@@ -110,7 +119,7 @@ describe("Given a LoginForm component", () => {
       expect(passwordInput.exists).toBeTruthy();
       expect(passwordLabel.exists).toBeTruthy();
     });
-    /*  test("Then when I type in the username and password it gets written", async () => {
+    test("Then the form contains a login button", () => {
       const wrapper = mount(LoginForm, {
         global: {
           plugins: [router, store],
@@ -118,49 +127,171 @@ describe("Given a LoginForm component", () => {
         stubs: ["router-view"],
       });
 
-      const form = wrapper.find("form");
-      const usernameInput = form.find('input[id="username"]');
-      const passwordInput = form.find('input[id="password"]');
+      const button = wrapper.find("button.login-form__button--login");
 
-      await usernameInput.setValue("Mario");
-      await passwordInput.setValue("Mario");
+      expect(button.text()).toContain("LOG IN");
+    });
+  });
 
-      expect(usernameInput).toBe("mario");
-    }); */
-    /*   test("Then when I type in the username and password it gets written", async () => {
+  describe("When I don't write on the inputs", () => {
+    test("Then the login button must be disabled", async () => {
       const wrapper = mount(LoginForm, {
         global: {
           plugins: [router, store],
         },
         stubs: ["router-view"],
+      });
+
+      const button = wrapper.find("button.login-form__button--login");
+
+      expect(button.element.getAttributeNames()).toContain("disabled");
+    });
+    test("Then the login button must be disabled", async () => {
+      const wrapper = mount(LoginForm, {
+        global: {
+          plugins: [router, store],
+        },
+        stubs: ["router-view"],
+      });
+
+      await wrapper.find("form").trigger("submit.prevent");
+
+      expect(wrapper.find(".message").text()).toBe("");
+    });
+  });
+  describe("When I write on the inputs", () => {
+    test("Then the value is set", async () => {
+      store = createStore({
+        state() {
+          return state;
+        },
+      });
+      const wrapper = mount(LoginForm, {
+        global: {
+          plugins: [router, store],
+        },
+        stubs: ["router-view"],
+      });
+
+      const [inputName, inputPassword] = wrapper.findAll("input");
+      inputName.setValue("name");
+      inputPassword.setValue("password");
+
+      expect(inputName.element.value).toBe("name");
+      expect(inputPassword.element.value).toBe("password");
+    });
+  });
+  describe("When I write wrong data on the inputs and I click the login button", () => {
+    test("Then the message is shown", async () => {
+      store = createStore({
+        state() {
+          return state;
+        },
+        actions: {
+          loginUser: jest.fn().mockResolvedValue(401),
+        },
+      });
+      const wrapper = mount(LoginForm, {
+        global: {
+          plugins: [router, store],
+        },
+        stubs: ["router-view"],
+      });
+
+      const [inputName, inputPassword] = wrapper.findAll("input");
+      inputName.setValue("name");
+      inputPassword.setValue("password");
+      await wrapper.find("form").trigger("submit.prevent");
+
+      expect(wrapper.vm.$data.isMessageShown).toBe(true);
+    });
+    test("Then it calls the message 'Wrong username or password. Try again'", async () => {
+      store = createStore({
+        state() {
+          return state;
+        },
+        actions: {
+          loginUser: jest.fn().mockResolvedValue(401),
+        },
+      });
+      const wrapper = mount(LoginForm, {
+        global: {
+          plugins: [router, store],
+        },
+        stubs: ["router-view"],
+      });
+
+      const [inputName, inputPassword] = wrapper.findAll("input");
+      inputName.setValue("name");
+      inputPassword.setValue("password");
+      await wrapper.find("form").trigger("submit.prevent");
+
+      expect(wrapper.find(".message").text()).toBe(
+        "Wrong username or password. Try again"
+      );
+    });
+  });
+  describe("When I write right data on the inputs and I click the login button", () => {
+    test("Then it the message is sill not shown", async () => {
+      const $route = { path: "/userBoard" };
+      store = createStore({
+        state() {
+          return state;
+        },
+        actions: {
+          loginUser: jest.fn().mockResolvedValue(200),
+        },
+        getters: {
+          redirectToUserBoard: jest.fn(),
+        },
+      });
+      const wrapper = mount(LoginForm, {
+        global: {
+          plugins: [router, store],
+        },
         mocks: {
-          $store: {
-            state: {
-              isLoggedIn: false,
-              userContent: {
-                name: "",
-                boards: [],
-              },
-              userId: "",
-              token: "",
-            },
-            actions: {
-              loginUser: jest.fn(),
-            },
-            dispatch: jest.fn(),
-          },
+          $route,
         },
+        stubs: ["router-view", "router-link"],
       });
 
-      const form = wrapper.find("form");
-      const usernameInput = form.find('input[id="username"]');
-      const passwordInput = form.find('input[id="password"]');
-      const onSubmit = jest.fn();
+      const [inputName, inputPassword] = wrapper.findAll("input");
+      inputName.setValue("name");
+      inputPassword.setValue("password");
+      await wrapper.find("form").trigger("submit.prevent");
 
-      await usernameInput.setValue("Mario");
-      await passwordInput.setValue("Mario");
-      await form.trigger("submit");
-      form.expect(onSubmit).toBeCalled();
-    }); */
+      expect(wrapper.find(".message").text()).toBe("");
+      expect(wrapper.vm.$data.isMessageShown).toBe(false);
+    });
+    test("Then it the message remains unchanged", async () => {
+      const $route = { path: "/userBoard" };
+      store = createStore({
+        state() {
+          return state;
+        },
+        actions: {
+          loginUser: jest.fn().mockResolvedValue(200),
+        },
+        getters: {
+          redirectToUserBoard: jest.fn(),
+        },
+      });
+      const wrapper = mount(LoginForm, {
+        global: {
+          plugins: [router, store],
+        },
+        mocks: {
+          $route,
+        },
+        stubs: ["router-view", "router-link"],
+      });
+
+      const [inputName, inputPassword] = wrapper.findAll("input");
+      inputName.setValue("name");
+      inputPassword.setValue("password");
+      await wrapper.find("form").trigger("submit.prevent");
+
+      expect(wrapper.find(".message").text()).toBe("");
+    });
   });
 });
