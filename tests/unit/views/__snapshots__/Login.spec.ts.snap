@@ -1,0 +1,105 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Given a Login view When it is rendered Then the it matches the snapshot 1`] = `
+<main
+  class="login-page"
+>
+  <div
+    class="login-container login-page__form-component"
+  >
+    <a
+      class=""
+      href="/"
+    >
+      <h1
+        class="login-container__main-heading"
+      >
+        ire
+        <span>
+          N
+        </span>
+        otion
+      </h1>
+    </a>
+    <h2
+      class="login-container__secondary-heading"
+    >
+       Welcome back to ireNotion 
+    </h2>
+    <form
+      autocomplete="off"
+      class="login-form"
+    >
+      <div
+        class="login-form__input-container"
+      >
+        <label
+          class="login-form__label"
+          for="username"
+        >
+          Username
+        </label>
+        <input
+          class="login-form__input"
+          id="username"
+          placeholder="mario123"
+          type="text"
+        />
+        <label
+          class="login-form__label"
+          for="password"
+        >
+          Password
+        </label>
+        <input
+          class="login-form__input"
+          id="password"
+          placeholder="at least 7 characters"
+          type="password"
+        />
+      </div>
+      <p
+        class="message"
+      />
+      <button
+        class="login-form__button login-form__button--login"
+        disabled=""
+        type="submit"
+      >
+         LOG 
+        <span>
+          IN
+        </span>
+      </button>
+    </form>
+    <div
+      class="divider"
+    >
+      <div
+        class="divider__line divider__line--first"
+      />
+      <p
+        class="divider__or"
+      >
+        or
+      </p>
+      <div
+        class="divider__line divider__line--second"
+      />
+    </div>
+    <a
+      class=""
+      href="/register"
+    >
+      <button
+        class="login-form__button login-form__button--signup"
+      >
+         SIGN 
+        <span>
+          UP
+        </span>
+      </button>
+    </a>
+  </div>
+</main>
+`;
