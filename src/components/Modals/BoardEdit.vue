@@ -4,7 +4,7 @@
     :class="'modal-edit-board--' + themeSurfaces"
     @dblclick="closeModal"
   >
-    <div class="board-edit-modal" :class="themeSurfaces">
+    <div class="board-edit-modal" :class="'board-edit-modal--' + themeSurfaces">
       <font-awesome-icon
         icon="times"
         class="form__icon-close"
@@ -77,15 +77,6 @@ export default defineComponent({
 @import "@/styles/_variables";
 @import "@/styles/_extends";
 
-.day-mode {
-  background-color: $theme-light-color;
-  color: $theme-dark-color;
-}
-.night-mode {
-  background-color: $theme-dark-color;
-  color: $theme-light-color;
-}
-
 .modal-edit-board {
   position: fixed;
   width: 100%;
@@ -120,6 +111,18 @@ export default defineComponent({
   flex-direction: column;
   justify-content: space-around;
   align-items: center;
+  border-radius: 15px;
+
+  &--day-mode {
+    background-color: $theme-light-color;
+    color: $theme-dark-color;
+    border: 2px solid $theme-dark-color-opacity;
+  }
+  &--night-mode {
+    background-color: $theme-dark-color;
+    color: $theme-light-color;
+    border: 2px solid $theme-light-color-opacity;
+  }
 
   &__title {
     margin-bottom: 0;

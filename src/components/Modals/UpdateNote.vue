@@ -1,13 +1,21 @@
 <template>
   <div class="modal" :class="'modal--' + themeSurfaces" @dblclick="closeModal">
-    <div class="note-update-modal" :class="themeSurfaces">
+    <div
+      class="note-update-modal"
+      :class="'note-update-modal--' + themeSurfaces"
+    >
       <font-awesome-icon
         icon="times"
         class="form__icon-close"
         @click="closeModal"
       ></font-awesome-icon>
       <h2 class="note-update-modal__title">Edit the note</h2>
-      <p>tip: if you leave one field empty it doesn't appear</p>
+      <p
+        class="note-update-modal__tip"
+        :class="'note-update-modal__tip--' + themeSurfaces"
+      >
+        tip: you can leave empty fields, they won't leave an empty space.
+      </p>
       <form
         class="note-update-form-paragraph"
         @submit.prevent="onSubmitParagraph"
@@ -164,15 +172,6 @@ export default defineComponent({
 @import "@/styles/_variables";
 @import "@/styles/_extends";
 
-.day-mode {
-  background-color: $theme-light-color;
-  color: $theme-dark-color;
-}
-.night-mode {
-  background-color: $theme-dark-color;
-  color: $theme-light-color;
-}
-
 .modal {
   position: fixed;
   width: 100%;
@@ -184,7 +183,7 @@ export default defineComponent({
   font-family: $Lato;
 
   &--day-mode {
-    background-color: rgba(255, 255, 255, 0.5);
+    background-color: rgba(255, 255, 255, 0.7);
 
     input {
       color: $theme-dark-color;
@@ -194,7 +193,7 @@ export default defineComponent({
     }
   }
   &--night-mode {
-    background-color: rgba(0, 0, 0, 0.5);
+    background-color: rgba(0, 0, 0, 0.7);
 
     input {
       color: $theme-light-color;
@@ -213,10 +212,33 @@ export default defineComponent({
   flex-direction: column;
   justify-content: space-around;
   align-items: center;
+  border-radius: 15px;
+
+  &--day-mode {
+    background-color: $theme-light-color;
+    color: $theme-dark-color;
+    border: 2px solid $theme-dark-color-opacity;
+  }
+  &--night-mode {
+    background-color: $theme-dark-color;
+    color: $theme-light-color;
+    border: 2px solid $theme-light-color-opacity;
+  }
 
   &__title {
     margin-bottom: 0;
     font-weight: 400;
+  }
+  &__tip {
+    padding: 0 40px;
+    text-align: center;
+    font-size: 13px;
+    &--day-mode {
+      color: $theme-dark-color-opacity;
+    }
+    &--night-mode {
+      color: $theme-light-color-opacity;
+    }
   }
   .note-update-form-paragraph {
     display: flex;
