@@ -6,16 +6,24 @@ import state from "@/store/state";
 import router from "@/router";
 
 describe("Given a Home view", () => {
-  const store = createStore({
-    state() {
-      return state;
-    },
-    actions: {
-      checkToken: jest.fn(),
-    },
-    getters: {
-      redirectToUserBoard: jest.fn(),
-    },
+  let checkTokenMock = jest.fn();
+  let redirectToUserBoardMock = jest.fn();
+  let store = createStore({});
+
+  beforeEach(() => {
+    checkTokenMock = jest.fn();
+    redirectToUserBoardMock = jest.fn();
+    store = createStore({
+      state() {
+        return state;
+      },
+      actions: {
+        checkToken: checkTokenMock,
+      },
+      getters: {
+        redirectToUserBoard: redirectToUserBoardMock,
+      },
+    });
   });
 
   describe("When it is rendered", () => {
@@ -35,6 +43,26 @@ describe("Given a Home view", () => {
         stubs: ["router-view"],
       });
       expect(wrapper.element).toMatchSnapshot();
+    });
+    test("Then the action checkToken should be called", () => {
+      mount(Home, {
+        global: {
+          plugins: [router, store],
+        },
+        stubs: ["router-view"],
+      });
+
+      expect(checkTokenMock).toHaveBeenCalled();
+    });
+    test("Then the getter redirectToUserBoard should not be called", () => {
+      mount(Home, {
+        global: {
+          plugins: [router, store],
+        },
+        stubs: ["router-view"],
+      });
+
+      expect(redirectToUserBoardMock).not.toHaveBeenCalled();
     });
     test("it renders the component NavHome", () => {
       const wrapper = mount(Home, {
@@ -175,7 +203,7 @@ describe("Given a Home view", () => {
     });
   });
   describe("When the isLoggedIn state is true", () => {
-    test("Then it invokes the redirectToUserBoard", () => {
+    test("Then it calls the getter redirectToUserBoard", () => {
       state.isLoggedIn = true;
 
       mount(Home, {
@@ -184,6 +212,22 @@ describe("Given a Home view", () => {
         },
         stubs: ["router-link", "router-view"],
       });
+      expect(redirectToUserBoardMock).toHaveBeenCalled();
+    });
+    test("Then it redirects to /userBoard", () => {
+      state.isLoggedIn = true;
+      const $route = { path: "/userBoard" };
+
+      const wrapper = mount(Home, {
+        global: {
+          plugins: [router, store],
+          mocks: {
+            $route,
+          },
+        },
+        stubs: ["router-link", "router-view"],
+      });
+      expect(wrapper.vm.$route.path).toContain($route.path);
     });
   });
 });
