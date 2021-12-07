@@ -96,8 +96,8 @@ const actions = {
     { dispatch }: ActionContext<IState, IState>,
     idBoard: string
   ): Promise<string | void> {
-    const randomNumber = Math.floor(Math.random() * 4);
-    const colors = ["yellow", "pink", "blue", "orange"];
+    const randomNumber = Math.floor(Math.random() * 5);
+    const colors = ["yellow", "pink", "blue", "orange", "green"];
     const initialParagraphCard = {
       type: "paragraph",
       title: "Title",
