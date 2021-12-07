@@ -172,15 +172,6 @@ export default defineComponent({
 @import "@/styles/_variables";
 @import "@/styles/_extends";
 
-.day-mode {
-  background-color: $theme-light-color;
-  color: $theme-dark-color;
-}
-.night-mode {
-  background-color: $theme-dark-color;
-  color: $theme-light-color;
-}
-
 .modal {
   position: fixed;
   width: 100%;
@@ -221,7 +212,6 @@ export default defineComponent({
   flex-direction: column;
   justify-content: space-around;
   align-items: center;
-
   border-radius: 15px;
 
   &--day-mode {
