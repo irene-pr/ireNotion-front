@@ -10,6 +10,12 @@ describe("Given a Home view", () => {
     state() {
       return state;
     },
+    actions: {
+      checkToken: jest.fn(),
+    },
+    getters: {
+      redirectToUserBoard: jest.fn(),
+    },
   });
 
   describe("When it is rendered", () => {
@@ -166,6 +172,18 @@ describe("Given a Home view", () => {
       expect(sections[1].find("h2").text()).toContain("Technologies I've used");
       expect(sections[2].html()).toContain("<h2>Message of Thanks</h2>");
       expect(sections[2].find("h2").text()).toContain("Message of Thanks");
+    });
+  });
+  describe("When the isLoggedIn state is true", () => {
+    test("Then it invokes the redirectToUserBoard", () => {
+      state.isLoggedIn = true;
+
+      mount(Home, {
+        global: {
+          plugins: [router, store],
+        },
+        stubs: ["router-link", "router-view"],
+      });
     });
   });
 });
