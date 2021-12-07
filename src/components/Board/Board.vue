@@ -93,17 +93,18 @@ export default defineComponent({
 @import "@/styles/_extends";
 
 .board {
-  width: 360px;
+  width: 280px;
   margin: 0 10px;
   display: flex;
   flex-direction: column;
   align-items: center;
   @media only screen and (max-width: 480px) {
+    width: 360px;
     margin: 0;
   }
 
   .board-header {
-    width: 360px;
+    width: 280px;
     margin: 0 10px;
     margin-top: 30px;
     display: flex;
@@ -117,7 +118,7 @@ export default defineComponent({
 
     &__header {
       margin: 0;
-      padding: 10px 0;
+      padding: 5px 0;
       text-align: center;
       font-family: "Fredericka the Great", cursive;
       font-weight: 100;
@@ -129,9 +130,9 @@ export default defineComponent({
       .form__icon-close {
         display: none;
         position: absolute;
-        right: 15px;
-        top: 11px;
-        font-size: 25px;
+        right: 13px;
+        top: 9px;
+        font-size: 20px;
         cursor: pointer;
         @media only screen and (max-width: 720px) {
           display: block;
@@ -140,9 +141,9 @@ export default defineComponent({
       .form__icon-edit {
         display: none;
         position: absolute;
-        left: 15px;
-        top: 14px;
-        font-size: 17.18px;
+        left: 12px;
+        top: 11px;
+        font-size: 13.75px;
         cursor: pointer;
         @media only screen and (max-width: 720px) {
           display: block;
