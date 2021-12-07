@@ -20,6 +20,16 @@ describe("Given a Home view", () => {
         stubs: ["router-view"],
       });
     });
+    test("Then the it matches the snapshot", () => {
+      const wrapper = mount(NotFound, {
+        global: {
+          plugins: [router, store],
+        },
+        stubs: ["router-view"],
+      });
+      expect(wrapper.element).toMatchSnapshot();
+    });
+
     test("Then it has a heading", () => {
       const wrapper = mount(NotFound, {
         global: {

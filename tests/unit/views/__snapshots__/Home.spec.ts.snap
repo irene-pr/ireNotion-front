@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Given a Home view When it is rendered Then the snapshot matches 1`] = `
+exports[`Given a Home view When it is rendered Then the it matches the snapshot 1`] = `
 <main
   class="home-page"
 >

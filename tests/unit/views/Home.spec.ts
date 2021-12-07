@@ -13,18 +13,6 @@ describe("Given a Home view", () => {
   });
 
   describe("When it is rendered", () => {
-    test("Then the snapshot matches", () => {
-      const wrapper = mount(Home, {
-        global: {
-          plugins: [router, store],
-        },
-        stubs: ["router-view"],
-      });
-      expect(wrapper.element).toMatchSnapshot();
-    });
-  });
-
-  describe("When it is rendered", () => {
     test("it renders", () => {
       mount(Home, {
         global: {
@@ -32,6 +20,15 @@ describe("Given a Home view", () => {
         },
         stubs: ["router-view"],
       });
+    });
+    test("Then the it matches the snapshot", () => {
+      const wrapper = mount(Home, {
+        global: {
+          plugins: [router, store],
+        },
+        stubs: ["router-view"],
+      });
+      expect(wrapper.element).toMatchSnapshot();
     });
     test("it renders the component NavHome", () => {
       const wrapper = mount(Home, {
