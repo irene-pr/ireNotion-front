@@ -20,6 +20,7 @@ const actions = {
     { commit }: ActionContext<IState, IState>,
     user: IUserLoginData
   ): Promise<void | string | number> {
+    commit("setIsLoading", true);
     try {
       const response = await axios.post(
         `${process.env.VUE_APP_API}/user/login/`,
@@ -30,8 +31,10 @@ const actions = {
         commit("setUserData", jwtDecode(response.data.token));
         return 200;
       }
-      return response.status;
+
+      return commit("setIsLoading", false);
     } catch {
+      commit("setIsLoading", false);
       return "Could not log in user";
     }
   },
@@ -42,9 +45,10 @@ const actions = {
   },
 
   async registerUser(
-    { dispatch }: ActionContext<IState, IState>,
+    { dispatch, commit }: ActionContext<IState, IState>,
     user: IUserRegisterData
   ): Promise<void | string> {
+    commit("setIsLoading", true);
     try {
       const response = await axios.post(
         `${process.env.VUE_APP_API}/user/register/`,
@@ -53,8 +57,10 @@ const actions = {
       if (response.status === 201) {
         router.push(paths.login);
       }
-      return dispatch("logoutUser");
+      dispatch("logoutUser");
+      return commit("setIsLoading", false);
     } catch {
+      commit("setIsLoading", false);
       return "Username already exists";
     }
   },
@@ -62,6 +68,7 @@ const actions = {
   async getUserContent({
     commit,
   }: ActionContext<IState, IState>): Promise<void | string> {
+    commit("setIsLoading", true);
     try {
       const { token } = JSON.parse(localStorage.getItem("token") || "");
       const response = await axios.get(
@@ -74,8 +81,10 @@ const actions = {
         commit("setLogoutState");
         router.push(paths.login);
       }
-      return commit("setUserContent", response.data);
+      commit("setUserContent", response.data);
+      return commit("setIsLoading", false);
     } catch {
+      commit("setIsLoading", false);
       return "Could not get user content";
     }
   },
@@ -93,9 +102,10 @@ const actions = {
   },
 
   async createParagraphNote(
-    { dispatch }: ActionContext<IState, IState>,
+    { dispatch, commit }: ActionContext<IState, IState>,
     idBoard: string
   ): Promise<string | void> {
+    commit("setIsLoading", true);
     const randomNumber = Math.floor(Math.random() * 5);
     const colors = ["yellow", "pink", "blue", "orange", "green"];
     const initialParagraphCard = {
@@ -114,83 +124,101 @@ const actions = {
       await axios.post(`${process.env.VUE_APP_API}/note/create/`, body, {
         headers: { Authorization: `Bearer ${token}` },
       });
-      return dispatch("getUserContent");
+      dispatch("getUserContent");
+      return commit("setIsLoading", false);
     } catch {
+      commit("setIsLoading", false);
       return "Paragraph note could not be created";
     }
   },
 
   async deleteNote(
-    { dispatch }: ActionContext<IState, IState>,
+    { dispatch, commit }: ActionContext<IState, IState>,
     params: string
   ): Promise<string | void> {
+    commit("setIsLoading", true);
     try {
       const { token } = JSON.parse(localStorage.getItem("token") || "");
       await axios.delete(`${process.env.VUE_APP_API}/note/delete/${params}`, {
         headers: { Authorization: `Bearer ${token}` },
       });
-      return dispatch("getUserContent");
+      dispatch("getUserContent");
+      return commit("setIsLoading", false);
     } catch {
+      commit("setIsLoading", false);
       return "Note could not be deleted";
     }
   },
 
   async createBoard({
     dispatch,
+    commit,
   }: ActionContext<IState, IState>): Promise<string | void> {
+    commit("setIsLoading", true);
     const body = { name: "New board" };
     try {
       const { token } = JSON.parse(localStorage.getItem("token") || "");
       await axios.post(`${process.env.VUE_APP_API}/boards/create`, body, {
         headers: { Authorization: `Bearer ${token}` },
       });
-      return dispatch("getUserContent");
+      dispatch("getUserContent");
+      return commit("setIsLoading", false);
     } catch {
+      commit("setIsLoading", false);
       return "Board could not be created";
     }
   },
 
   async deleteBoard(
-    { dispatch }: ActionContext<IState, IState>,
+    { dispatch, commit }: ActionContext<IState, IState>,
     params: string
   ): Promise<string | void> {
+    commit("setIsLoading", true);
     try {
       const { token } = JSON.parse(localStorage.getItem("token") || "");
       await axios.delete(`${process.env.VUE_APP_API}/boards/delete/${params}`, {
         headers: { Authorization: `Bearer ${token}` },
       });
-      return dispatch("getUserContent");
+      dispatch("getUserContent");
+      return commit("setIsLoading", false);
     } catch {
+      commit("setIsLoading", false);
       return "Board could not be deleted";
     }
   },
 
   async editNameBoard(
-    { dispatch }: ActionContext<IState, IState>,
+    { dispatch, commit }: ActionContext<IState, IState>,
     body: IBodyEditNameBoard
   ): Promise<string | void> {
+    commit("setIsLoading", true);
     try {
       const { token } = JSON.parse(localStorage.getItem("token") || "");
       await axios.put(`${process.env.VUE_APP_API}/boards/update`, body, {
         headers: { Authorization: `Bearer ${token}` },
       });
-      return dispatch("getUserContent");
+      dispatch("getUserContent");
+      return commit("setIsLoading", false);
     } catch {
+      commit("setIsLoading", false);
       return "Board could not be updated";
     }
   },
 
   async updateNote(
-    { dispatch }: ActionContext<IState, IState>,
+    { dispatch, commit }: ActionContext<IState, IState>,
     body: IBodyUpdateNote
   ): Promise<string | void> {
+    commit("setIsLoading", true);
     try {
       const { token } = JSON.parse(localStorage.getItem("token") || "");
       await axios.put(`${process.env.VUE_APP_API}/note/update`, body, {
         headers: { Authorization: `Bearer ${token}` },
       });
-      return dispatch("getUserContent");
+      dispatch("getUserContent");
+      return commit("setIsLoading", false);
     } catch {
+      commit("setIsLoading", false);
       return "Note could not be updated";
     }
   },

@@ -1,6 +1,10 @@
 import { IState, IUserContent, IUserData } from "@/types/interfaces";
 
 const mutations = {
+  setIsLoading(state: IState, payload: boolean): void {
+    state.isLoading = payload;
+  },
+
   setUserContent(state: IState, payload: IUserContent): void {
     state.userContent = payload;
   },
