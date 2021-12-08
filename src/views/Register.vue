@@ -35,7 +35,9 @@ export default defineComponent({
 
 .register-page {
   height: 100vh;
-  background-image: url("../assets/background-5.webp");
+  @media only screen and (min-width: 480px) {
+    background-image: url("../assets/background-5.webp");
+  }
   background-size: cover;
   display: flex;
   justify-content: center;

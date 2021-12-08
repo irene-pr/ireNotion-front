@@ -35,7 +35,9 @@ export default defineComponent({
 
 .login-page {
   height: 100vh;
-  background-image: url("../assets/background-2.webp");
+  @media only screen and (min-width: 480px) {
+    background-image: url("../assets/background-2.webp");
+  }
   background-size: cover;
   display: flex;
   justify-content: center;
