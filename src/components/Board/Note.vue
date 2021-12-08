@@ -34,7 +34,7 @@
       class="form__icon-close"
       @click="onClickDelete"
     ></font-awesome-icon>
-    <img :src="note.file" alt="" />
+    <img :src="note.file" alt="{{note.file}}" width="300" height="300" />
   </article>
 </template>
 
@@ -102,6 +102,8 @@ export default defineComponent({
   &-image {
     padding: 0;
     img {
+      width: 100%;
+      height: 100%;
       object-fit: contain;
     }
   }

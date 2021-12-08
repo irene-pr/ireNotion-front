@@ -174,7 +174,7 @@ export default defineComponent({
     padding-top: 60px;
   }
   @media only screen and (max-width: 480px) {
-    padding-top: 110px;
+    padding: 110px 0 0 0;
     flex-direction: column;
     align-items: center;
   }
