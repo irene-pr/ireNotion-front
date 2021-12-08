@@ -1,0 +1,183 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Given a BoardPage view When it is rendered Then the it matches the snapshot 1`] = `
+<div
+  data-v-app=""
+>
+  
+  <!--v-if-->
+  <!--v-if-->
+  <nav
+    class="nav-bar night-mode"
+  >
+    <h1
+      class="nav-bar__header"
+    >
+       Welcome, Franny! 
+    </h1>
+    <div
+      class="nav-bar__buttons"
+    >
+      <button
+        class="nav-bar__button nav-bar__button--new-board"
+      >
+         New 
+        <span>
+          Board
+        </span>
+      </button>
+      <button
+        class="nav-bar__button nav-bar__button--logout"
+      >
+         LOG 
+        <span>
+          OUT
+        </span>
+      </button>
+    </div>
+  </nav>
+  <main
+    class="board-page day-mode"
+  >
+    <div
+      class="board-array day-mode"
+    >
+      
+      <section
+        class="board"
+      >
+        <div
+          class="board-header night-mode"
+        >
+          <div
+            class="board-header__top"
+          >
+            <h2
+              class="board-header__header"
+            >
+              tablero1
+            </h2>
+            <font-awesome-icon
+              class="form__icon-edit"
+              icon="pencil-alt"
+            />
+            <font-awesome-icon
+              class="form__icon-close"
+              icon="times"
+            />
+          </div>
+          <div
+            class="board-header__buttons"
+          >
+            <button
+              class="board-header__button board-header__button--note"
+              type="button"
+            >
+               Add Note 
+            </button>
+            <button
+              class="board-header__button board-header__button--image"
+              type="button"
+            >
+               Add Image 
+            </button>
+          </div>
+        </div>
+        <div
+          board="[object Object]"
+          class="board__draggable-area"
+        >
+          
+          
+          <article
+            class="note note-paragraph yellow"
+            note="[object Object]"
+          >
+            <font-awesome-icon
+              class="form__icon-update"
+              icon="pencil-alt"
+            />
+            <font-awesome-icon
+              class="form__icon-close"
+              icon="times"
+            />
+            <!--v-if-->
+            <!--v-if-->
+          </article>
+          <!--v-if-->
+          
+          
+        </div>
+      </section>
+      <section
+        class="board"
+      >
+        <div
+          class="board-header night-mode"
+        >
+          <div
+            class="board-header__top"
+          >
+            <h2
+              class="board-header__header"
+            >
+              tablero2
+            </h2>
+            <font-awesome-icon
+              class="form__icon-edit"
+              icon="pencil-alt"
+            />
+            <font-awesome-icon
+              class="form__icon-close"
+              icon="times"
+            />
+          </div>
+          <div
+            class="board-header__buttons"
+          >
+            <button
+              class="board-header__button board-header__button--note"
+              type="button"
+            >
+               Add Note 
+            </button>
+            <button
+              class="board-header__button board-header__button--image"
+              type="button"
+            >
+               Add Image 
+            </button>
+          </div>
+        </div>
+        <div
+          board="[object Object]"
+          class="board__draggable-area"
+        >
+          
+          
+          <article
+            class="note note-paragraph yellow"
+            note="[object Object]"
+          >
+            <font-awesome-icon
+              class="form__icon-update"
+              icon="pencil-alt"
+            />
+            <font-awesome-icon
+              class="form__icon-close"
+              icon="times"
+            />
+            <!--v-if-->
+            <!--v-if-->
+          </article>
+          <!--v-if-->
+          
+          
+        </div>
+      </section>
+      
+    </div>
+  </main>
+  
+</div>
+`;

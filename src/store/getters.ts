@@ -11,6 +11,9 @@ const getters = {
   redirectToRegister(): void {
     router.push(paths.register);
   },
+  redirectToHome(): void {
+    router.push(paths.home);
+  },
 };
 
 export default getters;

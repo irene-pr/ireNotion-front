@@ -40,21 +40,15 @@
 
 <script lang="ts">
 import { defineComponent } from "vue";
-import { mapActions, mapState } from "vuex";
+import { mapActions, mapGetters, mapState } from "vuex";
 import Board from "@/components/Board/Board.vue";
-import paths from "@/router/paths";
 import BoardEdit from "@/components/Modals/BoardEdit.vue";
 import UpdateNote from "@/components/Modals/UpdateNote.vue";
 
 export default defineComponent({
   name: "BoardPage",
   components: { Board, BoardEdit, UpdateNote },
-  data() {
-    return {
-      enabled: true,
-      dragging: false,
-    };
-  },
+
   computed: {
     ...mapState([
       "userContent",
@@ -73,8 +67,9 @@ export default defineComponent({
       "createBoard",
       "toggleTheme",
     ]),
+    ...mapGetters(["redierectToHome"]),
     onClickLogout() {
-      this.$router.push(paths.home);
+      this.redierectToHome();
       this.logoutUser();
     },
     onClickCreateBoard() {
@@ -87,7 +82,7 @@ export default defineComponent({
   mounted() {
     this.checkToken();
     if (!this.isLoggedIn) {
-      this.$router.push(paths.home);
+      this.redierectToHome();
     }
     this.getUserContent();
   },

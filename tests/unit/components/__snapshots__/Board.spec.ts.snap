@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Given a BoardEdit component When it is rendered Then the it matches the snapshot 1`] = `
+exports[`Given a Board component When it is rendered Then the it matches the snapshot 1`] = `
 <section
   class="board"
 >
