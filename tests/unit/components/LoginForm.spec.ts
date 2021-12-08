@@ -260,7 +260,6 @@ describe("Given a LoginForm component", () => {
       inputPassword.setValue("password");
       await wrapper.find("form").trigger("submit.prevent");
 
-      expect(wrapper.find(".message").text()).toBe("");
       expect(wrapper.vm.$data.isMessageShown).toBe(false);
     });
     test("Then it the message remains unchanged", async () => {
