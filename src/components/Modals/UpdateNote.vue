@@ -20,7 +20,6 @@
         class="note-update-form-paragraph"
         @submit.prevent="onSubmitParagraph"
         autocomplete="off"
-        v-if="this.note.type === 'paragraph'"
       >
         <div class="note-update-form-paragraph__title">
           <label class="note-update-form-paragraph__label" for="title"
@@ -147,12 +146,7 @@ export default defineComponent({
     ...mapState(["userContent", "themeSurfaces", "idForModal"]),
   },
   methods: {
-    ...mapActions([
-      "updateNote",
-      "setUpdateNoteModal",
-      "setIdForModal",
-      "getUserContent",
-    ]),
+    ...mapActions(["updateNote", "setUpdateNoteModal", "setIdForModal"]),
     onSubmitParagraph() {
       const note = {
         color: this.note.color,

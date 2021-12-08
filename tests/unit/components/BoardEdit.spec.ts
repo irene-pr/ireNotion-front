@@ -209,7 +209,7 @@ describe("Given a BoardEdit component", () => {
 
       expect(setBoardEditModalMock).toHaveBeenCalled();
     });
-    test("Then the action setBoardEditModal is called", () => {
+    test("Then the action setIdForModal is called", () => {
       options = getOptions();
       const wrapper = mount(BoardEdit, options);
 

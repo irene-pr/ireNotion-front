@@ -73,10 +73,9 @@
 
 <script lang="ts">
 import { defineComponent } from "vue";
-import { mapActions } from "vuex";
+import { mapActions, mapGetters } from "vuex";
 import { IUserRegisterData } from "@/types/interfaces";
 import paths from "../../router/paths";
-import router from "@/router";
 
 export default defineComponent({
   name: "RegisterForm",
@@ -93,6 +92,7 @@ export default defineComponent({
   },
   methods: {
     ...mapActions(["registerUser"]),
+    ...mapGetters(["redirectToLogin"]),
     async onSubmit() {
       if (
         this.name !== "" &&
@@ -113,7 +113,7 @@ export default defineComponent({
         if (response === "Username already exists") {
           this.messageShown = response;
         } else {
-          router.push(paths.login);
+          this.redirectToLogin();
         }
       } else if (this.password !== this.repeatPassword) {
         this.messageShown = "The passwords don't match. Try again";
