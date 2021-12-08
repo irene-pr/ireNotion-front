@@ -27,7 +27,7 @@ describe("Given a Home view", () => {
   });
 
   describe("When it is rendered", () => {
-    test("it renders", () => {
+    test("Then it renders", () => {
       mount(Home, {
         global: {
           plugins: [router, store],
