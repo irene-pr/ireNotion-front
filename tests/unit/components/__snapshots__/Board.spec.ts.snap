@@ -1,0 +1,94 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Given a BoardEdit component When it is rendered Then the it matches the snapshot 1`] = `
+<section
+  class="board"
+>
+  <div
+    class="board-header night-mode"
+  >
+    <div
+      class="board-header__top"
+    >
+      <h2
+        class="board-header__header"
+      >
+        tablero1
+      </h2>
+      <svg
+        aria-hidden="true"
+        class="svg-inline--fa fa-pencil-alt fa-w-16 form__icon-edit"
+        data-icon="pencil-alt"
+        data-prefix="fas"
+        focusable="false"
+        role="img"
+        viewBox="0 0 512 512"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          class=""
+          d="M497.9 142.1l-46.1 46.1c-4.7 4.7-12.3 4.7-17 0l-111-111c-4.7-4.7-4.7-12.3 0-17l46.1-46.1c18.7-18.7 49.1-18.7 67.9 0l60.1 60.1c18.8 18.7 18.8 49.1 0 67.9zM284.2 99.8L21.6 362.4.4 483.9c-2.9 16.4 11.4 30.6 27.8 27.8l121.5-21.3 262.6-262.6c4.7-4.7 4.7-12.3 0-17l-111-111c-4.8-4.7-12.4-4.7-17.1 0zM124.1 339.9c-5.5-5.5-5.5-14.3 0-19.8l154-154c5.5-5.5 14.3-5.5 19.8 0s5.5 14.3 0 19.8l-154 154c-5.5 5.5-14.3 5.5-19.8 0zM88 424h48v36.3l-64.5 11.3-31.1-31.1L51.7 376H88v48z"
+          fill="currentColor"
+        />
+      </svg>
+      <svg
+        aria-hidden="true"
+        class="svg-inline--fa fa-times fa-w-11 form__icon-close"
+        data-icon="times"
+        data-prefix="fas"
+        focusable="false"
+        role="img"
+        viewBox="0 0 352 512"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          class=""
+          d="M242.72 256l100.07-100.07c12.28-12.28 12.28-32.19 0-44.48l-22.24-22.24c-12.28-12.28-32.19-12.28-44.48 0L176 189.28 75.93 89.21c-12.28-12.28-32.19-12.28-44.48 0L9.21 111.45c-12.28 12.28-12.28 32.19 0 44.48L109.28 256 9.21 356.07c-12.28 12.28-12.28 32.19 0 44.48l22.24 22.24c12.28 12.28 32.2 12.28 44.48 0L176 322.72l100.07 100.07c12.28 12.28 32.2 12.28 44.48 0l22.24-22.24c12.28-12.28 12.28-32.19 0-44.48L242.72 256z"
+          fill="currentColor"
+        />
+      </svg>
+    </div>
+    <div
+      class="board-header__buttons"
+    >
+      <button
+        class="board-header__button board-header__button--note"
+        type="button"
+      >
+         Add Note 
+      </button>
+      <button
+        class="board-header__button board-header__button--image"
+        type="button"
+      >
+         Add Image 
+      </button>
+    </div>
+  </div>
+  <div
+    board="[object Object]"
+    class="board__draggable-area"
+  >
+    
+    
+    <article
+      class="note note-paragraph yellow"
+      note="[object Object]"
+    >
+      <font-awesome-icon
+        class="form__icon-update"
+        icon="pencil-alt"
+      />
+      <font-awesome-icon
+        class="form__icon-close"
+        icon="times"
+      />
+      <!--v-if-->
+      <!--v-if-->
+    </article>
+    <!--v-if-->
+    
+    
+  </div>
+</section>
+`;
