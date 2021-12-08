@@ -1,10 +1,10 @@
 import { createStore } from "vuex";
 import { mount } from "@vue/test-utils";
 import state from "@/store/state";
-import LoginForm from "@/components/Login/LoginForm.vue";
+import RegisterForm from "@/components/Login/RegisterForm.vue";
 import router from "@/router";
 
-describe("Given a LoginForm component", () => {
+describe("Given a RegisterForm component", () => {
   let store = createStore({
     state() {
       return state;
@@ -13,7 +13,7 @@ describe("Given a LoginForm component", () => {
 
   describe("When it is rendered", () => {
     test("Then it renders", () => {
-      mount(LoginForm, {
+      mount(RegisterForm, {
         global: {
           plugins: [router, store],
         },
@@ -21,7 +21,7 @@ describe("Given a LoginForm component", () => {
       });
     });
     test("Then the it matches the snapshot", () => {
-      const wrapper = mount(LoginForm, {
+      const wrapper = mount(RegisterForm, {
         global: {
           plugins: [router, store],
         },
@@ -30,7 +30,7 @@ describe("Given a LoginForm component", () => {
       expect(wrapper.element).toMatchSnapshot();
     });
     test("Then it renders a main header", () => {
-      const wrapper = mount(LoginForm, {
+      const wrapper = mount(RegisterForm, {
         global: {
           plugins: [router, store],
         },
@@ -40,31 +40,21 @@ describe("Given a LoginForm component", () => {
       const mainHeader = wrapper.find("h1");
       expect(mainHeader.text()).toContain("ireNotion");
     });
-    test("Then it renders a secondary header", () => {
-      const wrapper = mount(LoginForm, {
+
+    test("Then it renders the login button", () => {
+      const wrapper = mount(RegisterForm, {
         global: {
           plugins: [router, store],
         },
         stubs: ["router-view"],
       });
 
-      const mainHeader = wrapper.find("h2");
-      expect(mainHeader.text()).toContain("Welcome back to ireNotion");
-    });
-    test("Then it renders the signup button", () => {
-      const wrapper = mount(LoginForm, {
-        global: {
-          plugins: [router, store],
-        },
-        stubs: ["router-view"],
-      });
+      const button = wrapper.find("button.register-form__button--login");
 
-      const button = wrapper.find("button.login-form__button--signup");
-
-      expect(button.text()).toContain("SIGN UP");
+      expect(button.text()).toContain("LOG IN");
     });
     test("Then the divider renders an 'or", () => {
-      const wrapper = mount(LoginForm, {
+      const wrapper = mount(RegisterForm, {
         global: {
           plugins: [router, store],
         },
@@ -76,7 +66,7 @@ describe("Given a LoginForm component", () => {
       expect(divider.html()).toContain('<p class="divider__or">or</p>');
     });
     test("Then it renders a form", () => {
-      const wrapper = mount(LoginForm, {
+      const wrapper = mount(RegisterForm, {
         global: {
           plugins: [router, store],
         },
@@ -90,7 +80,7 @@ describe("Given a LoginForm component", () => {
   });
   describe("When it renders the form", () => {
     test("Then the form contains an input and a label for the username", () => {
-      const wrapper = mount(LoginForm, {
+      const wrapper = mount(RegisterForm, {
         global: {
           plugins: [router, store],
         },
@@ -105,7 +95,7 @@ describe("Given a LoginForm component", () => {
       expect(usernameLabel.exists).toBeTruthy();
     });
     test("Then the form contains an input and a label for the password", () => {
-      const wrapper = mount(LoginForm, {
+      const wrapper = mount(RegisterForm, {
         global: {
           plugins: [router, store],
         },
@@ -119,42 +109,44 @@ describe("Given a LoginForm component", () => {
       expect(passwordInput.exists).toBeTruthy();
       expect(passwordLabel.exists).toBeTruthy();
     });
-    test("Then the form contains a login button", () => {
-      const wrapper = mount(LoginForm, {
+    test("Then the form contains a signup button", () => {
+      const wrapper = mount(RegisterForm, {
         global: {
           plugins: [router, store],
         },
         stubs: ["router-view"],
       });
 
-      const button = wrapper.find("button.login-form__button--login");
+      const button = wrapper.find("button.register-form__button--signup");
 
-      expect(button.text()).toContain("LOG IN");
+      expect(button.text()).toContain("SIGN UP");
     });
   });
 
   describe("When I don't write on the inputs", () => {
-    test("Then the login button must be disabled", async () => {
-      const wrapper = mount(LoginForm, {
+    test("Then the signup button must be disabled", async () => {
+      const wrapper = mount(RegisterForm, {
         global: {
           plugins: [router, store],
         },
         stubs: ["router-view"],
       });
 
-      const button = wrapper.find("button.login-form__button--login");
+      const button = wrapper.find("button.register-form__button--signup");
 
       expect(button.element.getAttributeNames()).toContain("disabled");
     });
     test("The message is not triggered", async () => {
-      const wrapper = mount(LoginForm, {
+      const wrapper = mount(RegisterForm, {
         global: {
           plugins: [router, store],
         },
         stubs: ["router-view"],
       });
 
-      await wrapper.find("form").trigger("submit.prevent");
+      await wrapper
+        .find("button.register-form__button--signup")
+        .trigger("click");
 
       expect(wrapper.find(".message").text()).toBe("");
     });
@@ -166,103 +158,89 @@ describe("Given a LoginForm component", () => {
           return state;
         },
       });
-      const wrapper = mount(LoginForm, {
+      const wrapper = mount(RegisterForm, {
         global: {
           plugins: [router, store],
         },
         stubs: ["router-view"],
       });
 
-      const [inputName, inputPassword] = wrapper.findAll("input");
+      const [inputName, inputUsername, inputPassword, inputRepeatPassword] =
+        wrapper.findAll("input");
       inputName.setValue("name");
+      inputUsername.setValue("username");
       inputPassword.setValue("password");
+      inputRepeatPassword.setValue("repeatPassword");
 
       expect(inputName.element.value).toBe("name");
+      expect(inputUsername.element.value).toBe("username");
       expect(inputPassword.element.value).toBe("password");
+      expect(inputRepeatPassword.element.value).toBe("repeatPassword");
     });
   });
-  describe("When I write wrong data on the inputs and I click the login button", () => {
-    test("Then the message is shown", async () => {
+  describe("When I write different passwords on the inputs and I click the signup button", () => {
+    test("Then the message 'The passwords don't match. Try again' is shown", async () => {
       store = createStore({
         state() {
           return state;
         },
         actions: {
-          loginUser: jest.fn().mockResolvedValue(401),
+          registerUser: jest.fn().mockResolvedValue(401),
         },
       });
-      const wrapper = mount(LoginForm, {
+      const wrapper = mount(RegisterForm, {
         global: {
           plugins: [router, store],
         },
         stubs: ["router-view"],
       });
 
-      const [inputName, inputPassword] = wrapper.findAll("input");
+      const [inputName, inputUsername, inputPassword, inputRepeatPassword] =
+        wrapper.findAll("input");
       inputName.setValue("name");
+      inputUsername.setValue("username");
       inputPassword.setValue("password");
+      inputRepeatPassword.setValue("repeatPassword");
+
       await wrapper.find("form").trigger("submit.prevent");
 
-      expect(wrapper.vm.$data.isMessageShown).toBe(true);
+      expect(wrapper.vm.$data.messageShown).toBe(
+        "The passwords don't match. Try again"
+      );
     });
-    test("Then it calls the message 'Wrong username or password. Try again'", async () => {
+  });
+  describe("When I write matching passwords with the wrong length on the inputs and I click the signup button", () => {
+    test("Then the message 'The password must have between 7 and 20 characters' is shown", async () => {
       store = createStore({
         state() {
           return state;
         },
         actions: {
-          loginUser: jest.fn().mockResolvedValue(401),
+          registerUser: jest.fn().mockResolvedValue(401),
         },
       });
-      const wrapper = mount(LoginForm, {
+      const wrapper = mount(RegisterForm, {
         global: {
           plugins: [router, store],
         },
         stubs: ["router-view"],
       });
 
-      const [inputName, inputPassword] = wrapper.findAll("input");
+      const [inputName, inputUsername, inputPassword, inputRepeatPassword] =
+        wrapper.findAll("input");
       inputName.setValue("name");
-      inputPassword.setValue("password");
+      inputUsername.setValue("username");
+      inputPassword.setValue("pass");
+      inputRepeatPassword.setValue("pass");
+
       await wrapper.find("form").trigger("submit.prevent");
 
-      expect(wrapper.find(".message").text()).toBe(
-        "Wrong username or password. Try again"
+      expect(wrapper.vm.$data.messageShown).toBe(
+        "The password must have between 7 and 20 characters"
       );
     });
   });
   describe("When I write right data on the inputs and I click the login button", () => {
-    test("Then it the message is sill not shown", async () => {
-      const $route = { path: "/userBoard" };
-      store = createStore({
-        state() {
-          return state;
-        },
-        actions: {
-          loginUser: jest.fn().mockResolvedValue(200),
-        },
-        getters: {
-          redirectToUserBoard: jest.fn(),
-        },
-      });
-      const wrapper = mount(LoginForm, {
-        global: {
-          plugins: [router, store],
-        },
-        mocks: {
-          $route,
-        },
-        stubs: ["router-view", "router-link"],
-      });
-
-      const [inputName, inputPassword] = wrapper.findAll("input");
-      inputName.setValue("name");
-      inputPassword.setValue("password");
-      await wrapper.find("form").trigger("submit.prevent");
-
-      expect(wrapper.find(".message").text()).toBe("");
-      expect(wrapper.vm.$data.isMessageShown).toBe(false);
-    });
     test("Then it the message remains unchanged", async () => {
       const $route = { path: "/userBoard" };
       store = createStore({
@@ -276,7 +254,7 @@ describe("Given a LoginForm component", () => {
           redirectToUserBoard: jest.fn(),
         },
       });
-      const wrapper = mount(LoginForm, {
+      const wrapper = mount(RegisterForm, {
         global: {
           plugins: [router, store],
         },
@@ -286,12 +264,46 @@ describe("Given a LoginForm component", () => {
         stubs: ["router-view", "router-link"],
       });
 
-      const [inputName, inputPassword] = wrapper.findAll("input");
+      const [inputName, inputUsername, inputPassword, inputRepeatPassword] =
+        wrapper.findAll("input");
       inputName.setValue("name");
+      inputUsername.setValue("username");
       inputPassword.setValue("password");
-      await wrapper.find("form").trigger("submit.prevent");
+      inputRepeatPassword.setValue("password");
 
       expect(wrapper.find(".message").text()).toBe("");
+    });
+    test("Then it the message data value remains unchanged", async () => {
+      const $route = { path: "/userBoard" };
+      store = createStore({
+        state() {
+          return state;
+        },
+        actions: {
+          loginUser: jest.fn().mockResolvedValue(200),
+        },
+        getters: {
+          redirectToUserBoard: jest.fn(),
+        },
+      });
+      const wrapper = mount(RegisterForm, {
+        global: {
+          plugins: [router, store],
+        },
+        mocks: {
+          $route,
+        },
+        stubs: ["router-view", "router-link"],
+      });
+
+      const [inputName, inputUsername, inputPassword, inputRepeatPassword] =
+        wrapper.findAll("input");
+      inputName.setValue("name");
+      inputUsername.setValue("username");
+      inputPassword.setValue("password");
+      inputRepeatPassword.setValue("password");
+
+      expect(wrapper.vm.$data.messageShown).toBe("");
     });
   });
 });
