@@ -10,7 +10,7 @@ import Board from "@/components/Board/Board.vue";
 
 library.add(fas);
 
-describe("Given a BoardEdit component", () => {
+describe("Given a Board component", () => {
   let mockedState: IState;
   let createParagraphNoteMock = jest.fn();
   let deleteBoardMock = jest.fn();
