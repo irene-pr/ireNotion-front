@@ -89,9 +89,7 @@ const actions = {
     }
   },
 
-  async checkToken({
-    commit,
-  }: ActionContext<IState, IState>): Promise<string | void> {
+  checkToken({ commit }: ActionContext<IState, IState>): string | void {
     try {
       const token = JSON.parse(localStorage.getItem("token") || "");
       commit("setUserData", jwtDecode(token.token));

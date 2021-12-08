@@ -21,12 +21,12 @@ export default defineComponent({
     ...mapActions(["checkToken"]),
     ...mapGetters(["redirectToUserBoard"]),
   },
-  mounted() {
+  /* mounted() {
     this.checkToken();
     if (this.isLoggedIn) {
       this.redirectToUserBoard();
     }
-  },
+  }, */
 });
 </script>
 
