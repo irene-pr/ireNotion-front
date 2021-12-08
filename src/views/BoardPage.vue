@@ -138,6 +138,9 @@ export default defineComponent({
     &:hover {
       color: $theme-pink;
     }
+    @media only screen and (max-width: 720px) {
+      font-size: 30px;
+    }
   }
   &__button {
     @extend %button;
@@ -151,8 +154,9 @@ export default defineComponent({
       border: 1px solid $theme-light-color;
     }
   }
-  @media only screen and (max-width: 480px) {
+  @media only screen and (max-width: 720px) {
     padding: 5px 3px;
+    justify-content: space-around;
 
     &__buttons {
       display: flex;
@@ -166,6 +170,9 @@ export default defineComponent({
   width: 100%;
   padding: 25px 0;
   display: flex;
+  @media only screen and (max-width: 720px) {
+    padding-top: 60px;
+  }
   @media only screen and (max-width: 480px) {
     padding-top: 110px;
     flex-direction: column;
