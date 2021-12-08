@@ -1,0 +1,120 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Given a RegisterForm component When it is rendered Then the it matches the snapshot 1`] = `
+<div
+  class="register-container"
+>
+  <a
+    class=""
+    href="/"
+  >
+    <h1
+      class="register-container__main-heading"
+    >
+      ire
+      <span>
+        N
+      </span>
+      otion
+    </h1>
+  </a>
+  <form
+    autocomplete="off"
+    class="register-form"
+  >
+    <div
+      class="register-form__input-container"
+    >
+      <label
+        class="register-form__label"
+        for="name"
+      >
+        Name
+      </label>
+      <input
+        class="register-form__input"
+        id="name"
+        placeholder="Mario"
+        type="text"
+      />
+      <label
+        class="register-form__label"
+        for="username"
+      >
+        Username
+      </label>
+      <input
+        class="register-form__input"
+        id="username"
+        placeholder="mario123"
+        type="text"
+      />
+      <label
+        class="register-form__label"
+        for="password"
+      >
+        Password
+      </label>
+      <input
+        class="register-form__input"
+        id="password"
+        placeholder="at least 7 characters"
+        type="password"
+      />
+      <label
+        class="register-form__label"
+        for="repeat-password"
+      >
+        Repeat password
+      </label>
+      <input
+        class="register-form__input"
+        id="repeat-password"
+        placeholder="at least 7 characters"
+        type="password"
+      />
+    </div>
+    <p
+      class="message"
+    />
+    <button
+      class="register-form__button register-form__button--signup"
+      disabled=""
+      type="submit"
+    >
+       SIGN 
+      <span>
+        UP
+      </span>
+    </button>
+  </form>
+  <div
+    class="divider"
+  >
+    <div
+      class="divider__line divider__line--first"
+    />
+    <p
+      class="divider__or"
+    >
+      or
+    </p>
+    <div
+      class="divider__line divider__line--second"
+    />
+  </div>
+  <a
+    class=""
+    href="/login"
+  >
+    <button
+      class="register-form__button register-form__button--login"
+    >
+       LOG 
+      <span>
+        IN
+      </span>
+    </button>
+  </a>
+</div>
+`;
