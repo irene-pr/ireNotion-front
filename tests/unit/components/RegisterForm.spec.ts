@@ -79,6 +79,21 @@ describe("Given a RegisterForm component", () => {
     });
   });
   describe("When it renders the form", () => {
+    test("Then the form contains an input and a label for the name", () => {
+      const wrapper = mount(RegisterForm, {
+        global: {
+          plugins: [router, store],
+        },
+        stubs: ["router-view"],
+      });
+
+      const form = wrapper.find("form");
+      const nameInput = form.find('input[id="name"]');
+      const nameLabel = form.find('label[for="name"]');
+
+      expect(nameInput.exists).toBeTruthy();
+      expect(nameLabel.exists).toBeTruthy();
+    });
     test("Then the form contains an input and a label for the username", () => {
       const wrapper = mount(RegisterForm, {
         global: {
@@ -209,7 +224,7 @@ describe("Given a RegisterForm component", () => {
       );
     });
   });
-  describe("When I write matching passwords with the wrong length on the inputs and I click the signup button", () => {
+  describe("When I write matching passwords with a length lesser than 7 on the inputs and I click the signup button", () => {
     test("Then the message 'The password must have between 7 and 20 characters' is shown", async () => {
       store = createStore({
         state() {
@@ -240,7 +255,151 @@ describe("Given a RegisterForm component", () => {
       );
     });
   });
-  describe("When I write right data on the inputs and I click the login button", () => {
+  describe("When I write matching passwords with a length greater than 20 on the inputs and I click the signup button", () => {
+    test("Then the message 'The password must have between 7 and 20 characters' is shown", async () => {
+      store = createStore({
+        state() {
+          return state;
+        },
+        actions: {
+          registerUser: jest.fn().mockResolvedValue(401),
+        },
+      });
+      const wrapper = mount(RegisterForm, {
+        global: {
+          plugins: [router, store],
+        },
+        stubs: ["router-view"],
+      });
+
+      const [inputName, inputUsername, inputPassword, inputRepeatPassword] =
+        wrapper.findAll("input");
+      inputName.setValue("name");
+      inputUsername.setValue("username");
+      inputPassword.setValue(
+        "passssssssssssssssssssssssssssssssssssssssssssssssssssssssssssss"
+      );
+      inputRepeatPassword.setValue(
+        "passssssssssssssssssssssssssssssssssssssssssssssssssssssssssssss"
+      );
+
+      await wrapper.find("form").trigger("submit.prevent");
+
+      expect(wrapper.vm.$data.messageShown).toBe(
+        "The password must have between 7 and 20 characters"
+      );
+    });
+  });
+  describe("When I write an existing username in the input and I click the signup button", () => {
+    test("Then the message reads 'Username already exists'", async () => {
+      const $route = { path: "/userBoard" };
+      store = createStore({
+        state() {
+          return state;
+        },
+        actions: {
+          registerUser: jest.fn().mockResolvedValue("Username already exists"),
+        },
+        getters: {
+          redirectToLogin: jest.fn(),
+        },
+      });
+      const wrapper = mount(RegisterForm, {
+        global: {
+          plugins: [router, store],
+        },
+        mocks: {
+          $route,
+        },
+        stubs: ["router-view", "router-link"],
+      });
+
+      const [inputName, inputUsername, inputPassword, inputRepeatPassword] =
+        wrapper.findAll("input");
+      inputName.setValue("name");
+      inputUsername.setValue("username");
+      inputPassword.setValue("password");
+      inputRepeatPassword.setValue("password");
+
+      await wrapper.find("form").trigger("submit.prevent");
+
+      expect(wrapper.vm.$data.messageShown).toBe("Username already exists");
+    });
+  });
+  describe("When I write right data on the inputs and I click the signup button", () => {
+    test("Then it the message remains unchanged", async () => {
+      const onSubmitMock = jest.fn();
+      const $route = { path: "/userBoard" };
+      store = createStore({
+        state() {
+          return state;
+        },
+        actions: {
+          registerUser: jest.fn(),
+        },
+        getters: {
+          redirectToLogin: jest.fn(),
+        },
+      });
+      const wrapper = mount(RegisterForm, {
+        global: {
+          plugins: [router, store],
+        },
+        mocks: {
+          $route,
+        },
+        stubs: ["router-view", "router-link"],
+        methods: {
+          onSubmit: onSubmitMock,
+        },
+      });
+
+      const [inputName, inputUsername, inputPassword, inputRepeatPassword] =
+        wrapper.findAll("input");
+      inputName.setValue("name");
+      inputUsername.setValue("username");
+      inputPassword.setValue("password");
+      inputRepeatPassword.setValue("password");
+
+      await wrapper.find("form").trigger("submit.prevent");
+
+      expect(onSubmitMock).toHaveBeenCalled();
+    });
+    test("Then it the message remains unchanged", async () => {
+      const redirectToLoginMock = jest.fn();
+      const $route = { path: "/userBoard" };
+      store = createStore({
+        state() {
+          return state;
+        },
+        actions: {
+          registerUser: jest.fn().mockResolvedValue(200),
+        },
+        getters: {
+          redirectToLogin: redirectToLoginMock,
+        },
+      });
+      const wrapper = mount(RegisterForm, {
+        global: {
+          plugins: [router, store],
+        },
+        mocks: {
+          $route,
+        },
+        stubs: ["router-view", "router-link"],
+      });
+
+      const [inputName, inputUsername, inputPassword, inputRepeatPassword] =
+        wrapper.findAll("input");
+      inputName.setValue("name");
+      inputUsername.setValue("username");
+      inputPassword.setValue("password");
+      inputRepeatPassword.setValue("password");
+
+      await wrapper.find("form").trigger("submit.prevent");
+
+      expect(redirectToLoginMock).toHaveBeenCalled();
+    });
     test("Then it the message remains unchanged", async () => {
       const $route = { path: "/userBoard" };
       store = createStore({
@@ -248,7 +407,7 @@ describe("Given a RegisterForm component", () => {
           return state;
         },
         actions: {
-          loginUser: jest.fn().mockResolvedValue(200),
+          registerUser: jest.fn().mockResolvedValue(200),
         },
         getters: {
           redirectToUserBoard: jest.fn(),
@@ -280,7 +439,7 @@ describe("Given a RegisterForm component", () => {
           return state;
         },
         actions: {
-          loginUser: jest.fn().mockResolvedValue(200),
+          registerUser: jest.fn().mockResolvedValue(200),
         },
         getters: {
           redirectToUserBoard: jest.fn(),

@@ -1,0 +1,168 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Given a UpdateNote component When it is rendered Then the it matches the snapshot 1`] = `
+<div
+  class="modal modal--day-mode"
+>
+  <div
+    class="note-update-modal note-update-modal--day-mode"
+  >
+    <svg
+      aria-hidden="true"
+      class="svg-inline--fa fa-times fa-w-11 form__icon-close"
+      data-icon="times"
+      data-prefix="fas"
+      focusable="false"
+      role="img"
+      viewBox="0 0 352 512"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <path
+        class=""
+        d="M242.72 256l100.07-100.07c12.28-12.28 12.28-32.19 0-44.48l-22.24-22.24c-12.28-12.28-32.19-12.28-44.48 0L176 189.28 75.93 89.21c-12.28-12.28-32.19-12.28-44.48 0L9.21 111.45c-12.28 12.28-12.28 32.19 0 44.48L109.28 256 9.21 356.07c-12.28 12.28-12.28 32.19 0 44.48l22.24 22.24c12.28 12.28 32.2 12.28 44.48 0L176 322.72l100.07 100.07c12.28 12.28 32.2 12.28 44.48 0l22.24-22.24c12.28-12.28 12.28-32.19 0-44.48L242.72 256z"
+        fill="currentColor"
+      />
+    </svg>
+    <h2
+      class="note-update-modal__title"
+    >
+      Edit the note
+    </h2>
+    <p
+      class="note-update-modal__tip note-update-modal__tip--day-mode"
+    >
+       tip: you can leave empty fields, they won't leave an empty space. 
+    </p>
+    <form
+      autocomplete="off"
+      class="note-update-form-paragraph"
+    >
+      <div
+        class="note-update-form-paragraph__title"
+      >
+        <label
+          class="note-update-form-paragraph__label"
+          for="title"
+        >
+          Title
+        </label>
+        <input
+          class="note-update-form-paragraph__input"
+          id="title"
+          placeholder="New title"
+          type="text"
+        />
+      </div>
+      <div
+        class="note-update-form-paragraph__text"
+      >
+        <label
+          class="note-update-form-paragraph__label"
+          for="text"
+        >
+          Text 
+        </label>
+        <textarea
+          class="note-update-form-paragraph__input"
+          id="text"
+          placeholder="New text"
+          type="text"
+        />
+      </div>
+      <p>
+        Color
+      </p>
+      <div
+        class="note-update-form-paragraph__color"
+      >
+        <div
+          class="radio-container"
+        >
+          <label
+            class="note-update-form-paragraph__label"
+            for="pink"
+          >
+            Pink
+          </label>
+          <input
+            class="note-update-form-paragraph__input"
+            id="pink"
+            type="radio"
+            value="pink"
+          />
+        </div>
+        <div
+          class="radio-container"
+        >
+          <label
+            class="note-update-form-paragraph__label"
+            for="yellow"
+          >
+            Yellow
+          </label>
+          <input
+            class="note-update-form-paragraph__input"
+            id="yellow"
+            type="radio"
+            value="yellow"
+          />
+        </div>
+        <div
+          class="radio-container"
+        >
+          <label
+            class="note-update-form-paragraph__label"
+            for="blue"
+          >
+            Blue
+          </label>
+          <input
+            class="note-update-form-paragraph__input"
+            id="blue"
+            type="radio"
+            value="blue"
+          />
+        </div>
+        <div
+          class="radio-container"
+        >
+          <label
+            class="note-update-form-paragraph__label"
+            for="orange"
+          >
+            Orange
+          </label>
+          <input
+            class="note-update-form-paragraph__input"
+            id="orange"
+            type="radio"
+            value="orange"
+          />
+        </div>
+        <div
+          class="radio-container"
+        >
+          <label
+            class="note-update-form-paragraph__label"
+            for="green"
+          >
+            Green
+          </label>
+          <input
+            class="note-update-form-paragraph__input"
+            id="green"
+            type="radio"
+            value="green"
+          />
+        </div>
+      </div>
+      <button
+        class="note-update-form-paragraph__button note-update-form-paragraph__button--day-mode"
+        type="submit"
+      >
+         Edit 
+      </button>
+    </form>
+  </div>
+</div>
+`;
