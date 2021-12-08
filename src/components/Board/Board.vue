@@ -31,7 +31,7 @@
       </div>
     </div>
 
-    <draggable class="board__draggable-area" :board="board" @change="log">
+    <draggable class="board__draggable-area" :board="board">
       <Note
         v-for="note in board.notes"
         :note="note"
@@ -72,9 +72,6 @@ export default defineComponent({
       "setBoardEditModal",
       "setIdForModal",
     ]),
-    log(event) {
-      console.log(event);
-    },
     onclickAddNote() {
       this.createParagraphNote(this.board.id);
     },
