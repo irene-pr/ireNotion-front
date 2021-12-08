@@ -16,8 +16,12 @@
       class="form__icon-close"
       @click="onClickDelete"
     ></font-awesome-icon>
-    <h4 v-if="note.title !== ''">{{ note.title }}</h4>
-    <p v-if="note.paragraph !== ''">{{ note.paragraph }}</p>
+    <h3 v-if="note.title !== '' && note.title !== undefined">
+      {{ note.title }}
+    </h3>
+    <p v-if="note.paragraph !== '' && note.paragraph !== undefined">
+      {{ note.paragraph }}
+    </p>
   </article>
   <article
     class="note note-image"
@@ -82,7 +86,7 @@ export default defineComponent({
 
   &-paragraph {
     word-wrap: break-word;
-    h4 {
+    h3 {
       padding: 0 0 10px 10px;
       font-family: $hand-writing;
       font-weight: bold;

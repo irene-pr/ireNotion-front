@@ -2,7 +2,7 @@
   <section class="board">
     <div class="board-header" :class="themeHeaders">
       <div class="board-header__top" @dblclick="onClickOpenModal">
-        <h3 class="board-header__header">{{ board.name }}</h3>
+        <h2 class="board-header__header">{{ board.name }}</h2>
         <font-awesome-icon
           icon="pencil-alt"
           class="form__icon-edit"
