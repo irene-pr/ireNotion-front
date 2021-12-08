@@ -32,6 +32,7 @@
     <font-awesome-icon
       icon="times"
       class="form__icon-close"
+      @click="onClickDelete"
     ></font-awesome-icon>
     <img :src="note.file" alt="" />
   </article>

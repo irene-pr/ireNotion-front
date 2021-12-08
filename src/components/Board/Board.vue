@@ -99,7 +99,7 @@ export default defineComponent({
   flex-direction: column;
   align-items: center;
   @media only screen and (max-width: 480px) {
-    width: 360px;
+    width: 324px;
     margin: 0;
   }
 
