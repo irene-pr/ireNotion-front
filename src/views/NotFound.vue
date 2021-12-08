@@ -24,7 +24,7 @@ export default defineComponent({
   display: flex;
   justify-content: center;
   align-items: center;
-  background-image: url("../assets/background-3.jpg");
+  background-image: url("../assets/background-3.webp");
   background-repeat: no-repeat;
   background-size: cover;
   &__header {
