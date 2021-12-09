@@ -3,6 +3,6 @@
   "env": {
     "USERNAME": "piapiapia",
     "PASSWORD": "piapiapia",
-    "PRODUCTION_URL": "https://irenotion.netlify.app/"
+    "PRODUCTION_URL": "https://irenotion.netlify.app"
   }
 }
