@@ -16,7 +16,7 @@ describe("Given a BoardPage view", () => {
   let onClickLogoutMock = jest.fn();
   let onClickCreateBoardMock = jest.fn();
   let onClickToggleThemeMock = jest.fn();
-  let redierectToHomeMock = jest.fn();
+  let redirectToHomeMock = jest.fn();
   let store = createStore({});
   let options = {
     data() {
@@ -148,7 +148,7 @@ describe("Given a BoardPage view", () => {
     onClickLogoutMock = jest.fn();
     onClickCreateBoardMock = jest.fn();
     onClickToggleThemeMock = jest.fn();
-    redierectToHomeMock = jest.fn();
+    redirectToHomeMock = jest.fn();
     store = createStore({
       state() {
         return mockedState;
@@ -161,7 +161,7 @@ describe("Given a BoardPage view", () => {
         createBoard: createBoardMock,
       },
       getters: {
-        redierectToHome: redierectToHomeMock,
+        redirectToHome: redirectToHomeMock,
       },
     });
   });
@@ -237,14 +237,14 @@ describe("Given a BoardPage view", () => {
           createBoard: createBoardMock,
         },
         getters: {
-          redierectToHome: redierectToHomeMock,
+          redirectToHome: redirectToHomeMock,
         },
       });
 
       options = getOptions();
       mount(BoardPage, options);
 
-      expect(redierectToHomeMock).toHaveBeenCalled();
+      expect(redirectToHomeMock).toHaveBeenCalled();
     });
   });
   describe("When the header is clicked", () => {
@@ -275,7 +275,7 @@ describe("Given a BoardPage view", () => {
 
       logoutButton.trigger("click");
 
-      expect(redierectToHomeMock).toHaveBeenCalled();
+      expect(redirectToHomeMock).toHaveBeenCalled();
     });
   });
   describe("When the add board button is clicked", () => {

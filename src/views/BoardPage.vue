@@ -67,9 +67,9 @@ export default defineComponent({
       "createBoard",
       "toggleTheme",
     ]),
-    ...mapGetters(["redierectToHome"]),
+    ...mapGetters(["redirectToHome"]),
     onClickLogout() {
-      this.redierectToHome();
+      this.redirectToHome();
       this.logoutUser();
     },
     onClickCreateBoard() {
@@ -82,7 +82,7 @@ export default defineComponent({
   mounted() {
     this.checkToken();
     if (!this.isLoggedIn) {
-      this.redierectToHome();
+      this.redirectToHome();
     }
     this.getUserContent();
   },
