@@ -1,6 +1,6 @@
 # ireNotion
 
-This is a fullstack app that intends to provide to its registerd users a space to store notes. The interface of the user page is heavily inspired by Trello. It has been developed with Vue 3, Typescript, Sass, and tested with Jest and Cypress. I've used the BEM standard to name classes. If you want to look at the REST API that complements this app you can find it here: https://github.com/irene-pr/ireNotion-back.
+This is a fullstack app that intends to provide to its registerd users a space to store notes. The interface of the user page is heavily inspired by Trello. It has been developed with Vue 3, Typescript, Sass, and tested with Jest and Cypress. I've used the BEM standard to name classes. If you want to look at the REST API that complements this app you can find it here: https://github.com/irene-pr/ireNotion-back. This is the production site: https://irenotion.netlify.app/.
 
 I've implemented login, register and logout functions. The user can store boards, which can store notes, all of them can be read, created, deleted and updated by the user. Right now I've only implemented one type of note, it's a simple post-it-like note with title and text (both optional). But in the future I want to implement more types of notes. Notes with images are half-way implemented.
 
