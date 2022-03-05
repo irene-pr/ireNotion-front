@@ -96,7 +96,7 @@ export default defineComponent({
   flex-direction: column;
   align-items: center;
   @media only screen and (max-width: 480px) {
-    width: 90%;
+    width: 100%;
     margin: 0;
   }
 
@@ -110,7 +110,7 @@ export default defineComponent({
     align-items: center;
 
     @media only screen and (max-width: 480px) {
-      width: 90%;
+      width: 92%;
     }
 
     &__header {

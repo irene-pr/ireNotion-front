@@ -134,7 +134,7 @@ export default defineComponent({
       color: $theme-pink;
     }
     @media only screen and (max-width: 720px) {
-      font-size: 30px;
+      display:none
     }
   }
   &__button {
@@ -155,7 +155,6 @@ export default defineComponent({
 
     &__buttons {
       display: flex;
-      flex-direction: column-reverse;
     }
   }
 }
@@ -169,7 +168,7 @@ export default defineComponent({
     padding-top: 60px;
   }
   @media only screen and (max-width: 480px) {
-    padding: 110px 0 0 0;
+    padding: 46px 0 0 0;
     flex-direction: column;
     align-items: center;
   }

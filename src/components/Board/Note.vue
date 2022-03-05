@@ -82,7 +82,7 @@ export default defineComponent({
   box-shadow: 0px 5px 7px -4px black;
 
   @media only screen and (max-width: 480px) {
-    width: 90%;
+    width: 92%;
   }
 
   &-paragraph {
