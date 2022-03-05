@@ -1,8 +1,9 @@
 <template>
-  <div class="modal" :class="'modal--' + themeSurfaces" @dblclick="closeModal">
+  <div class="modal" :class="'modal--' + themeSurfaces" @click="closeModal">
     <div
       class="note-update-modal"
       :class="'note-update-modal--' + themeSurfaces"
+      @click.stop
     >
       <font-awesome-icon
         icon="times"
@@ -159,7 +160,7 @@ export default defineComponent({
     closeModal() {
       this.setUpdateNoteModal(false);
       this.setIdForModal("");
-    },
+    }
   },
   mounted() {
     this.note = {
@@ -218,7 +219,7 @@ export default defineComponent({
   flex-direction: column;
   justify-content: space-around;
   align-items: center;
-  border-radius: 15px;
+  border-radius: 8px;
 
   &--day-mode {
     background-color: $theme-light-color;
