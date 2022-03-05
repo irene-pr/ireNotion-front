@@ -2,9 +2,9 @@
   <div
     class="modal-edit-board"
     :class="'modal-edit-board--' + themeSurfaces"
-    @dblclick="closeModal"
+    @click="closeModal"
   >
-    <div class="board-edit-modal" :class="'board-edit-modal--' + themeSurfaces">
+    <div class="board-edit-modal" :class="'board-edit-modal--' + themeSurfaces" @click.stop>
       <font-awesome-icon
         icon="times"
         class="form__icon-close"
@@ -111,7 +111,7 @@ export default defineComponent({
   flex-direction: column;
   justify-content: space-around;
   align-items: center;
-  border-radius: 15px;
+  border-radius: 8px;
 
   &--day-mode {
     background-color: $theme-light-color;
