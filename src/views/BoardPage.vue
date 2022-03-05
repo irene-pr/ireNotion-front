@@ -2,9 +2,23 @@
   <BoardEdit v-if="isBoardEditModal" />
   <UpdateNote v-if="isUpdateNoteModal" />
   <nav class="nav-bar" :class="themeSurfaces">
-    <h1 class="nav-bar__header" @click="onClickToggleTheme">
-      Welcome, {{ userContent.name }}!
-    </h1>
+    <div class="nav-bar__header-container">
+      <font-awesome-icon
+      v-if="themeSurfaces==='day-mode'"
+      icon="sun"
+      class="nav-bar__toggle-icon"
+      @click="onClickToggleTheme"
+      ></font-awesome-icon>
+      <font-awesome-icon
+        v-else
+        icon="moon"
+        class="nav-bar__toggle-icon"
+        @click="onClickToggleTheme"
+      ></font-awesome-icon>
+      <h1 class="nav-bar__header" @click="onClickToggleTheme">
+        Welcome, {{ userContent.name }}!
+      </h1>
+    </div>
     <div class="nav-bar__buttons">
       <button
         class="nav-bar__button nav-bar__button--new-board"
@@ -130,6 +144,19 @@ export default defineComponent({
 
   align-items: center;
 
+  &__header-container{
+    display:flex;
+    align-items: center;
+  }
+
+  &__toggle-icon {
+    font-size: 25px;
+
+    &:hover {
+      color: $theme-pink;
+    }
+  }
+
   &__header {
     font-family: "Fredericka the Great", cursive;
     font-weight: 100;
@@ -153,14 +180,15 @@ export default defineComponent({
       @extend %button--signup;
       border: 1px solid $theme-light-color;
     }
+    &:hover{
+      border-color: $theme-pink;
+    }
   }
   @media only screen and (max-width: 720px) {
-    padding: 10px 3px;
-    justify-content: flex-end;
+    padding: 10px 3px 0 20px;
+    justify-content: space-between;
   }
-  @media only screen and (max-width: 480px) {
-    justify-content: space-around;
-  }
+
 }
 .board-array {
   overflow-x: auto;
