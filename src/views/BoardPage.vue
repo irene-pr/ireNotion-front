@@ -134,7 +134,7 @@ export default defineComponent({
       color: $theme-pink;
     }
     @media only screen and (max-width: 720px) {
-      font-size: 30px;
+      display:none
     }
   }
   &__button {
@@ -151,12 +151,10 @@ export default defineComponent({
   }
   @media only screen and (max-width: 720px) {
     padding: 5px 3px;
+    justify-content: flex-end;
+  }
+  @media only screen and (max-width: 480px) {
     justify-content: space-around;
-
-    &__buttons {
-      display: flex;
-      flex-direction: column-reverse;
-    }
   }
 }
 .board-array {
@@ -166,10 +164,10 @@ export default defineComponent({
   padding: 25px 0;
   display: flex;
   @media only screen and (max-width: 720px) {
-    padding-top: 60px;
+    padding-top: 5px;
   }
   @media only screen and (max-width: 480px) {
-    padding: 110px 0 0 0;
+    padding: 46px 0 0 0;
     flex-direction: column;
     align-items: center;
   }
