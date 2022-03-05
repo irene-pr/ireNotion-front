@@ -2,7 +2,7 @@ const paths = {
   home: "/",
   login: "/login",
   register: "/register",
-  userBoard: "/userBoard",
+  userBoard: "/user-board",
   notFound: "/404",
 };
 
