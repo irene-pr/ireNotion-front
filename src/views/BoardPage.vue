@@ -1,7 +1,7 @@
 <template>
   <BoardEdit v-if="isBoardEditModal" />
   <UpdateNote v-if="isUpdateNoteModal" />
-  <nav class="nav-bar" :class="themeHeaders">
+  <nav class="nav-bar" :class="themeSurfaces">
     <h1 class="nav-bar__header" @click="onClickToggleTheme">
       Welcome, {{ userContent.name }}!
     </h1>
@@ -98,12 +98,17 @@ export default defineComponent({
 }
 
 .board-page {
-  padding-top: 40px;
+  padding-top: 20px;
   overflow-y: hidden;
   display: flex;
   justify-content: center;
   background-color: $theme-light-color;
   min-height: 100vh;
+
+  @media only screen and (max-width: 720px) {
+    padding-top: 40px;
+  }
+
   @media only screen and (max-width: 480px) {
     padding: 0;
   }
@@ -150,7 +155,7 @@ export default defineComponent({
     }
   }
   @media only screen and (max-width: 720px) {
-    padding: 5px 3px;
+    padding: 10px 3px;
     justify-content: flex-end;
   }
   @media only screen and (max-width: 480px) {
