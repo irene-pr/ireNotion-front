@@ -1,6 +1,6 @@
 <template>
   <section class="board">
-    <div class="board-header" :class="themeHeaders">
+    <div class="board-header" :class="themeHeaders+'-headers'">
       <div class="board-header__top" @dblclick="onClickOpenModal">
         <h2 class="board-header__header">{{ board.name }}</h2>
         <font-awesome-icon
@@ -117,9 +117,9 @@ export default defineComponent({
       margin: 0;
       padding: 5px 0;
       text-align: center;
-      font-family: "Fredericka the Great", cursive;
-      font-weight: 100;
-      font-size: 24px;
+      font-family: $heading-home;
+      font-weight: 200;
+      font-size: 20px;
     }
     &__top {
       width: 100%;
@@ -183,12 +183,12 @@ export default defineComponent({
   }
 }
 
-.day-mode {
-  background-color: $theme-light-color;
+.day-mode-headers {
+  background-color: $theme-light-color-night-mode;
   color: $theme-dark-color;
 }
-.night-mode {
-  background-color: $theme-dark-color;
+.night-mode-headers {
+  background-color: $theme-dark-color-day-mode;
   color: $theme-light-color;
 }
 </style>

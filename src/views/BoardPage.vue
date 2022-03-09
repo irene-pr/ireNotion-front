@@ -1,7 +1,7 @@
 <template>
   <BoardEdit v-if="isBoardEditModal" />
   <UpdateNote v-if="isUpdateNoteModal" />
-  <nav class="nav-bar" :class="themeSurfaces">
+  <nav class="nav-bar" :class="themeSurfaces+'-surfaces'">
     <div class="nav-bar__header-container">
       <font-awesome-icon
       v-if="themeSurfaces==='day-mode'"
@@ -37,7 +37,7 @@
   <main class="board-page" :class="themeSurfaces">
     <div
       class="board-array"
-      :class="themeSurfaces"
+      :class="themeSurfaces+'-surfaces'"
       v-if="userContent.boards.length > 0"
     >
       <Board
@@ -141,7 +141,6 @@ export default defineComponent({
   z-index: 15;
   display: flex;
   justify-content: space-between;
-
   align-items: center;
 
   &__header-container{
@@ -183,6 +182,7 @@ export default defineComponent({
     &:hover{
       border-color: $theme-pink;
     }
+    
   }
   @media only screen and (max-width: 720px) {
     padding: 10px 3px 0 20px;
@@ -205,12 +205,20 @@ export default defineComponent({
     align-items: center;
   }
 }
-.day-mode {
+.day-mode-surfaces {
   background-color: $theme-light-color;
+  color: $theme-dark-color-day-mode;
+}
+.night-mode-surfaces {
+  background-color: $theme-dark-color;
+  color: $theme-light-color-night-mode;
+}
+.day-mode-headers {
+  background-color: $theme-light-color-night-mode;
   color: $theme-dark-color;
 }
-.night-mode {
-  background-color: $theme-dark-color;
+.night-mode-headers {
+  background-color: $theme-dark-color-day-mode;
   color: $theme-light-color;
 }
 </style>
