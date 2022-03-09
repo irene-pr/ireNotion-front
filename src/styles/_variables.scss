@@ -4,7 +4,9 @@
 
 // colors
 $theme-dark-color: #595959;
+$theme-dark-color-day-mode: #808080;
 $theme-light-color: #f2f2f2;
+$theme-light-color-night-mode: #c9c9c9;
 $theme-dark-color-opacity: rgb(89, 89, 89, 0.8);
 $theme-light-color-opacity: rgb(242, 242, 242, 0.8);
 $theme-label: #919191;
@@ -33,7 +35,5 @@ $h2: $Lato;
     font-family: 'Fredericka the Great', cursive; h2
 
     font-family: 'Great Vibes', cursive; h2
-
-    font-family: 'Pacifico', cursive;   !!
 
     font-family: 'Parisienne', cursive;  h2 */
