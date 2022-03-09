@@ -15,19 +15,21 @@
         class="nav-bar__toggle-icon"
         @click="onClickToggleTheme"
       ></font-awesome-icon>
-      <h1 class="nav-bar__header" @click="onClickToggleTheme">
+      <h1 class="nav-bar__header">
         Welcome, {{ userContent.name }}!
       </h1>
     </div>
     <div class="nav-bar__buttons">
       <button
         class="nav-bar__button nav-bar__button--new-board"
+        :class="themeSurfaces+'--new-board-button'"
         @click="onClickCreateBoard"
       >
         New <span>Board</span>
       </button>
       <button
         class="nav-bar__button nav-bar__button--logout"
+        :class="themeSurfaces+'--log-out-button'"
         @click="onClickLogout"
       >
         LOG <span>OUT</span>
@@ -149,7 +151,7 @@ export default defineComponent({
   }
 
   &__toggle-icon {
-    font-size: 25px;
+    font-size: 20px;
 
     &:hover {
       color: $theme-pink;
@@ -157,17 +159,16 @@ export default defineComponent({
   }
 
   &__header {
-    font-family: "Fredericka the Great", cursive;
+    font-family: $heading-home;
     font-weight: 100;
-    font-size: 36px;
-    padding-left: 20px;
-    &:hover {
-      color: $theme-pink;
-    }
+    font-size: 30px;
+    padding-left: 30px;
+
     @media only screen and (max-width: 720px) {
       display:none
     }
   }
+  
   &__button {
     @extend %button;
     width: 120px;
@@ -220,5 +221,13 @@ export default defineComponent({
 .night-mode-headers {
   background-color: $theme-dark-color-day-mode;
   color: $theme-light-color;
+}
+.day-mode--log-out-button {
+  background-color: $theme-dark-color-day-mode;
+  color: $theme-light-color;
+}
+.night-mode--new-board-button {
+  background-color: $theme-light-color-night-mode;
+  color: $theme-dark-color;
 }
 </style>

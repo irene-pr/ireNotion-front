@@ -50,3 +50,22 @@
   transform: scale(0.8);
   cursor: pointer;
 }
+
+%button--board{
+  width: 90px;
+  height: 33px;
+  margin: 0;
+  background: none;
+  border: 0;
+  font-family: $Lato;
+  font-weight: 400;
+  font-size: 16px;
+  text-align: center;
+  letter-spacing: 0.05em;
+  transform: scale(0.8);
+  cursor: pointer;
+  &:hover {
+    color: $theme-pink
+  }
+}
+
