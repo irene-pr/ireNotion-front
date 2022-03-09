@@ -130,6 +130,37 @@ const actions = {
     }
   },
 
+  async createListNote(
+    { dispatch, commit }: ActionContext<IState, IState>,
+    idBoard: string
+  ): Promise<string | void> {
+    commit("setIsLoading", true);
+    const randomNumber = Math.floor(Math.random() * 5);
+    const colors = ["yellow", "pink", "blue", "orange", "green"];
+    const initialListCard = {
+      type: "list",
+      title: "List",
+      color: colors[randomNumber],
+      list: ["element 1", "element 2"],
+    };
+    const body = {
+      note: initialListCard,
+      idBoard,
+    };
+
+    try {
+      const { token } = JSON.parse(localStorage.getItem("token") || "");
+      await axios.post(`${process.env.VUE_APP_API}/note/create/`, body, {
+        headers: { Authorization: `Bearer ${token}` },
+      });
+      dispatch("getUserContent");
+      return commit("setIsLoading", false);
+    } catch {
+      commit("setIsLoading", false);
+      return "List note could not be created";
+    }
+  },
+
   async deleteNote(
     { dispatch, commit }: ActionContext<IState, IState>,
     params: string

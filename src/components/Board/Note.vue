@@ -1,7 +1,7 @@
+
 <template>
   <article
     class="note note-paragraph"
-    :note="note"
     v-if="note.type === 'paragraph'"
     :class="note.color"
     @dblclick="onClickOpenModal"
@@ -24,8 +24,30 @@
     </p>
   </article>
   <article
+    class="note note-list"
+    v-if="note.type === 'list'"
+    :class="note.color"
+    @dblclick="onClickOpenModal"
+  >
+    <font-awesome-icon
+      icon="pencil-alt"
+      class="form__icon-update"
+      @click="onClickOpenModal"
+    ></font-awesome-icon>
+    <font-awesome-icon
+      icon="times"
+      class="form__icon-close"
+      @click="onClickDelete"
+    ></font-awesome-icon>
+    <h3 v-if="note.title !== '' && note.title !== undefined">
+      {{ note.title }}
+    </h3>
+    <ul v-if="note.list.length !== 0">
+      <li  v-for="element in note.list" :note="note" :key="element">{{element}}</li>
+    </ul>   
+  </article>
+  <article
     class="note note-image"
-    :note="note"
     v-if="note.type === 'image'"
     :class="note.color"
   >
@@ -94,6 +116,24 @@ export default defineComponent({
       font-size: 26px;
     }
     p {
+      font-family: $hand-writing;
+      font-size: 18px;
+      font-weight: 100;
+    }
+  }
+  &-list {
+    word-wrap: break-word;
+    h3 {
+      padding: 0 0 10px 10px;
+      font-family: $hand-writing;
+      font-weight: bold;
+      font-size: 26px;
+    }
+    ul {
+      padding-left: 20px;
+    }
+    li {
+      list-style-type: circle;
       font-family: $hand-writing;
       font-size: 18px;
       font-weight: 100;

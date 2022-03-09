@@ -18,15 +18,16 @@
         <button
           type="button"
           class="board-header__button board-header__button--note"
-          @click="onclickAddNote"
+          @click="onclickAddParagraphNote"
         >
           Add Note
         </button>
         <button
           type="button"
           class="board-header__button board-header__button--image"
+          @click="onclickAddListNote"
         >
-          Add Image
+          Add List
         </button>
       </div>
     </div>
@@ -67,13 +68,17 @@ export default defineComponent({
   methods: {
     ...mapActions([
       "createParagraphNote",
+      "createListNote",
       "deleteBoard",
       "editNameBoard",
       "setBoardEditModal",
       "setIdForModal",
     ]),
-    onclickAddNote() {
+    onclickAddParagraphNote() {
       this.createParagraphNote(this.board.id);
+    },
+    onclickAddListNote() {
+      this.createListNote(this.board.id);
     },
     onClickOpenModal() {
       this.setBoardEditModal(true);
