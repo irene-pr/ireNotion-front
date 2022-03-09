@@ -161,6 +161,40 @@ const actions = {
     }
   },
 
+  async createChecklistNote(
+    { dispatch, commit }: ActionContext<IState, IState>,
+    idBoard: string
+  ): Promise<string | void> {
+    commit("setIsLoading", true);
+    const randomNumber = Math.floor(Math.random() * 5);
+    const colors = ["yellow", "pink", "blue", "orange", "green"];
+    const initialChecklistCard = {
+      type: "checklist",
+      title: "Tasks",
+      color: colors[randomNumber],
+      list: [
+        { checked: true, sentence: "laundry" },
+        { checked: false, sentence: "feed cat" },
+      ],
+    };
+    const body = {
+      note: initialChecklistCard,
+      idBoard,
+    };
+
+    try {
+      const { token } = JSON.parse(localStorage.getItem("token") || "");
+      await axios.post(`${process.env.VUE_APP_API}/note/create/`, body, {
+        headers: { Authorization: `Bearer ${token}` },
+      });
+      dispatch("getUserContent");
+      return commit("setIsLoading", false);
+    } catch {
+      commit("setIsLoading", false);
+      return "Checklist note could not be created";
+    }
+  },
+
   async deleteNote(
     { dispatch, commit }: ActionContext<IState, IState>,
     params: string

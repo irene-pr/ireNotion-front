@@ -18,16 +18,26 @@
         <button
           type="button"
           class="board-header__button board-header__button--note"
+          :class="themeHeaders+'-headers'"
           @click="onclickAddParagraphNote"
         >
           Add Note
         </button>
         <button
           type="button"
-          class="board-header__button board-header__button--image"
+          class="board-header__button board-header__button--list"
+          :class="themeHeaders+'-headers'"
           @click="onclickAddListNote"
         >
           Add List
+        </button>
+        <button
+          type="button"
+          class="board-header__button board-header__button--checklist"
+          :class="themeHeaders+'-headers'"
+          @click="onclickAddListNote"
+        >
+          Checklist
         </button>
       </div>
     </div>
@@ -69,6 +79,7 @@ export default defineComponent({
     ...mapActions([
       "createParagraphNote",
       "createListNote",
+      "createChecklistNote",
       "deleteBoard",
       "editNameBoard",
       "setBoardEditModal",
@@ -79,6 +90,9 @@ export default defineComponent({
     },
     onclickAddListNote() {
       this.createListNote(this.board.id);
+    },
+    onclickAddChecklistNote() {
+      this.createChecklistNote(this.board.id);
     },
     onClickOpenModal() {
       this.setBoardEditModal(true);
@@ -158,7 +172,8 @@ export default defineComponent({
       justify-content: center;
       padding-bottom: 5px;
       @media only screen and (max-width: 720px) {
-        display: block;
+        display: flex;
+        flex-wrap: wrap;
       }
     }
 
@@ -175,7 +190,7 @@ export default defineComponent({
     }
 
     &__button {
-      @extend %button--little;
+      @extend %button--board;
     }
   }
 
