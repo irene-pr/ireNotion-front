@@ -35,7 +35,7 @@
           type="button"
           class="board-header__button board-header__button--checklist"
           :class="themeHeaders+'-headers'"
-          @click="onclickAddListNote"
+          @click="onclickAddChecklistNote"
         >
           Checklist
         </button>
