@@ -132,6 +132,7 @@ export default defineComponent({
 
   &__welcome-message {
     align-self: center;
+    text-align:center;
     font-size: 18px;
     font-family: $heading-home;
   }
