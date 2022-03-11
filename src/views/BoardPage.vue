@@ -119,6 +119,7 @@ export default defineComponent({
   display: flex;
   justify-content: center;
   background-color: $theme-light-color;
+  color: $theme-dark-color-day-mode;
   min-height: 100vh;
 
   @media only screen and (max-width: 720px) {
@@ -131,8 +132,13 @@ export default defineComponent({
 
   &__welcome-message {
     align-self: center;
-    font-size: 20px;
-    font-family: $Lato;
+    font-size: 18px;
+    font-family: $heading-home;
+  }
+
+  &.night-mode {
+    background-color: $theme-dark-color;
+    color: $theme-light-color-night-mode;
   }
 }
 
