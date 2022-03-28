@@ -209,7 +209,6 @@ const actions = {
         }
       );
     } catch {
-      commit("setIsLoading", false);
       return "Note could not be deleted";
     }
   },
@@ -234,19 +233,19 @@ const actions = {
   },
 
   async deleteBoard(
-    { dispatch, commit }: ActionContext<IState, IState>,
+    { commit }: ActionContext<IState, IState>,
     params: string
   ): Promise<string | void> {
-    commit("setIsLoading", true);
     try {
+      commit("removeBoardFromContent", params);
       const { token } = JSON.parse(localStorage.getItem("token") || "");
-      await axios.delete(`${process.env.VUE_APP_API}/boards/delete/${params}`, {
-        headers: { Authorization: `Bearer ${token}` },
-      });
-      dispatch("getUserContent");
-      return commit("setIsLoading", false);
+      return await axios.delete(
+        `${process.env.VUE_APP_API}/boards/delete/${params}`,
+        {
+          headers: { Authorization: `Bearer ${token}` },
+        }
+      );
     } catch {
-      commit("setIsLoading", false);
       return "Board could not be deleted";
     }
   },

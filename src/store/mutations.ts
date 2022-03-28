@@ -12,29 +12,17 @@ const mutations = {
   removeNoteFromContent(state: IState, payload: string): void {
     const [idBoard, idNote] = payload.split("/");
     state.userContent.boards.forEach((board) => {
-      if (board.id === idBoard) {
-        for (let i = 0; i < board.notes.length; i++) {
-          if (board.notes[i].id === idNote) {
-            board.notes.splice(i, 1);
-            break;
-          }
-        }
-      }
+      board.notes =
+        board.id === idBoard
+          ? board.notes.filter((note) => note.id !== idNote)
+          : board.notes;
     });
   },
 
   removeBoardFromContent(state: IState, payload: string): void {
-    const [idBoard, idNote] = payload.split("/");
-    state.userContent.boards.forEach((board) => {
-      if (board.id === idBoard) {
-        for (let i = 0; i < board.notes.length; i++) {
-          if (board.notes[i].id === idNote) {
-            board.notes.splice(i, 1);
-            break;
-          }
-        }
-      }
-    });
+    state.userContent.boards = state.userContent.boards.filter(
+      (board) => board.id !== payload
+    );
   },
 
   setUserData(state: IState, payload: IUserData): void {
