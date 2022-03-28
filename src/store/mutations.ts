@@ -9,6 +9,34 @@ const mutations = {
     state.userContent = payload;
   },
 
+  removeNoteFromContent(state: IState, payload: string): void {
+    const [idBoard, idNote] = payload.split("/");
+    state.userContent.boards.forEach((board) => {
+      if (board.id === idBoard) {
+        for (let i = 0; i < board.notes.length; i++) {
+          if (board.notes[i].id === idNote) {
+            board.notes.splice(i, 1);
+            break;
+          }
+        }
+      }
+    });
+  },
+
+  removeBoardFromContent(state: IState, payload: string): void {
+    const [idBoard, idNote] = payload.split("/");
+    state.userContent.boards.forEach((board) => {
+      if (board.id === idBoard) {
+        for (let i = 0; i < board.notes.length; i++) {
+          if (board.notes[i].id === idNote) {
+            board.notes.splice(i, 1);
+            break;
+          }
+        }
+      }
+    });
+  },
+
   setUserData(state: IState, payload: IUserData): void {
     state.userData = payload;
   },
