@@ -9,6 +9,22 @@ const mutations = {
     state.userContent = payload;
   },
 
+  removeNoteFromContent(state: IState, payload: string): void {
+    const [idBoard, idNote] = payload.split("/");
+    state.userContent.boards.forEach((board) => {
+      board.notes =
+        board.id === idBoard
+          ? board.notes.filter((note) => note.id !== idNote)
+          : board.notes;
+    });
+  },
+
+  removeBoardFromContent(state: IState, payload: string): void {
+    state.userContent.boards = state.userContent.boards.filter(
+      (board) => board.id !== payload
+    );
+  },
+
   setUserData(state: IState, payload: IUserData): void {
     state.userData = payload;
   },

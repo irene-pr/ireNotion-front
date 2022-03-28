@@ -10,7 +10,7 @@ export interface INote {
   title?: string;
   paragraph?: string;
   list?: Array<string | IChecklist>;
-  id?: string;
+  id: string;
   userId?: string;
 }
 
