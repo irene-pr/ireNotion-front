@@ -7,10 +7,10 @@
     <section class="text-section text-section--light">
       <h2>About the website</h2>
       <p>
-        This is my final project for the ISDI Coders fulltime bootcamp, I hope
+        This is my final project for the ISDI Coders fulltime software development bootcamp, I hope
         to show everything I've learned and that it doesn't just work in my
         computer. It's an app that registers users and offers them boards to
-        store different sorts of data. The name ireNotion was born in the
+        store different sorts of data in form of post-its. The name ireNotion was born in the
         imagination of Pia Borges, there is no copyright claim because neither
         of us believes in it.
       </p>
@@ -20,8 +20,8 @@
       <h2>Technologies I've used</h2>
       <p>
         It's a Full Stack development project written with Typescript. The
-        Frontend it's a VUE SPA with ???. In the Backend I've used the framework
-        express to make a REST API to store the users information and theirdata.
+        Frontend it's a VUE SPA. In the Backend I've used the framework
+        Express to make a REST API to store the users information and their data.
         Everything is tested with Jest and Cypress.
       </p>
     </section>
@@ -31,8 +31,8 @@
       <p>
         I thank all of my teachers and classmates for everything I've learned
         and experienced during the bootcamp. I've had the time of my life while
-        suffering like never before. I also thanked my mother for supporting me,
-        I couldn't have done it woithout her.
+        suffering like never before. I also thank my mother for supporting me,
+        I couldn't have done it without her.
       </p>
     </section>
     <div class="full-height-div full-height-div--bottom">
