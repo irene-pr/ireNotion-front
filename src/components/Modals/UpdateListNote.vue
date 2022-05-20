@@ -18,42 +18,48 @@
         tip: you can leave empty fields, they won't leave an empty space.
       </p>
       <form
-        class="note-update-form-paragraph"
+        class="note-update-form-list"
         @submit.prevent="onSubmitParagraph"
         autocomplete="off"
       >
-        <div class="note-update-form-paragraph__title">
-          <label class="note-update-form-paragraph__label" for="title"
+        <div class="note-update-form-list__title">
+          <label class="note-update-form-list__label" for="title"
             >Title</label
           >
           <input
-            class="note-update-form-paragraph__input"
+            class="note-update-form-list__input"
             type="text"
             id="title"
             v-model="note.title"
             placeholder="New title"
           />
         </div>
-        <div class="note-update-form-paragraph__text">
-          <label class="note-update-form-paragraph__label" for="text"
-            >Text
+        <!--  -->
+
+
+        <div class="note-update-form-list__list">
+          <label class="note-update-form-list__label" for="list"
+            >List
           </label>
-          <textarea
-            class="note-update-form-paragraph__input"
-            type="text"
-            id="text"
-            v-model="note.paragraph"
-            placeholder="New text"
+          <ListElement 
+            v-for="(element, index) in this.listForModal"
+            :key="element + index"
+            :element="this.listForModal[this.listForModal.indexOf(element)]"
+            :index="index"
           />
+          <AddElementToList :total="this.listForModal.length"/>
         </div>
+        <!--  -->
+
+
         <p>Color</p>
-        <div class="note-update-form-paragraph__color">
+        <div class="note-update-form-list__color">
           <div class="radio-container">
-            <label class="note-update-form-paragraph__label" for="pink"
+            <label class="note-update-form-list__label" for="pink"
               >Pink</label
             >
             <input
-              class="note-update-form-paragraph__input"
+              class="note-update-form-list__input"
               type="radio"
               id="pink"
               value="pink"
@@ -61,11 +67,11 @@
             />
           </div>
           <div class="radio-container">
-            <label class="note-update-form-paragraph__label" for="yellow"
+            <label class="note-update-form-list__label" for="yellow"
               >Yellow</label
             >
             <input
-              class="note-update-form-paragraph__input"
+              class="note-update-form-list__input"
               type="radio"
               id="yellow"
               value="yellow"
@@ -73,11 +79,11 @@
             />
           </div>
           <div class="radio-container">
-            <label class="note-update-form-paragraph__label" for="blue"
+            <label class="note-update-form-list__label" for="blue"
               >Blue</label
             >
             <input
-              class="note-update-form-paragraph__input"
+              class="note-update-form-list__input"
               type="radio"
               id="blue"
               value="blue"
@@ -85,11 +91,11 @@
             />
           </div>
           <div class="radio-container">
-            <label class="note-update-form-paragraph__label" for="orange"
+            <label class="note-update-form-list__label" for="orange"
               >Orange</label
             >
             <input
-              class="note-update-form-paragraph__input"
+              class="note-update-form-list__input"
               type="radio"
               id="orange"
               value="orange"
@@ -97,11 +103,11 @@
             />
           </div>
           <div class="radio-container">
-            <label class="note-update-form-paragraph__label" for="green"
+            <label class="note-update-form-list__label" for="green"
               >Green</label
             >
             <input
-              class="note-update-form-paragraph__input"
+              class="note-update-form-list__input"
               type="radio"
               id="green"
               value="green"
@@ -111,9 +117,9 @@
         </div>
 
         <button
-          class="note-update-form-paragraph__button"
+          class="note-update-form-list__button"
           type="submit"
-          :class="'note-update-form-paragraph__button--' + themeSurfaces"
+          :class="'note-update-form-list__button--' + themeSurfaces"
           :disabled="note === ''"
         >
           Edit
@@ -127,43 +133,47 @@
 import { defineComponent } from "vue";
 import { mapActions, mapState } from "vuex";
 import { IBoard, INote } from "@/types/store";
+import ListElement from "@/components/Modals/ListElement.vue"
+import AddElementToList from "@/components/Modals/AddElementToList.vue"
 
 export default defineComponent({
-  name: "UpdateNote",
+  name: "UpdateListNote",
+  components: { ListElement, AddElementToList },
   data() {
     return {
       note: {
+        id: "",
         type: "",
         order: "",
         color: "",
         title: "",
         paragraph: "",
-        list: [],
+        list: [""],
         file: "",
       },
     };
   },
   computed: {
-    ...mapState("theme", ["themeSurfaces"]),
     ...mapState("user", ["userContent"]),
-    ...mapState("modal", ["idForModal"]),
+    ...mapState("theme", ["themeSurfaces"]),
+    ...mapState("modal", ["idForModal", "listForModal"]),
   },
   methods: {
     ...mapActions("user", ["updateNote"]),
-    ...mapActions("modal", ["setUpdateNoteModal", "setIdForModal"]),
+    ...mapActions("modal", ["setUpdateListNoteModal", "setIdForModal", "setListForModal"]),
     onSubmitParagraph() {
       const note = {
         color: this.note.color,
         title: this.note.title,
-        paragraph: this.note.paragraph,
+        list: [...this.listForModal],
       };
-      
       this.updateNote({ idNote: this.idForModal, updatedNote: note });
       this.closeModal();
     },
     closeModal() {
-      this.setUpdateNoteModal(false);
+      this.setUpdateListNoteModal(false);
       this.setIdForModal("");
+      this.setListForModal([])
     }
   },
   mounted() {
@@ -175,6 +185,7 @@ export default defineComponent({
         )[0]
         .notes.filter(({ id }: INote) => id === this.idForModal)[0],
     };
+    this.setListForModal([...this.note.list])
   },
 });
 </script>
@@ -218,7 +229,7 @@ export default defineComponent({
 .note-update-modal {
   position: relative;
   width: 300px;
-  height: 520px;
+  min-height: 480px;
   display: flex;
   flex-direction: column;
   justify-content: space-around;
@@ -251,30 +262,25 @@ export default defineComponent({
       color: $theme-light-color-opacity;
     }
   }
-  .note-update-form-paragraph {
+  .note-update-form-list {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
 
     &__title {
-      margin-bottom: 20px;
+    margin-bottom: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
     }
-    &__text {
-      margin: 0;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      textarea {
-        resize: none;
-        height: 100px;
-        width: 180px;
-        border: 1px solid $theme-form-line;
-        font-family: $Lato;
-      }
-      label {
-        padding-right: 22px;
-      }
+    &__list {
+    //margin-bottom: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
     }
     p {
       color: $theme-pink;

@@ -13,9 +13,12 @@ const state: IState = {
   },
   isBoardEditModal: false,
   isUpdateNoteModal: false,
+  isUpdateListNoteModal: false,
+  isUpdateChecklistNoteModal: false,
   idForModal: "",
   themeHeaders: "",
   themeSurfaces: "",
+  listForModal: [],
 };
 
 export default state;

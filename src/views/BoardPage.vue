@@ -1,6 +1,8 @@
 <template>
   <BoardEdit v-if="isBoardEditModal" />
   <UpdateNote v-if="isUpdateNoteModal" />
+  <UpdateListNote v-if="isUpdateListNoteModal" />
+  <!-- <UpdateChecklistNote v-if="isUpdateChecklistNoteModal" /> -->
   <nav class="nav-bar" :class="themeSurfaces+'-surfaces'">
     <div class="nav-bar__header-container">
       <font-awesome-icon
@@ -60,10 +62,11 @@ import { mapActions, mapGetters, mapState } from "vuex";
 import Board from "@/components/Board/Board.vue";
 import BoardEdit from "@/components/Modals/BoardEdit.vue";
 import UpdateNote from "@/components/Modals/UpdateNote.vue";
+import UpdateListNote from "@/components/Modals/UpdateListNote.vue";
 
 export default defineComponent({
   name: "BoardPage",
-  components: { Board, BoardEdit, UpdateNote },
+  components: { Board, BoardEdit, UpdateNote, UpdateListNote },
 
   computed: {
 
@@ -72,6 +75,8 @@ export default defineComponent({
     ...mapState("modal", [
       "isBoardEditModal",
       "isUpdateNoteModal",
+      "isUpdateListNoteModal",
+      "isUpdateChecklistNoteModal"
     ]),
   },
   methods: {
