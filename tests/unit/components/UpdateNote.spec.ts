@@ -4,7 +4,7 @@ import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
 import { library } from "@fortawesome/fontawesome-svg-core";
 import { fas } from "@fortawesome/free-solid-svg-icons";
 import UpdateNote from "@/components/Modals/UpdateNote.vue";
-import { IState } from "@/types/interfaces";
+import { IState } from "@/types/store";
 
 library.add(fas);
 

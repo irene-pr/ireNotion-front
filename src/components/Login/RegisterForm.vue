@@ -74,7 +74,7 @@
 <script lang="ts">
 import { defineComponent } from "vue";
 import { mapActions, mapGetters } from "vuex";
-import { IUserRegisterData } from "@/types/interfaces";
+import { IUserRegisterData } from "@/types/api";
 import paths from "../../router/paths";
 
 export default defineComponent({
@@ -91,7 +91,7 @@ export default defineComponent({
     };
   },
   methods: {
-    ...mapActions(["registerUser"]),
+    ...mapActions("user", ["registerUser"]),
     ...mapGetters(["redirectToLogin"]),
     async onSubmit() {
       if (

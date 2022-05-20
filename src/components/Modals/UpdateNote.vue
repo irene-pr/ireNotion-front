@@ -126,7 +126,7 @@
 <script lang="ts">
 import { defineComponent } from "vue";
 import { mapActions, mapState } from "vuex";
-import { IBoard, INote } from "@/types/interfaces";
+import { IBoard, INote } from "@/types/store";
 
 export default defineComponent({
   name: "UpdateNote",
@@ -144,16 +144,20 @@ export default defineComponent({
     };
   },
   computed: {
-    ...mapState(["userContent", "themeSurfaces", "idForModal"]),
+    ...mapState("theme", ["themeSurfaces"]),
+    ...mapState("user", ["userContent"]),
+    ...mapState("modal", ["idForModal"]),
   },
   methods: {
-    ...mapActions(["updateNote", "setUpdateNoteModal", "setIdForModal"]),
+    ...mapActions("user", ["updateNote"]),
+    ...mapActions("modal", ["setUpdateNoteModal", "setIdForModal"]),
     onSubmitParagraph() {
       const note = {
         color: this.note.color,
         title: this.note.title,
         paragraph: this.note.paragraph,
       };
+      
       this.updateNote({ idNote: this.idForModal, updatedNote: note });
       this.closeModal();
     },

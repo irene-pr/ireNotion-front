@@ -52,10 +52,10 @@ export default defineComponent({
     UserArea,
   },
   computed: {
-    ...mapState(["isLoggedIn"]),
+    ...mapState("user", ["isLoggedIn"]),
   },
   methods: {
-    ...mapActions(["checkToken"]),
+    ...mapActions("user", ["checkToken"]),
     ...mapGetters(["redirectToUserBoard"]),
   },
   mounted() {

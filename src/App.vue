@@ -14,7 +14,7 @@ export default defineComponent({
     Loading,
   },
   computed: {
-    ...mapState(["isLoading"]),
+    ...mapState("user", ["isLoading"]),
   },
 });
 </script>

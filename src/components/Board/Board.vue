@@ -73,15 +73,17 @@ export default defineComponent({
     };
   },
   computed: {
-    ...mapState(["themeHeaders", "themeSurfaces"]),
+    ...mapState("theme", ["themeHeaders", "themeSurfaces"]),
   },
   methods: {
-    ...mapActions([
+    ...mapActions("user", [
       "createParagraphNote",
       "createListNote",
       "createChecklistNote",
       "deleteBoard",
       "editNameBoard",
+    ]),
+    ...mapActions("modal", [
       "setBoardEditModal",
       "setIdForModal",
     ]),

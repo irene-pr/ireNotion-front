@@ -14,14 +14,19 @@ describe("Given a Home view", () => {
     checkTokenMock = jest.fn();
     redirectToUserBoardMock = jest.fn();
     store = createStore({
-      state() {
-        return state;
-      },
-      actions: {
-        checkToken: checkTokenMock,
-      },
       getters: {
         redirectToUserBoard: redirectToUserBoardMock,
+      },
+      modules: {
+        user: {
+          namespaced: true,
+          state() {
+            return state;
+          },
+          actions: {
+            checkToken: checkTokenMock,
+          },
+        },
       },
     });
   });
