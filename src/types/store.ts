@@ -32,7 +32,6 @@ export interface IUserData {
 }
 
 export interface IState {
-  isLoading: boolean;
   isLoggedIn: boolean;
   userContent: IUserContent;
   userData: IUserData;
@@ -40,25 +39,24 @@ export interface IState {
   themeSurfaces: string;
   isBoardEditModal: boolean;
   isUpdateNoteModal: boolean;
+  isLoading: boolean;
   idForModal: string;
 }
 
-export interface IUserLoginData {
-  username: string;
-  password: string;
+export interface IThemeState {
+  themeHeaders: string;
+  themeSurfaces: string;
 }
 
-export interface IUserRegisterData {
-  name: string;
-  username: string;
-  password: string;
+export interface IUserState {
+  isLoggedIn: boolean;
+  userContent: IUserContent;
+  userData: IUserData;
+  isLoading: boolean;
 }
 
-export interface IBodyEditNameBoard {
-  idBoard: string;
-  newName: string;
-}
-export interface IBodyUpdateNote {
-  idNote: string;
-  updatedNote: INote;
+export interface IModalState {
+  isBoardEditModal: boolean;
+  isUpdateNoteModal: boolean;
+  idForModal: string;
 }

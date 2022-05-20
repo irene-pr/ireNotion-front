@@ -66,22 +66,21 @@ export default defineComponent({
   components: { Board, BoardEdit, UpdateNote },
 
   computed: {
-    ...mapState([
-      "userContent",
-      "isLoggedIn",
-      "themeHeaders",
-      "themeSurfaces",
+
+    ...mapState("theme", ["themeHeaders", "themeSurfaces"]),
+    ...mapState("user", ["userContent", "isLoggedIn"]),
+    ...mapState("modal", [
       "isBoardEditModal",
       "isUpdateNoteModal",
     ]),
   },
   methods: {
-    ...mapActions([
+    ...mapActions("theme", ["toggleTheme"]),
+    ...mapActions("user", [
       "getUserContent",
       "checkToken",
       "logoutUser",
-      "createBoard",
-      "toggleTheme",
+      "createBoard"
     ]),
     ...mapGetters(["redirectToHome"]),
     onClickLogout() {

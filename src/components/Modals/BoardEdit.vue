@@ -42,7 +42,7 @@
 <script lang="ts">
 import { defineComponent } from "vue";
 import { mapActions, mapState } from "vuex";
-import { IBoard } from "@/types/interfaces";
+import { IBoard } from "@/types/store";
 
 export default defineComponent({
   name: "BoardEdit",
@@ -52,10 +52,13 @@ export default defineComponent({
     };
   },
   computed: {
-    ...mapState(["userContent", "themeSurfaces", "idForModal"]),
+    ...mapState("theme", ["themeSurfaces"]),
+    ...mapState("user", ["userContent"]),
+    ...mapState("modal", ["idForModal"]),
   },
   methods: {
-    ...mapActions(["editNameBoard", "setBoardEditModal", "setIdForModal"]),
+    ...mapActions("user", ["editNameBoard"]),
+    ...mapActions("modal", ["setBoardEditModal", "setIdForModal"]),
     onSubmit() {
       this.editNameBoard({ idBoard: this.idForModal, newName: this.name });
       this.closeModal();

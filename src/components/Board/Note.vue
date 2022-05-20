@@ -95,9 +95,11 @@ export default defineComponent({
   name: "Note",
   props: ["note", "idBoard"],
   methods: {
-    ...mapActions([
+    ...mapActions("user",[
       "deleteNote",
       "updateNote",
+    ]),
+    ...mapActions("modal", [
       "setUpdateNoteModal",
       "setIdForModal",
     ]),

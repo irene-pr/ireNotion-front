@@ -1,6 +1,6 @@
 import { mount } from "@vue/test-utils";
 import { createStore } from "vuex";
-import { IState } from "@/types/interfaces";
+import { IState } from "@/types/store";
 import BoardPage from "@/views/BoardPage.vue";
 import Board from "@/components/Board/Board.vue";
 import BoardEdit from "@/components/Modals/BoardEdit.vue";

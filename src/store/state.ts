@@ -1,4 +1,6 @@
-const state = {
+import { IState } from "@/types/store";
+
+const state: IState = {
   isLoading: false,
   isLoggedIn: false,
   userContent: {
@@ -9,11 +11,11 @@ const state = {
     userId: "",
     username: "",
   },
-  themeHeaders: "night-mode",
-  themeSurfaces: "day-mode",
   isBoardEditModal: false,
   isUpdateNoteModal: false,
   idForModal: "",
+  themeHeaders: "",
+  themeSurfaces: "",
 };
 
 export default state;
