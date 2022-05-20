@@ -1,8 +1,4 @@
 {
   "pluginsFile": "tests/e2e/plugins/index.js",
-  "env": {
-    "USERNAME": "piapiapia",
-    "PASSWORD": "piapiapia",
-    "PRODUCTION_URL": "https://irenotion.netlify.app"
-  }
+  "baseUrl": "https://irenotion.netlify.app"
 }

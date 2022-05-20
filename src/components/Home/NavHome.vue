@@ -3,7 +3,6 @@
     <button class="nav__button nav__button--login" @click="redirectToLogin">
       LOG <span>IN</span>
     </button>
-
     <button class="nav__button nav__button--signup" @click="redirectToRegister">
       SIGN <span>UP</span>
     </button>

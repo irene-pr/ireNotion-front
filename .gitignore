@@ -28,3 +28,5 @@ pnpm-debug.log*
 node_modules
 .scannerwork
 coverage
+
+cypress.env.json
