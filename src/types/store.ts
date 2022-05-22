@@ -35,12 +35,15 @@ export interface IState {
   isLoggedIn: boolean;
   userContent: IUserContent;
   userData: IUserData;
+  isLoading: boolean;
   themeHeaders: string;
   themeSurfaces: string;
   isBoardEditModal: boolean;
   isUpdateNoteModal: boolean;
-  isLoading: boolean;
+  isUpdateListNoteModal: boolean;
+  isUpdateChecklistNoteModal: boolean;
   idForModal: string;
+  listForModal: Array<string>;
 }
 
 export interface IThemeState {
@@ -58,5 +61,8 @@ export interface IUserState {
 export interface IModalState {
   isBoardEditModal: boolean;
   isUpdateNoteModal: boolean;
+  isUpdateListNoteModal: boolean;
+  isUpdateChecklistNoteModal: boolean;
   idForModal: string;
+  listForModal: Array<string>;
 }

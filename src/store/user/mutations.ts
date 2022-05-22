@@ -1,4 +1,10 @@
-import { IUserContent, IUserData, IUserState } from "@/types/store";
+import {
+  IBoard,
+  INote,
+  IUserContent,
+  IUserData,
+  IUserState,
+} from "@/types/store";
 
 const mutations = {
   setIsLoading(state: IUserState, payload: boolean): void {

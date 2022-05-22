@@ -27,12 +27,12 @@
     class="note note-list"
     v-if="note.type === 'list'"
     :class="note.color"
-    @dblclick="onClickOpenModal"
+    @dblclick="onClickOpenListModal"
   >
     <font-awesome-icon
       icon="pencil-alt"
       class="form__icon-update"
-      @click="onClickOpenModal"
+      @click="onClickOpenListModal"
     ></font-awesome-icon>
     <font-awesome-icon
       icon="times"
@@ -50,12 +50,12 @@
     class="note note-checklist"
     v-if="note.type === 'checklist'"
     :class="note.color"
-    @dblclick="onClickOpenModal"
+    @dblclick="onClickOpenChecklistModal"
   >
     <font-awesome-icon
       icon="pencil-alt"
       class="form__icon-update"
-      @click="onClickOpenModal"
+      @click="onClickOpenChecklistModal"
     ></font-awesome-icon>
     <font-awesome-icon
       icon="times"
@@ -101,6 +101,8 @@ export default defineComponent({
     ]),
     ...mapActions("modal", [
       "setUpdateNoteModal",
+      "setUpdateListNoteModal",
+      "setUpdateChecklistNoteModal",
       "setIdForModal",
     ]),
     onClickDelete() {
@@ -109,6 +111,14 @@ export default defineComponent({
     },
     onClickOpenModal() {
       this.setUpdateNoteModal(true);
+      this.setIdForModal(this.note.id);
+    },
+    onClickOpenListModal() {
+      this.setUpdateListNoteModal(true);
+      this.setIdForModal(this.note.id);
+    },
+    onClickOpenChecklistModal() {
+      this.setUpdateChecklistNoteModal(true);
       this.setIdForModal(this.note.id);
     },
   },
