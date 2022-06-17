@@ -19,6 +19,7 @@ const state: IState = {
   themeHeaders: "",
   themeSurfaces: "",
   listForModal: [],
+  checklistForModal: [],
 };
 
 export default state;

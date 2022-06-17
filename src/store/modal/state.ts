@@ -7,6 +7,7 @@ const state = (): IModalState => ({
   isUpdateChecklistNoteModal: false,
   idForModal: "",
   listForModal: [],
+  checklistForModal: [],
 });
 
 export default state;
