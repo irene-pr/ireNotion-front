@@ -5,20 +5,31 @@ import Loading from "@/components/Others/Loading.vue";
 import state from "@/store/state";
 import router from "@/router";
 
-describe("Given an App component", () => {
-  const store = createStore({
+function mockStore(isLoading = false) {
+  return createStore({
     state() {
-      return state;
+      return { isLoading };
     },
-    actions: {
-      checkToken: jest.fn(),
+    modules: {
+      user: {
+        namespaced: true,
+        state() {
+          return { isLoading };
+        },
+        actions: {
+          checkToken: jest.fn(),
+        },
+      },
     },
   });
+}
+
+describe("Given an App component", () => {
   describe("When it renders", () => {
     test("Then it renders", () => {
       mount(App, {
         global: {
-          plugins: [router, store],
+          plugins: [router, mockStore()],
         },
         stubs: ["router-view"],
       });
@@ -26,7 +37,7 @@ describe("Given an App component", () => {
     test("Then the it matches the snapshot", () => {
       const wrapper = mount(App, {
         global: {
-          plugins: [router, store],
+          plugins: [router, mockStore()],
         },
         stubs: ["router-view"],
       });
@@ -37,7 +48,7 @@ describe("Given an App component", () => {
     test("Then it doesn't render the Loading component", () => {
       const wrapper = mount(App, {
         global: {
-          plugins: [router, store],
+          plugins: [router, mockStore()],
         },
         stubs: ["router-view"],
       });
@@ -51,7 +62,7 @@ describe("Given an App component", () => {
 
       const wrapper = mount(App, {
         global: {
-          plugins: [router, store],
+          plugins: [router, mockStore(true)],
         },
         stubs: ["router-view"],
       });

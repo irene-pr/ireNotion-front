@@ -4,25 +4,30 @@ exports[`Given a Home view When it is rendered Then the it matches the snapshot 
 <main
   class="not-found-page"
 >
-  <h1
-    class="not-found-page__header"
+  <a
+    class=""
+    href="/"
   >
-    <span
-      class="span-1"
+    <h1
+      class="not-found-page__header"
     >
-      404
-    </span>
-     
-    <span
-      class="span-2"
-    >
-      Not 
-    </span>
-    <span
-      class="span-3"
-    >
-      found
-    </span>
-  </h1>
+      <span
+        class="span-1"
+      >
+        404
+      </span>
+       
+      <span
+        class="span-2"
+      >
+        Not 
+      </span>
+      <span
+        class="span-3"
+      >
+        found
+      </span>
+    </h1>
+  </a>
 </main>
 `;
