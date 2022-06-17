@@ -44,6 +44,7 @@ export interface IState {
   isUpdateChecklistNoteModal: boolean;
   idForModal: string;
   listForModal: Array<string>;
+  checklistForModal: Array<IChecklist>;
 }
 
 export interface IThemeState {
@@ -65,4 +66,5 @@ export interface IModalState {
   isUpdateChecklistNoteModal: boolean;
   idForModal: string;
   listForModal: Array<string>;
+  checklistForModal: Array<IChecklist>;
 }
