@@ -21,7 +21,7 @@ describe("Given a Note component", () => {
   let onClickOpenChecklistModalMock = jest.fn();
   let onClickDeleteMock = jest.fn();
   let store = createStore({});
-  let options: any;
+  let options = {};
   function getOptions() {
     return {
       components: {
