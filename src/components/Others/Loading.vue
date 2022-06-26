@@ -43,7 +43,7 @@ export default defineComponent({
     };
   },
   computed: {
-    ...mapState(["themeSurfaces"]),
+    ...mapState("theme", ["themeSurfaces"]),
   },
 });
 </script>
