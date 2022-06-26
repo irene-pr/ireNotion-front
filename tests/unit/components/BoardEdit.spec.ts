@@ -4,35 +4,24 @@ import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
 import { library } from "@fortawesome/fontawesome-svg-core";
 import { fas } from "@fortawesome/free-solid-svg-icons";
 import BoardEdit from "@/components/Modals/BoardEdit.vue";
-import { IState } from "@/types/store";
+import { IModalState, IState, IThemeState, IUserState } from "@/types/store";
+import themeState from "@/store/theme/state";
+import userState from "@/store/user/state";
+import modalState from "@/store/modal/state";
 
 library.add(fas);
 
 describe("Given a BoardEdit component", () => {
-  let mockedState: IState;
+  let mockedThemeState: IThemeState;
+  let mockedUserState: IUserState;
+  let mockedModalState: IModalState;
   let editNameBoardMock = jest.fn();
   let setBoardEditModalMock = jest.fn();
   let setIdForModalMock = jest.fn();
   let onSubmitMock = jest.fn();
   let closeModalMock = jest.fn();
   let store = createStore({});
-  let options = {
-    data() {
-      return {
-        name: "",
-      };
-    },
-    components: {
-      "font-awesome-icon": FontAwesomeIcon,
-    },
-    stubs: ["FontAwesomeIcon"],
-    global: {
-      plugins: [store],
-    },
-    mocks: {
-      $store: store,
-    },
-  };
+  let options = {};
   function getOptions() {
     return {
       data() {
@@ -77,8 +66,9 @@ describe("Given a BoardEdit component", () => {
   }
 
   beforeEach(() => {
-    mockedState = {
-      isLoading: false,
+    mockedThemeState = { ...themeState };
+    mockedUserState = {
+      ...userState,
       isLoggedIn: true,
       userContent: {
         name: "Franny",
@@ -86,25 +76,21 @@ describe("Given a BoardEdit component", () => {
           {
             type: "board",
             name: "tablero1",
-            notes: [{ type: "paragraph", color: "yellow" }],
+            notes: [{ id: "1", type: "paragraph", color: "yellow" }],
             id: "123",
           },
           {
             type: "board",
             name: "tablero2",
-            notes: [{ type: "paragraph", color: "yellow" }],
+            notes: [{ id: "2", type: "paragraph", color: "yellow" }],
             id: "234",
           },
         ],
       },
-      userData: {
-        userId: "",
-        username: "",
-      },
-      themeHeaders: "night-mode",
-      themeSurfaces: "day-mode",
+    };
+    mockedModalState = {
+      ...modalState,
       isBoardEditModal: true,
-      isUpdateNoteModal: false,
       idForModal: "123",
     };
     editNameBoardMock = jest.fn();
@@ -113,13 +99,32 @@ describe("Given a BoardEdit component", () => {
     onSubmitMock = jest.fn();
     closeModalMock = jest.fn();
     store = createStore({
-      state() {
-        return mockedState;
-      },
-      actions: {
-        editNameBoard: editNameBoardMock,
-        setBoardEditModal: setBoardEditModalMock,
-        setIdForModal: setIdForModalMock,
+      modules: {
+        theme: {
+          namespaced: true,
+          state() {
+            return mockedThemeState;
+          },
+        },
+        user: {
+          namespaced: true,
+          state() {
+            return mockedUserState;
+          },
+          actions: {
+            editNameBoard: editNameBoardMock,
+          },
+        },
+        modal: {
+          namespaced: true,
+          state() {
+            return mockedModalState;
+          },
+          actions: {
+            setBoardEditModal: setBoardEditModalMock,
+            setIdForModal: setIdForModalMock,
+          },
+        },
       },
     });
   });
@@ -219,13 +224,13 @@ describe("Given a BoardEdit component", () => {
       expect(setIdForModalMock).toHaveBeenCalled();
     });
   });
-  describe("When the modal is double clicked", () => {
+  describe("When the outside of the modal is clicked", () => {
     test("Then the method closeModal is called", () => {
       options = getOptionsWithMethods();
       const wrapper = mount(BoardEdit, options);
 
       const modal = wrapper.find(".modal-edit-board");
-      modal.trigger("dblclick");
+      modal.trigger("click");
 
       expect(closeModalMock).toHaveBeenCalled();
     });
@@ -234,7 +239,7 @@ describe("Given a BoardEdit component", () => {
       const wrapper = mount(BoardEdit, options);
 
       const modal = wrapper.find(".modal-edit-board");
-      modal.trigger("dblclick");
+      modal.trigger("click");
 
       expect(setBoardEditModalMock).toHaveBeenCalled();
     });
@@ -243,7 +248,7 @@ describe("Given a BoardEdit component", () => {
       const wrapper = mount(BoardEdit, options);
 
       const modal = wrapper.find(".modal-edit-board");
-      modal.trigger("dblclick");
+      modal.trigger("click");
 
       expect(setIdForModalMock).toHaveBeenCalled();
     });
