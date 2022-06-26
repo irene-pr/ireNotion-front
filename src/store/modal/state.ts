@@ -1,6 +1,6 @@
 import { IModalState } from "@/types/store";
 
-const state = (): IModalState => ({
+const state: IModalState = {
   isBoardEditModal: false,
   isUpdateNoteModal: false,
   isUpdateListNoteModal: false,
@@ -8,6 +8,6 @@ const state = (): IModalState => ({
   idForModal: "",
   listForModal: [],
   checklistForModal: [],
-});
+};
 
 export default state;

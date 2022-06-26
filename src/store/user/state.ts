@@ -1,6 +1,6 @@
 import { IUserState } from "@/types/store";
 
-const state = (): IUserState => ({
+const state: IUserState = {
   isLoggedIn: false,
   userContent: {
     name: "",
@@ -11,6 +11,6 @@ const state = (): IUserState => ({
     username: "",
   },
   isLoading: false,
-});
+};
 
 export default state;
