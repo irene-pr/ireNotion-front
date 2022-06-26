@@ -2,6 +2,7 @@ import { mount } from "@vue/test-utils";
 import { createStore } from "vuex";
 import Register from "../../../src/views/Register.vue";
 import state from "@/store/state";
+import userState from "@/store/user/state";
 import router from "@/router";
 import RegisterForm from "@/components/Login/RegisterForm.vue";
 
@@ -17,8 +18,16 @@ describe("Given a Register view", () => {
       state() {
         return state;
       },
-      actions: {
-        checkToken: checkTokenMock,
+      modules: {
+        user: {
+          namespaced: true,
+          state() {
+            return userState;
+          },
+          actions: {
+            checkToken: checkTokenMock,
+          },
+        },
       },
       getters: {
         redirectToUserBoard: redirectToUserBoardMock,
@@ -78,7 +87,7 @@ describe("Given a Register view", () => {
   });
   describe("When the isLoggedIn state is true", () => {
     test("Then it calls the redirectToUserBoard getter", () => {
-      state.isLoggedIn = true;
+      userState.isLoggedIn = true;
 
       mount(Register, {
         global: {
