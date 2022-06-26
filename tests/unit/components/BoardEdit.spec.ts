@@ -4,7 +4,7 @@ import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
 import { library } from "@fortawesome/fontawesome-svg-core";
 import { fas } from "@fortawesome/free-solid-svg-icons";
 import BoardEdit from "@/components/Modals/BoardEdit.vue";
-import { IModalState, IState, IThemeState, IUserState } from "@/types/store";
+import { IModalState, IThemeState, IUserState } from "@/types/store";
 import themeState from "@/store/theme/state";
 import userState from "@/store/user/state";
 import modalState from "@/store/modal/state";
