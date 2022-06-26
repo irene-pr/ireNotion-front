@@ -1,12 +1,17 @@
 import { mount } from "@vue/test-utils";
 import { createStore } from "vuex";
 import Loading from "@/components/Others/Loading.vue";
-import state from "@/store/state";
+import themeState from "@/store/theme/state";
 
 describe("Given a Loading component", () => {
   const store = createStore({
-    state() {
-      return state;
+    modules: {
+      theme: {
+        namespaced: true,
+        state() {
+          return themeState;
+        },
+      },
     },
   });
 
@@ -32,7 +37,7 @@ describe("Given a Loading component", () => {
   });
   describe("When it is rendered with the night-mode activated", () => {
     test("Then it renders", () => {
-      state.themeSurfaces = "night-mode";
+      themeState.themeSurfaces = "night-mode";
       const wrapper = mount(Loading, {
         global: {
           plugins: [store],

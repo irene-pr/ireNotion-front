@@ -2,6 +2,7 @@ import { mount } from "@vue/test-utils";
 import { createStore } from "vuex";
 import Login from "../../../src/views/Login.vue";
 import state from "@/store/state";
+import userState from "@/store/user/state";
 import router from "@/router";
 import LoginForm from "@/components/Login/LoginForm.vue";
 
@@ -17,8 +18,16 @@ describe("Given a Login view", () => {
       state() {
         return state;
       },
-      actions: {
-        checkToken: checkTokenMock,
+      modules: {
+        user: {
+          namespaced: true,
+          state() {
+            return userState;
+          },
+          actions: {
+            checkToken: checkTokenMock,
+          },
+        },
       },
       getters: {
         redirectToUserBoard: redirectToUserBoardMock,
@@ -78,7 +87,7 @@ describe("Given a Login view", () => {
   });
   describe("When the isLoggedIn state is true", () => {
     test("Then it calls the redirectToUserBoard getter", () => {
-      state.isLoggedIn = true;
+      userState.isLoggedIn = true;
 
       mount(Login, {
         global: {
@@ -90,6 +99,7 @@ describe("Given a Login view", () => {
     });
     test("Then it redirects to /userBoard", () => {
       state.isLoggedIn = true;
+
       const $route = { path: "/userBoard" };
 
       const wrapper = mount(Login, {
